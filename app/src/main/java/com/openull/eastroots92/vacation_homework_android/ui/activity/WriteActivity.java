@@ -4,31 +4,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.openull.eastroots92.vacation_homework_android.R;
-import com.openull.eastroots92.vacation_homework_android.apis.HomeworkApis;
 import com.openull.eastroots92.vacation_homework_android.models.ChatBalloon;
-import com.openull.eastroots92.vacation_homework_android.models.requests.ChatRequest;
-import com.openull.eastroots92.vacation_homework_android.models.responses.ChatResponse;
 import com.openull.eastroots92.vacation_homework_android.presenter.write.WriteContract;
 import com.openull.eastroots92.vacation_homework_android.presenter.write.WritePresenter;
 import com.openull.eastroots92.vacation_homework_android.ui.adapter.DialogueAdapter;
-import com.openull.eastroots92.vacation_homework_android.utils.ApiUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class WriteActivity extends AppCompatActivity implements WriteContract.View {
   WritePresenter presenter;
@@ -69,23 +58,6 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
     recyclerView.setAdapter(dialogueAdapter);
 
     writeSubmitButton.setOnClickListener(presenter.handleClickWriteSubmit());
-
-//    writeSubmitButton.setOnClickListener((__) -> {
-//      String speech = writeInputEditText.getText()
-//        .toString();
-//
-//      System.out.println(speech);
-//
-//      Calendar calendar = Calendar.getInstance();
-//
-//      ChatBalloon chatBalloon = new ChatBalloon();
-//      chatBalloon.setSpeech(speech);
-//      chatBalloon.setCalendar(calendar);
-//
-//      chatBalloons.add(chatBalloon);
-//      dialogueAdapter.notifyItemInserted(chatBalloons.size() - 1);
-////      presenter.dispatchSpeech(speech);
-//    });
   }
 
   public void appendChatBalloon(ChatBalloon chatBalloon) {

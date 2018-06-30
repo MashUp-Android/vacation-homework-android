@@ -4,4 +4,9 @@
   android:layout_height="match_parent"
   android:layout_width="match_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
+  <android.support.v7.widget.RecyclerView
+    android:id="@+id/recyclerView_timeline"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
 </android.support.constraint.ConstraintLayout>
