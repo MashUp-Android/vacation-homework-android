@@ -9,7 +9,7 @@
     android:layout_height="40dp"
     android:layout_marginStart="16dp"
     android:layout_marginTop="16dp"
-    android:background="@color/colorAccent"/>
+    android:background="@drawable/layout_circle"/>
   <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -25,6 +25,7 @@
       android:textSize="12sp"/>
     <TextView
       android:padding="10dp"
+      android:layout_marginRight="16dp"
       android:id="@+id/textView_contents"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

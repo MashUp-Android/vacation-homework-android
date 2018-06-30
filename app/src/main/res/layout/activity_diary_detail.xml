@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/HEIGHT_56"
     android:gravity="center_vertical"
-    android:paddingHorizontal="8dp"
+    android:paddingHorizontal="16dp"
     >
 
     <ImageView
@@ -25,21 +25,26 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:layout_weight="1"
+      android:paddingLeft="16dp"
       >
       <TextView
         android:id="@+id/textView_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="이름"
+        android:layout_height="21dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
         android:textColor="@color/black2"
         />
       <TextView
         android:id="@+id/textView_date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginTop="3dp"
         android:text="날자"
         android:textColor="@color/black2"
         />
+
     </LinearLayout>
     
     <ImageView
