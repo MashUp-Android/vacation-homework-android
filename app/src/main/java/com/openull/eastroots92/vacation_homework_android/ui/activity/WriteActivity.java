@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WriteActivity extends AppCompatActivity implements WriteContract.View {
-  HomeworkApis homeworkApis;
+
 
   @BindView(R.id.recyclerView_dialogue)
   RecyclerView recyclerView;
@@ -43,19 +43,18 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
     setContentView(R.layout.activity_write);
 
     loadDependencies();
-    System.out.println("123123 " + recyclerView);
+
     presenter.init();
   }
 
   private void loadDependencies() {
-    homeworkApis = ApiUtils.getHomeworkApis();
+
     presenter = new WritePresenter(this);
     ButterKnife.bind(this);
   }
 
   @Override
   public void initView() {
-    System.out.println("init view");
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     dialogueAdapter = new DialogueAdapter();
     recyclerView.setAdapter(dialogueAdapter);
@@ -64,24 +63,7 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
       String speech = writeInputEditText.getText()
         .toString();
 
-      dispatchSpeech(speech);
+      presenter.dispatchSpeech(speech);
     });
-  }
-
-  private void dispatchSpeech(String contents) {
-    String _contents = "contents " + contents;
-    System.out.println("_contents " + _contents);
-
-    homeworkApis.postChat(new ChatRequest(_contents))
-      .enqueue(new Callback<ChatResponse>() {
-        @Override
-        public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-          System.out.println("123123 aab");
-        }
-        @Override
-        public void onFailure(Call<ChatResponse> call, Throwable t) {
-          System.out.println("123123 bbc");
-        }
-      });
   }
 }
