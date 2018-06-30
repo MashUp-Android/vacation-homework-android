@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,17 +31,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WriteActivity extends AppCompatActivity implements WriteContract.View {
-  @BindView(R.id.recyclerView_dialogue)
-  RecyclerView recyclerView;
-  RecyclerView.Adapter dialogueAdapter;
-
   WritePresenter presenter;
 
+  @BindView(R.id.recyclerView_dialogue)
+  public RecyclerView recyclerView;
+  public RecyclerView.Adapter dialogueAdapter;
+
   @BindView(R.id.editText_writeInput)
-  EditText writeInputEditText;
+  public EditText writeInputEditText;
 
   @BindView(R.id.button_writeSubmit)
-  Button writeSubmitButton;
+  public Button writeSubmitButton;
+
+  public List<ChatBalloon> chatBalloons;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,27 +62,30 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
 
   @Override
   public void initView() {
-    final List<ChatBalloon> chatBalloons = new ArrayList<>();
+    chatBalloons = new ArrayList<>();
 
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     dialogueAdapter = new DialogueAdapter(getApplicationContext(), chatBalloons);
     recyclerView.setAdapter(dialogueAdapter);
 
-    writeSubmitButton.setOnClickListener((__) -> {
-      String speech = writeInputEditText.getText()
-        .toString();
+    writeSubmitButton.setOnClickListener(presenter.handleClickWriteSubmit(this));
 
-      System.out.println(speech);
-
-      Calendar calendar = Calendar.getInstance();
-
-      ChatBalloon chatBalloon = new ChatBalloon();
-      chatBalloon.setSpeech(speech);
-      chatBalloon.setCalendar(calendar);
-
-      chatBalloons.add(chatBalloon);
-      dialogueAdapter.notifyItemInserted(chatBalloons.size() - 1);
-//      presenter.dispatchSpeech(speech);
-    });
+//    writeSubmitButton.setOnClickListener((__) -> {
+//      String speech = writeInputEditText.getText()
+//        .toString();
+//
+//      System.out.println(speech);
+//
+//      Calendar calendar = Calendar.getInstance();
+//
+//      ChatBalloon chatBalloon = new ChatBalloon();
+//      chatBalloon.setSpeech(speech);
+//      chatBalloon.setCalendar(calendar);
+//
+//      chatBalloons.add(chatBalloon);
+//      dialogueAdapter.notifyItemInserted(chatBalloons.size() - 1);
+////      presenter.dispatchSpeech(speech);
+//    });
   }
 }
+
