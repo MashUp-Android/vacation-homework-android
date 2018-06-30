@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <color name="black0">#000</color>
   <color name="black2">#222</color>
   <color name="black3">#333</color>
   <color name="black4">#444</color>

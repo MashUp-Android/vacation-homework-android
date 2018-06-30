@@ -4,19 +4,23 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:orientation="vertical"
-  android:paddingHorizontal="8dp">
+  android:paddingHorizontal="16dp">
   
   <TextView
     android:id="@+id/textView_question"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:textColor="@color/black0"
     android:layout_marginVertical="8dp"
     />
   <TextView
     android:id="@+id/textView_answer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:textColor="@color/black0"
     android:layout_marginVertical="8dp"
+    android:layout_marginStart="8dp"
     />
 
   <View

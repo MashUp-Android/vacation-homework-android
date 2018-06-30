@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.openull.eastroots92.vacation_homework_android.R;
@@ -19,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DiaryDetailActivity extends AppCompatActivity implements DiaryDetailContract.View {
-
+  
   @BindView(R.id.textView_name)
   TextView name;
 
@@ -32,6 +33,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements DiaryDetai
   @BindView(R.id.recyclerView_diary)
   RecyclerView recyclerView;
   private RecyclerView.Adapter diaryAdapter;
+
 
   private List<Diary> diaries;
 
