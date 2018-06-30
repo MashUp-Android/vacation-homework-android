@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">vacation-homework-android</string>
+  <string name="WRITE_SUBMIT">write</string>
 </resources>
