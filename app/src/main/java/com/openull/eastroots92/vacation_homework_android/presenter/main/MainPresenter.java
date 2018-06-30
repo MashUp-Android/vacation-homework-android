@@ -1,4 +1,4 @@
-package com.openull.eastroots92.vacation_homework_android.presenter.Main;
+package com.openull.eastroots92.vacation_homework_android.presenter.main;
 
 public class MainPresenter implements MainContract.Presenter {
     MainContract.View view;

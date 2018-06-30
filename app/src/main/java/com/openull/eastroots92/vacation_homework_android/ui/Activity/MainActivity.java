@@ -1,4 +1,4 @@
-package com.openull.eastroots92.vacation_homework_android.ui.Activity;
+package com.openull.eastroots92.vacation_homework_android.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.openull.eastroots92.vacation_homework_android.R;
-import com.openull.eastroots92.vacation_homework_android.presenter.Main.MainContract;
-import com.openull.eastroots92.vacation_homework_android.ui.Adapter.UserInfoAdapter;
+import com.openull.eastroots92.vacation_homework_android.presenter.main.MainContract;
+import com.openull.eastroots92.vacation_homework_android.ui.adapter.UserInfoAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
