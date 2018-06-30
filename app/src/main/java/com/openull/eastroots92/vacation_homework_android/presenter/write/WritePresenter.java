@@ -10,23 +10,24 @@ import com.openull.eastroots92.vacation_homework_android.ui.activity.WriteActivi
 import com.openull.eastroots92.vacation_homework_android.utils.ApiUtils;
 
 import java.util.Calendar;
+import java.util.function.Consumer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WritePresenter implements WriteContract.Presenter {
-  WriteContract.View view;
+  WriteActivity view;
   HomeworkApis homeworkApis;
 
-  public WritePresenter(WriteContract.View v) {
-    view = v;
+  public WritePresenter(WriteActivity v) {
+    this.view = v;
   }
 
   @Override
   public void init() {
     homeworkApis = ApiUtils.getHomeworkApis();
-    view.initView();
+    this.view.initView();
   }
 
   public void dispatchSpeech(String contents) {
@@ -37,32 +38,43 @@ public class WritePresenter implements WriteContract.Presenter {
       .enqueue(new Callback<ChatResponse>() {
         @Override
         public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-          System.out.println("123123 aab");
+          System.out.println("dispatch speech success");
+          // todo: make sure the response has the right value,
+
+          Calendar calendar = Calendar.getInstance();
+          ChatBalloon chatBalloon = new ChatBalloon();
+          chatBalloon.setSpeech("server response");
+          chatBalloon.setCalendar(calendar);
+
+          view.appendChatBalloon(chatBalloon);
         }
+
         @Override
         public void onFailure(Call<ChatResponse> call, Throwable t) {
-          System.out.println("123123 bbc");
+          System.out.println("dispatch speech error");
         }
       });
   }
 
-  public View.OnClickListener handleClickWriteSubmit(WriteActivity activity) {
+  public View.OnClickListener handleClickWriteSubmit() {
+    WriteActivity view = (WriteActivity) this.view;
+
     return new View.OnClickListener() {
       @Override
-      public void onClick(View view) {
-        String speech = activity.writeInputEditText.getText()
+      public void onClick(View v) {
+        String speech = view.writeInputEditText.getText()
           .toString();
 
-      System.out.println(speech);
+        System.out.println(speech);
 
-      Calendar calendar = Calendar.getInstance();
-      ChatBalloon chatBalloon = new ChatBalloon();
-      chatBalloon.setSpeech(speech);
-      chatBalloon.setCalendar(calendar);
+        Calendar calendar = Calendar.getInstance();
+        ChatBalloon chatBalloon = new ChatBalloon();
+        chatBalloon.setSpeech(speech);
+        chatBalloon.setCalendar(calendar);
 
-      activity.chatBalloons.add(chatBalloon);
-      activity.dialogueAdapter.notifyItemInserted(activity.chatBalloons.size() - 1);
-//      presenter.dispatchSpeech(speech);
+        view.appendChatBalloon(chatBalloon);
+
+        dispatchSpeech(speech);
       }
     };
   }

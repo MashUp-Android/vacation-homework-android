@@ -68,7 +68,7 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
     dialogueAdapter = new DialogueAdapter(getApplicationContext(), chatBalloons);
     recyclerView.setAdapter(dialogueAdapter);
 
-    writeSubmitButton.setOnClickListener(presenter.handleClickWriteSubmit(this));
+    writeSubmitButton.setOnClickListener(presenter.handleClickWriteSubmit());
 
 //    writeSubmitButton.setOnClickListener((__) -> {
 //      String speech = writeInputEditText.getText()
@@ -86,6 +86,11 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
 //      dialogueAdapter.notifyItemInserted(chatBalloons.size() - 1);
 ////      presenter.dispatchSpeech(speech);
 //    });
+  }
+
+  public void appendChatBalloon(ChatBalloon chatBalloon) {
+    this.chatBalloons.add(chatBalloon);
+    this.dialogueAdapter.notifyItemInserted(this.chatBalloons.size() - 1);
   }
 }
 
