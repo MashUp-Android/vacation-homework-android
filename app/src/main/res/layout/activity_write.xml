@@ -15,12 +15,14 @@
     android:layout_width="match_parent"
     android:layout_height="60dp">
     <EditText
+      android:id="@+id/editText_writeInput"
       android:background="@color/colorPrimary"
       android:layout_weight="1"
       android:layout_height="match_parent"
       android:layout_width="0dp"
       android:textColor="@color/black2"/>
     <Button
+      android:id="@+id/button_writeSubmit"
       android:background="@color/colorPrimaryDark"
       android:layout_width="50dp"
       android:layout_height="match_parent"

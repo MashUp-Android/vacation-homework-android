@@ -10,7 +10,6 @@ import com.openull.eastroots92.vacation_homework_android.presenter.main.MainCont
 import com.openull.eastroots92.vacation_homework_android.ui.adapter.UserInfoAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
-
   private RecyclerView recyclerView;
   private RecyclerView.Adapter userInfoAdapter;
 
@@ -31,5 +30,4 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     recyclerView.setAdapter(userInfoAdapter);
   }
-
 }

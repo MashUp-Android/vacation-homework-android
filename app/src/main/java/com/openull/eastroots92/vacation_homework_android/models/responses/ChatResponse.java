@@ -1,6 +1,6 @@
-package com.openull.eastroots92.vacation_homework_android.models.response;
+package com.openull.eastroots92.vacation_homework_android.models.responses;
 
-public class TempResponse {
+public class ChatResponse {
   public String temp;
 
   public String getTemp() {
