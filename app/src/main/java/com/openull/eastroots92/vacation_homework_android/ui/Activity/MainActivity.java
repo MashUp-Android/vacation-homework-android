@@ -1,5 +1,7 @@
 package com.openull.eastroots92.vacation_homework_android.ui.activity;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
   private SettingFragment settingFragment;
   private TimelineFragment timelineFragment;
 
+  @BindView(R.id.floatingActionButton_write)
+  FloatingActionButton writeButton;
+
   @BindView(R.id.frameLayout_main)
   ViewPager mainFrameLayout;
 
@@ -51,7 +56,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     initViewPager();
     initTabLayout();
+    initDefault();
+  }
 
+  private void initDefault() {
+    writeButton.setOnClickListener((__) -> {
+      Intent intent = new Intent(this, WriteActivity.class);
+      startActivity(intent);
+    });
   }
 
   private void initViewPager() {
