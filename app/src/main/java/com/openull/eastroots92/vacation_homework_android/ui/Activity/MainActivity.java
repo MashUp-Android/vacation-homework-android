@@ -1,4 +1,4 @@
-package com.openull.eastroots92.vacation_homework_android.ui;
+package com.openull.eastroots92.vacation_homework_android.ui.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.util.Log;
 import com.openull.eastroots92.vacation_homework_android.R;
 import com.openull.eastroots92.vacation_homework_android.apis.HomeworkApis;
 import com.openull.eastroots92.vacation_homework_android.models.response.TempResponse;
-import com.openull.eastroots92.vacation_homework_android.ui.presenter.MainContract;
+import com.openull.eastroots92.vacation_homework_android.presenter.Main.MainContract;
 import com.openull.eastroots92.vacation_homework_android.utils.ApiUtils;
 
 import retrofit2.Call;
