@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface HomeworkApis {
-  @GET("/initChat")
+  @GET("/startchat")
   Call<ChatResponse> postInitChat();
 
   @POST("/chat")
