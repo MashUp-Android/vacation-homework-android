@@ -40,12 +40,12 @@ public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.Dialog
 
     holder.textView_contents.setText(chatBalloon.getSpeech());
     holder.textView_isRead.setText("isRead" + position);
-    holder.textView_time.setText(
-      "time (hh:mm)"
-      + chatBalloon.getCalendar().get(Calendar.HOUR_OF_DAY)
-      + " "
-      + chatBalloon.getCalendar().get(Calendar.MINUTE)
-    );
+//    holder.textView_time.setText(
+//      "time (hh:mm)"
+//      + chatBalloon.getCalendar().get(Calendar.HOUR_OF_DAY)
+//      + " "
+//      + chatBalloon.getCalendar().get(Calendar.MINUTE)
+//    );
   }
 
   @Override
@@ -56,14 +56,14 @@ public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.Dialog
   public class DialogueHolder extends RecyclerView.ViewHolder {
     TextView textView_contents;
     TextView textView_isRead;
-    TextView textView_time;
+//    TextView textView_time;
 
     public DialogueHolder(@NonNull View itemView) {
       super(itemView);
 
       textView_contents = itemView.findViewById(R.id.textView_contents);
       textView_isRead = itemView.findViewById(R.id.textView_isRead);
-      textView_time = itemView.findViewById(R.id.textView_time);
+//      textView_time = itemView.findViewById(R.id.textView_time);
     }
   }
 }

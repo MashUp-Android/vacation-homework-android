@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-  android:background="@drawable/layout_bg"
-  android:orientation="vertical"
+  android:orientation="horizontal"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_margin="10dp"
-  android:padding="10dp"
   xmlns:android="http://schemas.android.com/apk/res/android">
+  <ImageView
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@color/colorAccent"/>
   <LinearLayout
-    android:background="@drawable/layout_bg"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_marginLeft="8dp"
+    >
     <TextView
-      android:background="@color/white3"
-      android:id="@+id/textView_time"
-      android:layout_height="match_parent"
-      android:layout_width="wrap_content"
-      android:textSize="18sp"/>
-    <TextView
-      android:background="@color/white4"
       android:id="@+id/textView_isRead"
-      android:layout_height="match_parent"
-      android:layout_marginStart="10dp"
+      android:layout_height="19dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginBottom="4dp"
       android:layout_width="wrap_content"
-      android:textSize="18sp"/>
+      android:textSize="12sp"/>
+    <TextView
+      android:padding="10dp"
+      android:id="@+id/textView_contents"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="14sp"
+      android:background="@drawable/layout_bg"/>
   </LinearLayout>
-  <TextView
-    android:id="@+id/textView_contents"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="14sp"/>
+
 </LinearLayout>
