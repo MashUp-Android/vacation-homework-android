@@ -10,6 +10,12 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:textSize="14sp"
-    android:background="@drawable/layout_bg"/>
+    android:textStyle="bold"
+    android:textColor="#ffffff"
+    android:text="
+     I had part time job in the morning
+ and that was way better than I thought"
+    android:background="#464f64"/>
+
 
 </LinearLayout>
