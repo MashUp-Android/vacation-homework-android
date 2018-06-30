@@ -13,6 +13,7 @@
     android:layout_gravity="center"
     android:src="#f17171" />
   <TextView
+    android:id="@+id/textView_timeline_title"
     android:layout_centerInParent="true"
     android:layout_width="wrap_content"
     android:layout_height="23dp"

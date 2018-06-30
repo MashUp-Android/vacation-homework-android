@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
   private SettingFragment settingFragment;
   private TimelineFragment timelineFragment;
 
+
   @BindView(R.id.floatingActionButton_write)
   FloatingActionButton writeButton;
 
@@ -50,9 +51,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     settingFragment = new SettingFragment();
     timelineFragment = new TimelineFragment();
 
+    initGlobalHeader();
     initViewPager();
     initTabLayout();
     initDefault();
+  }
+
+  private void initGlobalHeader() {
   }
 
   private void initDefault() {
