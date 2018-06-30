@@ -7,6 +7,7 @@
   tools:context=".ui.activity.WriteActivity"
   android:orientation="vertical">
   <android.support.v7.widget.RecyclerView
+    android:id="@+id/recyclerView_dialogue"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"/>

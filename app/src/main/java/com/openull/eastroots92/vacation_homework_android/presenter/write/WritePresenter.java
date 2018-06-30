@@ -9,7 +9,7 @@ public class WritePresenter implements WriteContract.Presenter {
 
   @Override
   public void init() {
-    System.out.println("345");
+    System.out.println("init");
     view.initView();
   }
 }
