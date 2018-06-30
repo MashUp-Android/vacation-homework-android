@@ -91,6 +91,8 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
   public void appendChatBalloon(ChatBalloon chatBalloon) {
     this.chatBalloons.add(chatBalloon);
     this.dialogueAdapter.notifyItemInserted(this.chatBalloons.size() - 1);
+
+    recyclerView.scrollToPosition(this.chatBalloons.size() -1);
   }
 }
 
