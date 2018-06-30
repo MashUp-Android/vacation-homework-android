@@ -1,6 +1,7 @@
 package com.openull.eastroots92.vacation_homework_android.ui.adapter;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +10,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.openull.eastroots92.vacation_homework_android.R;
+import com.openull.eastroots92.vacation_homework_android.models.ChatBalloon;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.DialogueHolder> {
+  private Context context;
+  private List<ChatBalloon> data;
+
+  public DialogueAdapter(Context applicationContext, List<ChatBalloon> chatBalloons) {
+    this.context = applicationContext;
+    this.data = chatBalloons;
+  }
+
   @NonNull
   @Override
   public DialogueAdapter.DialogueHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -22,15 +36,21 @@ public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.Dialog
 
   @Override
   public void onBindViewHolder(@NonNull DialogueHolder holder, int position) {
-    System.out.println("123123 " + holder);
-    holder.textView_contents.setText("contents" + position);
+    ChatBalloon chatBalloon = this.data.get(position);
+
+    holder.textView_contents.setText(chatBalloon.getSpeech());
     holder.textView_isRead.setText("isRead" + position);
-    holder.textView_time.setText("time" + position);
+    holder.textView_time.setText(
+      "time (hh:mm)"
+      + chatBalloon.getCalendar().get(Calendar.HOUR_OF_DAY)
+      + " "
+      + chatBalloon.getCalendar().get(Calendar.MINUTE)
+    );
   }
 
   @Override
   public int getItemCount() {
-    return 10;
+    return data.size();
   }
 
   public class DialogueHolder extends RecyclerView.ViewHolder {
@@ -40,7 +60,6 @@ public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.Dialog
 
     public DialogueHolder(@NonNull View itemView) {
       super(itemView);
-      System.out.println("234");
 
       textView_contents = itemView.findViewById(R.id.textView_contents);
       textView_isRead = itemView.findViewById(R.id.textView_isRead);

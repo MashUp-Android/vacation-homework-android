@@ -9,12 +9,19 @@ import android.widget.EditText;
 
 import com.openull.eastroots92.vacation_homework_android.R;
 import com.openull.eastroots92.vacation_homework_android.apis.HomeworkApis;
+import com.openull.eastroots92.vacation_homework_android.models.ChatBalloon;
 import com.openull.eastroots92.vacation_homework_android.models.requests.ChatRequest;
 import com.openull.eastroots92.vacation_homework_android.models.responses.ChatResponse;
 import com.openull.eastroots92.vacation_homework_android.presenter.write.WriteContract;
 import com.openull.eastroots92.vacation_homework_android.presenter.write.WritePresenter;
 import com.openull.eastroots92.vacation_homework_android.ui.adapter.DialogueAdapter;
 import com.openull.eastroots92.vacation_homework_android.utils.ApiUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,8 +30,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WriteActivity extends AppCompatActivity implements WriteContract.View {
-
-
   @BindView(R.id.recyclerView_dialogue)
   RecyclerView recyclerView;
   RecyclerView.Adapter dialogueAdapter;
@@ -48,22 +53,33 @@ public class WriteActivity extends AppCompatActivity implements WriteContract.Vi
   }
 
   private void loadDependencies() {
-
     presenter = new WritePresenter(this);
     ButterKnife.bind(this);
   }
 
   @Override
   public void initView() {
+    final List<ChatBalloon> chatBalloons = new ArrayList<>();
+
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    dialogueAdapter = new DialogueAdapter();
+    dialogueAdapter = new DialogueAdapter(getApplicationContext(), chatBalloons);
     recyclerView.setAdapter(dialogueAdapter);
 
     writeSubmitButton.setOnClickListener((__) -> {
       String speech = writeInputEditText.getText()
         .toString();
 
-      presenter.dispatchSpeech(speech);
+      System.out.println(speech);
+
+      Calendar calendar = Calendar.getInstance();
+
+      ChatBalloon chatBalloon = new ChatBalloon();
+      chatBalloon.setSpeech(speech);
+      chatBalloon.setCalendar(calendar);
+
+      chatBalloons.add(chatBalloon);
+      dialogueAdapter.notifyItemInserted(chatBalloons.size() - 1);
+//      presenter.dispatchSpeech(speech);
     });
   }
 }

@@ -39,4 +39,6 @@ public class WritePresenter implements WriteContract.Presenter {
         }
       });
   }
+
+
 }
