@@ -259,3 +259,5 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/osx,java,android,windows,androidstudio
+
+/.idea/

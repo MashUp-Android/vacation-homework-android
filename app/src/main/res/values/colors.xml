@@ -17,4 +17,7 @@
   <color name="white3">#fbfbfb</color>
   <color name="white4">#fdfdfd</color>
   <color name="white5">#fff</color>
+
+  <color name="item_timeline_entry_background">#464f64</color>
+  <color name="item_global_header_background">#3d3636</color>
 </resources>

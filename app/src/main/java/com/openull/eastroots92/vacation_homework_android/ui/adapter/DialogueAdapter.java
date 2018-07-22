@@ -12,8 +12,6 @@ import android.widget.TextView;
 import com.openull.eastroots92.vacation_homework_android.R;
 import com.openull.eastroots92.vacation_homework_android.models.ChatBalloon;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.DialogueHolder> {
@@ -29,7 +27,7 @@ public class DialogueAdapter extends RecyclerView.Adapter<DialogueAdapter.Dialog
   @Override
   public DialogueAdapter.DialogueHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
-      .inflate(R.layout.chat_entry_base, parent, false);
+      .inflate(R.layout.item_chat_entry_base, parent, false);
 
     return new DialogueHolder(view);
   }

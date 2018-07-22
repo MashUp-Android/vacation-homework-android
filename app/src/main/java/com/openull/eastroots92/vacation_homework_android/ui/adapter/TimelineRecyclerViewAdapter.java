@@ -11,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.openull.eastroots92.vacation_homework_android.R;
-import com.openull.eastroots92.vacation_homework_android.models.ChatBalloon;
 import com.openull.eastroots92.vacation_homework_android.ui.activity.DiaryDetailActivity;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRecyclerViewAdapter.ViewHolder> {
@@ -30,7 +28,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
   @Override
   public TimelineRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
-      .inflate(R.layout.timeline_entry, parent, false);
+      .inflate(R.layout.item_timeline_entry, parent, false);
 
     view.setOnClickListener((__) -> {
       Intent intent = new Intent(this.context, DiaryDetailActivity.class);

@@ -2,20 +2,17 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
   android:layout_height="match_parent">
-
   <TextView
-    android:padding="10dp"
+    android:padding="20dp"
     android:layout_margin="16dp"
     android:id="@+id/textView_contents"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:textSize="14sp"
     android:textStyle="bold"
-    android:textColor="#ffffff"
+    android:textColor="@color/white3"
     android:text="
      I had part time job in the morning
  and that was way better than I thought"
-    android:background="#464f64"/>
-
-
+    android:background="@color/item_timeline_entry_background"/>
 </LinearLayout>

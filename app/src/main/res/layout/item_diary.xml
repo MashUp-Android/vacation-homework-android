@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:orientation="vertical"
-  android:paddingHorizontal="16dp">
-  
+  android:orientation="vertical">
   <TextView
     android:id="@+id/textView_question"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textStyle="bold"
-    android:textColor="@color/black0"
-    android:layout_marginVertical="8dp"
-    />
+    android:layout_margin="@dimen/item_diary_textview_question_layout_margin"
+    android:background="@color/black3"
+    android:textStyle="bold"/>
   <TextView
     android:id="@+id/textView_answer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="@color/black0"
-    android:layout_marginVertical="8dp"
-    android:layout_marginStart="8dp"
-    />
-
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/gray3"
-    />
-
+    android:layout_margin="@dimen/item_diary_textview_answer_layout_margin"
+    android:background="@color/black3"/>
 </LinearLayout>

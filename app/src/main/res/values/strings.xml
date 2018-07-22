@@ -2,4 +2,8 @@
   <string name="app_name">vacation-homework-android</string>
   <string name="WRITE_SUBMIT">write</string>
   <string name="TEMP">temp</string>
+  <string name="item_global_header_button_timeline_title_text">DIARY</string>
+  <string name="item_header_textview_name_text">name</string>
+  <string name="item_header_textview_date_text">date</string>
+  <string name="item_header_textview_weather_text">weather</string>
 </resources>

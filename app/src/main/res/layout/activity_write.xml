@@ -9,22 +9,22 @@
   <android.support.v7.widget.RecyclerView
     android:id="@+id/recyclerView_dialogue"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"/>
+    android:layout_height="@dimen/activity_write_recyclerview_dialogue_layout_height"
+    android:layout_weight="@dimen/activity_write_recyclerview_dialogue_layout_weight"/>
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <EditText
       android:id="@+id/editText_writeInput"
       android:background="@color/colorPrimary"
-      android:layout_weight="1"
+      android:layout_weight="@dimen/activity_write_editext_writeinput_layout_weight"
       android:layout_height="match_parent"
-      android:layout_width="0dp"
+      android:layout_width="@dimen/activity_write_editext_writeinput_layout_width"
       android:textColor="@color/black2"/>
     <Button
       android:id="@+id/button_writeSubmit"
       android:background="@color/colorPrimaryDark"
-      android:layout_width="50dp"
+      android:layout_width="@dimen/activity_write_button_write_submit_layout_width"
       android:layout_height="match_parent"
       android:text="@string/WRITE_SUBMIT"
       android:textColor="@color/black3"/>

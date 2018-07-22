@@ -2,48 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="@dimen/HEIGHT_56"
-  android:background="#e9c9c9"
   android:gravity="center_vertical"
-  android:paddingHorizontal="16dp"
-  >
-
+  android:paddingHorizontal="@dimen/item_header_linear_layout_padding_horizontal">
   <ImageView
     android:layout_width="@dimen/SIZE_40"
     android:layout_height="@dimen/SIZE_40"
-    android:src="@drawable/sample_profile" />
-
+    android:src="@drawable/sample_profile"/>
   <LinearLayout
+    android:id="@+id/linearLayout_bot_prifile_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/item_header_linear_layout_bot_prifile_text_layout_margin_start"
     android:layout_weight="1"
-    android:layout_marginStart="16dp"
     android:orientation="vertical">
-
     <TextView
       android:id="@+id/textView_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="이름"
-      android:textColor="@color/black2" />
-
+      android:text="@string/item_header_textview_name_text"
+      android:textColor="@color/black2"/>
     <TextView
       android:id="@+id/textView_date"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="날자"
-      android:textColor="@color/black2" />
+      android:text="@string/item_header_textview_date_text"
+      android:textColor="@color/black2"/>
   </LinearLayout>
-
   <ImageView
+    android:id="@+id/imageView_weather_img"
     android:layout_width="@dimen/SIZE_22"
     android:layout_height="@dimen/SIZE_22"
-    android:src="@color/gray3"
-    android:layout_marginHorizontal="8dp"/>
-
+    android:layout_marginHorizontal="@dimen/item_header_imageView_weather_img_layout_margin_horizontal"
+    android:src="@color/gray3"/>
   <TextView
     android:id="@+id/textView_weather"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Sunny" />
-
+    android:text="@string/item_header_textview_weather_text"/>
 </LinearLayout>
