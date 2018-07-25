@@ -2,18 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:orientation="vertical">
+  android:orientation="vertical"
+  android:layout_margin="16dp">
   <TextView
     android:id="@+id/textView_question"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/item_diary_textview_question_layout_margin"
-    android:background="@color/black3"
-    android:textStyle="bold"/>
+    android:layout_width="wrap_content"
+    android:layout_height="19dp"
+    android:textSize="16sp"
+    android:fontFamily="sans-serif"
+    android:textStyle="bold"
+    android:textColor="@color/black0"
+    android:text="How are you feeling?"
+    />
   <TextView
     android:id="@+id/textView_answer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/item_diary_textview_answer_layout_margin"
-    android:background="@color/black3"/>
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:textSize="14sp"
+    android:textStyle="normal"
+    android:textColor="@color/black0"
+    android:text="pretty good. I had study session with friends from mashup.
+I learned how to make a random chatbot!!!!!!!!
+It was really basic but still i had fun today cuz it&apos;s
+been a while since i learned sth new and fun."
+    />
 </LinearLayout>
