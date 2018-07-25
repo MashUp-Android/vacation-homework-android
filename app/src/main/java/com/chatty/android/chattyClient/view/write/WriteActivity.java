@@ -9,8 +9,10 @@ import android.widget.EditText;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.model.ChatBalloon;
+import com.chatty.android.chattyClient.module.StateManager.Action;
 import com.chatty.android.chattyClient.presenter.write.DialogueAdapter;
 import com.chatty.android.chattyClient.presenter.write.WritePresenter;
+import com.chatty.android.chattyClient.module.StateManager.StateManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,8 @@ public class WriteActivity extends AppCompatActivity{
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_write);
+
+    StateManager.dispatch(new Action("yo", null));
 
     loadDependencies();
     presenter.init();

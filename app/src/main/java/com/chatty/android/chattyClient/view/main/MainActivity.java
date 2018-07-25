@@ -10,11 +10,14 @@ import android.os.Bundle;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
+import com.chatty.android.chattyClient.module.StateManager.StateManager;
 import com.chatty.android.chattyClient.view.write.WriteActivity;
 import com.chatty.android.chattyClient.presenter.main.MainFragmentAdapter;
 import com.chatty.android.chattyClient.view.calendar.CalendarFragment;
 import com.chatty.android.chattyClient.view.setting.SettingFragment;
 import com.chatty.android.chattyClient.view.timeLine.TimelineFragment;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +45,17 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    // state configuration
+    StateManager.initialize();
+    StateManager.subscribe((state) -> this.stateListener(state));
+
     loadDependencies();
     presenter.init();
+  }
+
+  private Object stateListener(HashMap state) {
+    System.out.println("123123123 " + state);
+    return null;
   }
 
   private void loadDependencies() {
