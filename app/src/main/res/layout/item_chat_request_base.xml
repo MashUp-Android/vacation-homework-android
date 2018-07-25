@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+  <TextView
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:padding="10dp"
+    android:background="#464f64"
+    android:textSize="14sp"
+    android:textColor="#ffffff"
+    android:text="no plans!!! :(
+I have part time job in the morning that&apos;s it...
+But i think i might hang out with my friends from uni next week."/>
+</LinearLayout>

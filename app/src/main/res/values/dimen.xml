@@ -23,7 +23,7 @@
   <dimen name="item_chat_entry_base_textview_contents_img_layout_margin_left">8dp</dimen>
   <dimen name="item_chat_entry_base_textview_contents_img_layout_margin_right">16dp</dimen>
   <dimen name="item_chat_entry_base_textview_contents_img_padding">10dp</dimen>
-  <dimen name="item_chat_entry_base_textview_contents_img_test_size">14sp</dimen>
+  <dimen name="item_chat_entry_base_textview_contents_img_test_size">16sp</dimen>
   <dimen name="item_diary_textview_question_layout_margin">8dp</dimen>
   <dimen name="item_diary_textview_answer_layout_margin">8dp</dimen>
   <dimen name="item_global_header_relative_layout_height">56dp</dimen>
