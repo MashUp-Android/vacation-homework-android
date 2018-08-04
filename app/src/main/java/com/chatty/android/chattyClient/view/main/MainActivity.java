@@ -7,17 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
-import com.chatty.android.chattyClient.module.StateManager.StateManager;
-import com.chatty.android.chattyClient.view.write.WriteActivity;
 import com.chatty.android.chattyClient.presenter.main.MainFragmentAdapter;
 import com.chatty.android.chattyClient.view.calendar.CalendarFragment;
 import com.chatty.android.chattyClient.view.setting.SettingFragment;
 import com.chatty.android.chattyClient.view.timeLine.TimelineFragment;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,57 +40,48 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    construct();
+  }
+
+  private void construct() {
     setContentView(R.layout.activity_main);
-
-    // state configuration
-    StateManager.initialize();
-    StateManager.subscribe((state) -> this.stateListener(state));
-
-    loadDependencies();
-    presenter.init();
-  }
-
-  private Object stateListener(HashMap state) {
-    System.out.println("123123123 " + state);
-    return null;
-  }
-
-  private void loadDependencies() {
-    presenter = new MainPresenter(this);
     ButterKnife.bind(this);
+    presenter = new MainPresenter(this);
+    presenter.construct();
   }
 
-  public void initView() {
+  public void render(
+    View.OnClickListener handleClickWriteButton
+  ) {
     calendarFragment = new CalendarFragment();
     settingFragment = new SettingFragment();
     timelineFragment = new TimelineFragment();
 
-    initGlobalHeader();
-    initViewPager();
-    initTabLayout();
-    initDefault();
+    renderGlobalHeader();
+    renderViewPager();
+    renderTabLayout();
+    renderWriteButton(handleClickWriteButton);
   }
 
-  private void initGlobalHeader() {
+  private void renderGlobalHeader() {
   }
 
-  private void initDefault() {
-    writeButton.setOnClickListener((__) -> {
-      Intent intent = new Intent(this, WriteActivity.class);
-      startActivity(intent);
-    });
+  private void renderWriteButton(View.OnClickListener handleClickWriteButton) {
+    writeButton.setOnClickListener(handleClickWriteButton);
   }
 
-  private void initViewPager() {
+  private void renderViewPager() {
     Fragment[] fragments = new Fragment[3];
     fragments[0] = timelineFragment;
     fragments[1] = calendarFragment;
     fragments[2] = settingFragment;
 
-    mainFrameLayout.setAdapter(new MainFragmentAdapter(getSupportFragmentManager(), fragments));
+    mainFrameLayout.setAdapter(
+      new MainFragmentAdapter(getSupportFragmentManager(), fragments)
+    );
   }
 
-  private void initTabLayout() {
+  private void renderTabLayout() {
     tabLayout.setupWithViewPager(mainFrameLayout);
   }
 }

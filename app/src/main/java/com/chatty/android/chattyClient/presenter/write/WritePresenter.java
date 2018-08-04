@@ -2,11 +2,11 @@ package com.chatty.android.chattyClient.presenter.write;
 
 import android.view.View;
 
-import com.chatty.android.chattyClient.api.HomeworkApis;
+import com.chatty.android.chattyClient.api.ChattyApi;
+import com.chatty.android.chattyClient.api.ChattyApiCore;
 import com.chatty.android.chattyClient.model.ChatBalloon;
 import com.chatty.android.chattyClient.model.request.ChatRequest;
 import com.chatty.android.chattyClient.model.response.ChatResponse;
-import com.chatty.android.chattyClient.util.ApiUtils;
 import com.chatty.android.chattyClient.view.write.WriteActivity;
 
 import java.util.Calendar;
@@ -23,7 +23,7 @@ public class WritePresenter {
   private static final String TRUE = "TRUE";
 
   private WriteActivity view;
-  private HomeworkApis homeworkApis;
+  private ChattyApi chattyApi;
   private Map<String, String> state;
 
   public WritePresenter(WriteActivity v) {
@@ -33,13 +33,13 @@ public class WritePresenter {
   }
 
   public void init() {
-    homeworkApis = ApiUtils.getHomeworkApis();
+    chattyApi = ChattyApiCore.getApi();
     view.initView();
     dispatchInitChat();
   }
 
   private void dispatchInitChat() {
-    homeworkApis.postInitChat()
+    chattyApi.postInitChat()
       .enqueue(new Callback<ChatResponse>() {
         @Override
         public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
@@ -63,7 +63,7 @@ public class WritePresenter {
     String _contents = "contents " + contents;
     System.out.println("_contents " + _contents);
 
-    homeworkApis.postChat(new ChatRequest(_contents))
+    chattyApi.postChat(new ChatRequest(_contents))
       .enqueue(new Callback<ChatResponse>() {
         @Override
         public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {

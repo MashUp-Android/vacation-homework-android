@@ -40,7 +40,7 @@ public class WriteActivity extends AppCompatActivity{
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_write);
 
-    StateManager.dispatch(new Action("yo", null));
+//    StateManager.dispatch(new Action("yo", null));
 
     loadDependencies();
     presenter.init();

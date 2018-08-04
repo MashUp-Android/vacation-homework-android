@@ -6,6 +6,11 @@ public class Action {
   private HashMap<String, String> payload;
   private String type;
 
+  public Action(String type) {
+    this.payload = null;
+    this.type = type;
+  }
+
   public Action(String type, HashMap<String, String> payload) {
     this.payload = payload;
     this.type = type;
