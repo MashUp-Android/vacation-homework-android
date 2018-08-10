@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout
+  android:background="@color/white5"
+  android:layout_height="@dimen/HEIGHT_56"
   android:layout_width="match_parent"
-  android:layout_height="@dimen/item_global_header_relative_layout_height"
-  android:background="@color/item_global_header_background">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
   <ImageButton
-    android:layout_alignParentLeft="true"
     android:id="@+id/button_timeline_left"
-    android:layout_width="@dimen/item_global_header_button_timeline_left_layout_width"
-    android:layout_height="@dimen/item_global_header_button_timeline_left_layout_height"
-    android:layout_margin="@dimen/item_global_header_button_timeline_left_layout_margin"
-    android:layout_gravity="center"/>
+    android:layout_height="@dimen/SIZE_24"
+    android:layout_marginStart="@dimen/SIZE_20"
+    android:layout_width="@dimen/SIZE_24"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.5"/>
   <TextView
+    android:gravity="center"
     android:id="@+id/textView_timeline_title"
     android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/item_global_header_button_timeline_title_layout_height"
-    android:layout_gravity="center_vertical"
-    android:layout_marginBottom="@dimen/item_global_header_button_timeline_title_layout_margin_bottom"
-    android:layout_marginEnd="@dimen/item_global_header_button_timeline_title_layout_margin_end"
-    android:layout_marginStart="@dimen/item_global_header_button_timeline_title_layout_margin_start"
-    android:layout_marginTop="@dimen/item_global_header_button_timeline_title_layout_margin_top"
-    android:gravity="center_horizontal"
-    android:text="@string/item_global_header_button_timeline_title_text"
-    android:textColor="@color/white3"
+    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    android:text="Write"
+    android:textColor="@color/main_purple"
+    android:textSize="18sp"
     android:textStyle="bold"
-    android:textSize="@dimen/item_global_header_button_timeline_title_text_size"/>
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.5"/>
   <ImageButton
-    android:layout_toLeftOf="@id/button_timeline_right2"
-    android:id="@+id/button_timeline_right1"
-    android:layout_width="@dimen/item_global_header_button_timeline_right1_layout_width"
-    android:layout_height="@dimen/item_global_header_button_timeline_right1_layout_height"
-    android:layout_marginTop="@dimen/item_global_header_button_timeline_right1_layout_margin_top"
-    android:layout_marginBottom="@dimen/item_global_header_button_timeline_right1_layout_margin_bottom"
-    android:layout_marginStart="@dimen/item_global_header_button_timeline_right1_layout_margin_start"
-    android:layout_gravity="center"/>
-  <ImageButton
+    android:id="@+id/button_timeline_right"
     android:layout_alignParentRight="true"
-    android:id="@+id/button_timeline_right2"
-    android:layout_width="@dimen/item_global_header_button_timeline_right2_layout_width"
     android:layout_height="@dimen/item_global_header_button_timeline_right2_layout_height"
-    android:layout_margin="@dimen/item_global_header_button_timeline_right2_layout_margin"
-    android:layout_gravity="center"/>
-</RelativeLayout>
+    android:layout_marginEnd="@dimen/SIZE_20"
+    android:layout_width="@dimen/item_global_header_button_timeline_right2_layout_width"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.5"/>
+  <View
+    android:background="@color/gray1"
+    android:id="@+id/view"
+    android:layout_height="@dimen/SIZE_3"
+    android:layout_width="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>
