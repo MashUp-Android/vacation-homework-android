@@ -1,5 +1,6 @@
 package com.chatty.android.chattyClient.view.setting;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class SettingActivity extends AppCompatActivity {
   @BindView(R.id.textView_button_support)
   public TextView textViewButtonSupport;
 
+  AlertDialog.Builder alertBuilder;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class SettingActivity extends AppCompatActivity {
   }
 
   public void render() {
+    alertBuilder = new AlertDialog.Builder(SettingActivity.this, R.style.AlertDialogStyle);
     buttonRender();
   }
 
@@ -54,7 +58,9 @@ public class SettingActivity extends AppCompatActivity {
   }
 
   private void renderLinkAccountButton() {
-    textViewButtonLinkAccount.setOnClickListener((__) -> {});
+    textViewButtonLinkAccount.setOnClickListener((__) -> {
+      renderSorryAlert();
+    });
   }
 
   private void renderFriendsSettingButton() {
@@ -62,14 +68,25 @@ public class SettingActivity extends AppCompatActivity {
   }
 
   private void renderAddQuestionButton() {
-    textViewButtonAddQuestion.setOnClickListener((__) -> {});
+    textViewButtonAddQuestion.setOnClickListener((__) -> {
+      renderSorryAlert();
+    });
   }
 
   private void renderNotificationButton() {
-    textViewButtonNotification.setOnClickListener((__) -> {});
+    textViewButtonNotification.setOnClickListener((__) -> {
+      renderSorryAlert();
+    });
   }
 
   private void renderSupportButton() {
     textViewButtonSupport.setOnClickListener((__) -> {});
+  }
+
+  private void renderSorryAlert() {
+    alertBuilder.setTitle("Chatty");
+    alertBuilder.setMessage("준비중 입니다.");
+    alertBuilder.setPositiveButton("확인", null);
+    alertBuilder.create().show();
   }
 }
