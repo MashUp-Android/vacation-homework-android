@@ -1,9 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:context=".view.setting.SettingActivity">
 
+  <include
+    android:id="@+id/header"
+    layout="@layout/item_global_header"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@+id/linearLayout_settingList"/>
+
+  <LinearLayout
+    android:id="@+id/linearLayout_settingList"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@id/header"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+    <TextView
+      android:id="@+id/textView_button_link_account"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_56"
+      android:gravity="center_vertical"
+      android:letterSpacing="0.01"
+      android:paddingStart="@dimen/SIZE_20"
+      android:text="@string/SETTING_MAIN_LINK_ACCOUNT"
+      android:textColor="@color/black0"
+      android:textSize="@dimen/text_size_16sp"/>
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_1"
+      android:background="@color/gray5"/>
+
+    <TextView
+      android:id="@+id/textView_button_friends_setting"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_56"
+      android:gravity="center_vertical"
+      android:letterSpacing="0.01"
+      android:paddingStart="@dimen/SIZE_20"
+      android:text="@string/SETTING_MAIN_FRIENDS_SETTING"
+      android:textColor="@color/black0"
+      android:textSize="@dimen/text_size_16sp"/>
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_1"
+      android:background="@color/gray5"/>
+
+    <TextView
+      android:id="@+id/textView_button_add_question"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_56"
+      android:gravity="center_vertical"
+      android:letterSpacing="0.01"
+      android:paddingStart="@dimen/SIZE_20"
+      android:text="@string/SETTING_MAIN_ADD_QUESTION"
+      android:textColor="@color/black0"
+      android:textSize="@dimen/text_size_16sp"/>
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_1"
+      android:background="@color/gray5"/>
+
+    <TextView
+      android:id="@+id/textView_button_notification"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_56"
+      android:gravity="center_vertical"
+      android:letterSpacing="0.01"
+      android:paddingStart="@dimen/SIZE_20"
+      android:text="@string/SETTING_MAIN_NOTIFICATION"
+      android:textColor="@color/black0"
+      android:textSize="@dimen/text_size_16sp"/>
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_1"
+      android:background="@color/gray5"/>
+
+    <TextView
+      android:id="@+id/textView_button_support"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_56"
+      android:gravity="center_vertical"
+      android:letterSpacing="0.01"
+      android:paddingStart="@dimen/SIZE_20"
+      android:text="@string/SETTING_MAIN_SUPPORT"
+      android:textColor="@color/black0"
+      android:textSize="@dimen/text_size_16sp"/>
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/SIZE_1"
+      android:background="@color/gray5"/>
+  </LinearLayout>
+
+  <TextView
+    android:id="@+id/textView_version"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:letterSpacing="0.01"
+    android:paddingBottom="@dimen/SIZE_5"
+    android:text="@string/SETTING_MAIN_VERSION"
+    android:textColor="@color/gray5"
+    android:textSize="@dimen/text_size_12sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@+id/textView_copyright"/>
+
+  <TextView
+    android:id="@+id/textView_copyright"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:letterSpacing="0.01"
+    android:paddingBottom="@dimen/SIZE_12"
+    android:text="@string/SETTING_MAIN_COPYRIGHT"
+    android:textColor="@color/gray5"
+    android:textSize="@dimen/text_size_12sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>

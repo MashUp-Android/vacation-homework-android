@@ -7,4 +7,11 @@
   <string name="item_header_textview_name_text">name</string>
   <string name="item_header_textview_date_text">date</string>
   <string name="item_header_textview_weather_text">weather</string>
+  <string name="SETTING_MAIN_ADD_QUESTION">Add Question</string>
+  <string name="SETTING_MAIN_COPYRIGHT">© 2018. Vacation homework.</string>
+  <string name="SETTING_MAIN_FRIENDS_SETTING">Friends Setting</string>
+  <string name="SETTING_MAIN_LINK_ACCOUNT">Link Account</string>
+  <string name="SETTING_MAIN_NOTIFICATION">Notification</string>
+  <string name="SETTING_MAIN_SUPPORT">Support</string>
+  <string name="SETTING_MAIN_VERSION">Version 0.1</string>
 </resources>
