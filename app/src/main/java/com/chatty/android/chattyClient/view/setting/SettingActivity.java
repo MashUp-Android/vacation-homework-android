@@ -12,6 +12,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SettingActivity extends AppCompatActivity {
+  private static final String ALERT_SUBMIT = "OK";
+  private static final String SORRY_MESSAGE = "준비중 입니다.";
+  private static final String SORRY_TITLE = "Chatty";
+  private static final String SUPPORT_MESSAGE = "If you have any question, please don't hesitate to contact us.";
+  private static final String SUPPORT_TITLE = "Contact Us";
+
   private SettingPresenter presenter;
 
   @BindView(R.id.textView_button_link_account)
@@ -86,16 +92,16 @@ public class SettingActivity extends AppCompatActivity {
   }
 
   private void renderSupportAlert() {
-    alertBuilder.setTitle("Contact Us");
-    alertBuilder.setMessage("If you have any question, please don't hesitate to contact us.");
-    alertBuilder.setPositiveButton("확인", null);
+    alertBuilder.setTitle(SUPPORT_TITLE);
+    alertBuilder.setMessage(SUPPORT_MESSAGE);
+    alertBuilder.setPositiveButton(ALERT_SUBMIT, null);
     alertBuilder.create().show();
   }
 
   private void renderSorryAlert() {
-    alertBuilder.setTitle("Chatty");
-    alertBuilder.setMessage("준비중 입니다.");
-    alertBuilder.setPositiveButton("확인", null);
+    alertBuilder.setTitle(SORRY_TITLE);
+    alertBuilder.setMessage(SORRY_MESSAGE);
+    alertBuilder.setPositiveButton(ALERT_SUBMIT, null);
     alertBuilder.create().show();
   }
 }
