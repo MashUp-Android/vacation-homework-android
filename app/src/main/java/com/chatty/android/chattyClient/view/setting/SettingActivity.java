@@ -80,7 +80,16 @@ public class SettingActivity extends AppCompatActivity {
   }
 
   private void renderSupportButton() {
-    textViewButtonSupport.setOnClickListener((__) -> {});
+    textViewButtonSupport.setOnClickListener((__) -> {
+      renderSupportAlert();
+    });
+  }
+
+  private void renderSupportAlert() {
+    alertBuilder.setTitle("Contact Us");
+    alertBuilder.setMessage("If you have any question, please don't hesitate to contact us.");
+    alertBuilder.setPositiveButton("확인", null);
+    alertBuilder.create().show();
   }
 
   private void renderSorryAlert() {
