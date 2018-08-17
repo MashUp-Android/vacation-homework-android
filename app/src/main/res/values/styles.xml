@@ -9,7 +9,9 @@
   </style>
 
   <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent"> @color/main_purple</item>
+    <item name="colorAccent">@color/black0</item>
+    <item name="android:windowMinWidthMinor">80%</item>
+    <item name="android:windowBackground">@drawable/layout_alert</item>
   </style>
 
 </resources>
