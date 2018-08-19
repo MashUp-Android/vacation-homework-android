@@ -15,19 +15,18 @@ import java.util.ArrayList;
 
 public class MainPresenter {
   private MainActivity view;
-  private ArrayList<TimelineEntry> timeline;
 
   public MainPresenter(MainActivity view) {
     this.view = view;
-    this.timeline = new ArrayList<>();
   }
 
   public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
+    ArrayList<TimelineEntry> timeline = StateManagerWrapper.getInitialState().getTimeline();
 
-    view.render(
+    this.view.render(
       this::handleClickWriteButton,
-      this.timeline
+      timeline
     );
     presenterDidMount();
   }
@@ -49,6 +48,13 @@ public class MainPresenter {
     StateManagerWrapper.log(this.getClass().getSimpleName(), state);
 
     ArrayList<TimelineEntry> timeline = state.getTimeline();
+    System.out.println("12123123" + timeline);
+
+    this.view.render(
+      this::handleClickWriteButton,
+      timeline
+    );
+
     return null;
   }
 }

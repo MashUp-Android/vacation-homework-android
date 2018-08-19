@@ -54,4 +54,8 @@ public class StateManager<T> {
   public interface Reducer<T> {
     T run(T state, Action action);
   }
+
+  public T getState() {
+    return this.state;
+  }
 }

@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
   public static final String SETTING = "Setting";
   private MainPresenter presenter;
 
+  private boolean isInitialized = false;
+
   @BindView(R.id.btn_start_chatting)
   public FloatingActionButton writeButton;
 
@@ -38,57 +40,62 @@ public class MainActivity extends AppCompatActivity {
 
   @BindView(R.id.recyclerView_timeline)
   public RecyclerView recyclerView;
-  private RecyclerView.Adapter recyclerViewAdapter;
+  private TimelineRecyclerViewAdapter recyclerViewAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    construct();
+    this.isInitialized = construct();
   }
 
-  private void construct() {
+  private boolean construct() {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
     this.presenter = new MainPresenter(this);
     this.presenter.construct();
+
+    return true;
   }
 
   public void render(
     View.OnClickListener handleClickWriteButton,
     ArrayList<TimelineEntry> timeline
   ) {
+    System.out.println("render 2nd");
     renderWriteButton(handleClickWriteButton);
     renderTimeLineView(timeline);
     renderMainHeader();
   }
 
   private void renderMainHeader() {
-    this.calenderButton.setOnClickListener(view -> {
+    if (!this.isInitialized) {
+      this.calenderButton.setOnClickListener(view -> {
         Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
         String message = CALENDAR;
         intent.putExtra(HEADER_TITLE, message);
         startActivity(intent);
-    });
+      });
 
-    this.settingButton.setOnClickListener(view -> {
-      Intent intent = new Intent(this, SettingActivity.class);
-      String message = SETTING;
-      intent.putExtra(HEADER_TITLE, message);
-      startActivity(intent);
-    });
+      this.settingButton.setOnClickListener(view -> {
+        Intent intent = new Intent(this, SettingActivity.class);
+        String message = SETTING;
+        intent.putExtra(HEADER_TITLE, message);
+        startActivity(intent);
+      });
+    }
   }
 
   private void renderTimeLineView(
     ArrayList<TimelineEntry> timeline
   ) {
-    if (this.recyclerView.getAdapter() == null) {
+    if (!this.isInitialized && timeline != null) {
       this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
       this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, timeline);
       this.recyclerView.setAdapter(this.recyclerViewAdapter);
     }
 
-    this.recyclerViewAdapter.notifyItemChanged(timeline.size() - 1);
+    this.recyclerViewAdapter.update(timeline);
   }
 
   private void renderWriteButton(View.OnClickListener handleClickWriteButton) {

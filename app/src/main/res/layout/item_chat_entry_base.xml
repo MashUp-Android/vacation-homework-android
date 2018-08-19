@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  xmlns:tools="http://schemas.android.com/tools"
   android:orientation="horizontal">
   <ImageView
+    android:background="@drawable/layout_circle"
     android:id="@+id/imageView_read_img"
     android:layout_width="@dimen/item_chat_entry_base_imageview_read_img_layout_width"
     android:layout_height="@dimen/item_chat_entry_base_imageview_read_img_layout_height"
     android:layout_marginStart="@dimen/item_chat_entry_base_imageview_read_img_layout_margin_start"
-    android:layout_marginTop="@dimen/item_chat_entry_base_imageview_read_img_layout_margin_top"
-    android:background="@drawable/layout_circle"/>
+    android:layout_marginTop="@dimen/item_chat_entry_base_imageview_read_img_layout_margin_top" />
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -23,9 +22,9 @@
       android:layout_marginBottom="@dimen/item_chat_entry_base_textview_is_read_img_layout_margin_bottom"
       android:layout_marginStart="@dimen/item_chat_entry_base_textview_is_read_img_layout_margin_start"
       android:layout_marginTop="@dimen/item_chat_entry_base_textview_is_read_img_layout_margin_top"
+      android:text="Yuyuyu"
       android:textSize="@dimen/text_size_14sp"
-      android:textColor="@color/black0"
-      tools:text="Yuyuyu"/>
+      android:textColor="@color/black0"/>
     <TextView
       android:id="@+id/textView_contents"
       android:layout_width="match_parent"
@@ -34,8 +33,8 @@
       android:layout_marginEnd="@dimen/item_chat_entry_base_textview_contents_img_layout_margin_end"
       android:background="@color/white3"
       android:padding="@dimen/item_chat_entry_base_textview_contents_img_padding"
+      android:text="How are you feeling?"
       android:textColor="@color/black0"
-      android:textSize="@dimen/item_chat_entry_base_textview_contents_img_test_size"
-      tools:text="How are you feeling? "/>
+      android:textSize="@dimen/item_chat_entry_base_textview_contents_img_test_size"/>
   </LinearLayout>
 </LinearLayout>

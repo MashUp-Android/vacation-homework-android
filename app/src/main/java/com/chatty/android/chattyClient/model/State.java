@@ -6,6 +6,7 @@ public class State {
   ArrayList<TimelineEntry> timeline;
 
   public State() {
+    this.timeline = new ArrayList<>();
   }
 
   public ArrayList<TimelineEntry> getTimeline() {

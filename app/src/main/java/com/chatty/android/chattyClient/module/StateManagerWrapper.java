@@ -25,4 +25,8 @@ public class StateManagerWrapper {
   public static void log(String className, State state) {
     System.out.println(STATE_MANAGER_WRAPPER + " " + className + " " + state);
   }
+
+  public static State getInitialState() {
+    return StateManagerWrapper.stateManager.getState();
+  }
 }

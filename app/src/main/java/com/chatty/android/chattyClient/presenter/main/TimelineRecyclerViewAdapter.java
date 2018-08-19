@@ -14,20 +14,33 @@ import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.view.diaryDetail.DiaryDetailActivity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRecyclerViewAdapter.ViewHolder> {
   private Context context;
   private List<TimelineEntry> data;
+  private final static DateFormat df = new SimpleDateFormat("MM/DD/yyyy", Locale.getDefault());
 
   public TimelineRecyclerViewAdapter(Context applicationContext, List<TimelineEntry> data) {
     this.context = applicationContext;
     this.data = data;
   }
 
+  public void update(List<TimelineEntry> data) {
+    this.data.clear();
+    this.data.addAll(data);
+    this.notifyDataSetChanged();
+  }
+
   @NonNull
   @Override
-  public TimelineRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public TimelineRecyclerViewAdapter.ViewHolder onCreateViewHolder(
+    @NonNull ViewGroup parent,
+    int viewType
+  ) {
     View view = LayoutInflater.from(parent.getContext())
       .inflate(R.layout.item_timeline_entry, parent, false);
 
@@ -42,7 +55,10 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     TimelineEntry entry = this.data.get(position);
-    System.out.println("onBindViewholder " + entry);
+    String date = TimelineRecyclerViewAdapter.df.format(entry.getDate());
+
+    holder.contents.setText(entry.getContent());
+    holder.date.setText(date);
   }
 
   @Override
@@ -51,15 +67,13 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
-    TextView textView_contents;
-    TextView textView_isRead;
+    TextView contents;
+    TextView date;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
-      System.out.println("baba");
-
-//      textView_contents = itemView.findViewById(R.id.textView_contents);
-//      textView_isRead = itemView.findViewById(R.id.textView_isRead);
+      this.contents = itemView.findViewById(R.id.textView_contents);
+      this.date = itemView.findViewById(R.id.textView_timeline_date);
     }
   }
 }

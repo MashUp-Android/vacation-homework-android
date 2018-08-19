@@ -5,8 +5,7 @@
   android:layout_marginTop="@dimen/size_10dp"
   android:layout_width="match_parent"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools">
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <ImageView
     android:id="@+id/imageView_timeline"
@@ -25,11 +24,11 @@
     android:layout_marginTop="@dimen/SIZE_6"
     android:layout_width="wrap_content"
     android:letterSpacing="0.5"
+    android:text="2018.07.20 FRI"
     android:textColor="@color/black0"
     android:textStyle="normal"
     app:layout_constraintStart_toEndOf="@id/imageView_timeline"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:text="2018.07.20 FRI"/>
+    app:layout_constraintTop_toTopOf="parent"/>
 
   <TextView
     android:id="@+id/textView_contents"
@@ -48,7 +47,7 @@
     app:layout_constraintStart_toEndOf="@+id/imageView_timeline"
     app:layout_constraintTop_toBottomOf="@+id/textView_timeline_date"
     app:layout_constraintVertical_bias="0.5"
-    tools:text="Lorem ipsum dolor sit amet,
+    android:text="Lorem ipsum dolor sit amet,
 consectetur adipiscing elit, sed
 do eiusmod tempor incididunt "/>
 
