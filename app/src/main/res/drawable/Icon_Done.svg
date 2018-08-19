@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_Done</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icon_Done" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.4">
+        <g fill-rule="nonzero">
+            <g id="check" transform="translate(2.000000, 5.000000)" fill="#000000">
+                <path d="M7,14 C6.73475,14 6.4805,13.89475 6.293,13.70725 L0.293,7.707 C-0.0975,7.3165 -0.0975,6.6835 0.293,6.293 C0.6835,5.9025 1.31675,5.9025 1.707,6.293 L7,11.586 L18.293,0.293 C18.6835,-0.0975 19.31675,-0.0975 19.707,0.293 C20.0975,0.6835 20.0975,1.31675 19.707,1.70725 L7.707,13.70725 C7.5195,13.89475 7.26525,14 7,14 Z" id="Shape"></path>
+            </g>
+            <rect id="Rectangle-15" x="0" y="0" width="24" height="24"></rect>
+        </g>
+    </g>
+</svg>

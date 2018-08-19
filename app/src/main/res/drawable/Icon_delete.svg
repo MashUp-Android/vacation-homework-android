@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_delete</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icon_delete" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.4">
+        <g fill-rule="nonzero">
+            <rect id="Rectangle-7" x="0" y="0" width="24" height="24"></rect>
+            <g id="icon-trash" transform="translate(2.000000, 1.000000)" fill="#000000">
+                <path d="M18,8 L18,18.997 C18,20.656 16.663,22 14.991,22 L5.01,22 C3.348,22 2.001,20.658 2.001,18.997 L2.001,8 L18.001,8 L18,8 Z M16,8 L16.001,8 L4.001,8 L4.001,18.998 C4.001,19.544 4.449,20 5.003,20 L14.998,20 C15.544,20 16,19.552 16,18.998 L16,8 Z M7,3 C7,2.448 7.451,2 7.991,2 L12.009,2 C12.556,2 13,2.444 13,3 C13,3.552 12.549,4 12.009,4 L7.991,4 C7.444,4 7,3.556 7,3 Z M7,9.997 C7,9.446 7.444,9 8,9 C8.552,9 9,9.453 9,9.997 L9,16.003 C9,16.554 8.556,17 8,17 C7.448,17 7,16.547 7,16.003 L7,9.997 Z M11,9.997 C11,9.446 11.444,9 12,9 C12.552,9 13,9.453 13,9.997 L13,16.003 C13,16.554 12.556,17 12,17 C11.448,17 11,16.547 11,16.003 L11,9.997 Z M5,4 L0.992,4 C0.456,4 0,4.448 0,5 C0,5.556 0.444,6 0.992,6 L19.008,6 C19.544,6 20,5.552 20,5 C20,4.444 19.556,4 19.008,4 L15,4 L15,3 C15,1.347 13.657,0 12,0 L8.001,0 C6.349,0 5.001,1.343 5.001,3 L5.001,4 L5,4 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

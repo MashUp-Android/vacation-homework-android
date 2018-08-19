@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_next</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.4">
+        <g id="Setting" transform="translate(-329.000000, -102.000000)" fill="#000000">
+            <g id="Icon_next" transform="translate(316.000000, 96.000000)">
+                <g id="Shape">
+                    <path d="M13.295,6.705 L13.295,6.705 C12.905515,7.09448505 12.9051707,7.72585884 13.2942308,8.11576839 L17.17,12 L13.2942308,15.8842316 C12.9051707,16.2741412 12.905515,16.905515 13.295,17.295 L13.295,17.295 C13.6843607,17.6843607 14.3156393,17.6843607 14.705,17.295 L19.2928932,12.7071068 C19.6834175,12.3165825 19.6834175,11.6834175 19.2928932,11.2928932 L14.705,6.705 C14.3156393,6.31563925 13.6843607,6.31563925 13.295,6.705 Z" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
