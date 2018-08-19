@@ -9,10 +9,8 @@ import android.widget.EditText;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.model.ChatBalloon;
-import com.chatty.android.chattyClient.module.StateManager.Action;
 import com.chatty.android.chattyClient.presenter.write.DialogueAdapter;
 import com.chatty.android.chattyClient.presenter.write.WritePresenter;
-import com.chatty.android.chattyClient.module.StateManager.StateManager;
 
 import java.util.ArrayList;
 import java.util.List;

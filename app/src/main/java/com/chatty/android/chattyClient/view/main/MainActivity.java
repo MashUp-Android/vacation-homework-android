@@ -7,18 +7,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 import com.chatty.android.chattyClient.presenter.main.TimelineRecyclerViewAdapter;
 import com.chatty.android.chattyClient.view.calendar.CalendarActivity;
 import com.chatty.android.chattyClient.view.setting.SettingActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
   public RecyclerView recyclerView;
   private RecyclerView.Adapter recyclerViewAdapter;
 
-  private List<String> timeline;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -53,24 +49,29 @@ public class MainActivity extends AppCompatActivity {
   private void construct() {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
-    presenter = new MainPresenter(this);
-    presenter.construct();
+
+    this.presenter = new MainPresenter(this);
+    this.presenter.construct();
   }
 
-  public void render(View.OnClickListener handleClickWriteButton) {
+  public void render(
+    View.OnClickListener handleClickWriteButton,
+    ArrayList<TimelineEntry> timeline
+  ) {
     renderWriteButton(handleClickWriteButton);
-    renderTimeLineView();
+    renderTimeLineView(timeline);
     renderMainHeader();
   }
 
   private void renderMainHeader() {
-    calenderButton.setOnClickListener(view -> {
+    this.calenderButton.setOnClickListener(view -> {
         Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
         String message = CALENDAR;
         intent.putExtra(HEADER_TITLE, message);
         startActivity(intent);
     });
-    settingButton.setOnClickListener(view -> {
+
+    this.settingButton.setOnClickListener(view -> {
       Intent intent = new Intent(this, SettingActivity.class);
       String message = SETTING;
       intent.putExtra(HEADER_TITLE, message);
@@ -78,14 +79,16 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-  private void renderTimeLineView() {
-    timeline = new ArrayList<>();
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, timeline);
-    recyclerView.setAdapter(recyclerViewAdapter);
+  private void renderTimeLineView(
+    ArrayList<TimelineEntry> timeline
+  ) {
+    if (this.recyclerView.getAdapter() == null) {
+      this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+      this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, timeline);
+      this.recyclerView.setAdapter(this.recyclerViewAdapter);
+    }
 
-    timeline.add("power");
-    recyclerViewAdapter.notifyItemChanged(this.timeline.size() - 1);
+    this.recyclerViewAdapter.notifyItemChanged(timeline.size() - 1);
   }
 
   private void renderWriteButton(View.OnClickListener handleClickWriteButton) {

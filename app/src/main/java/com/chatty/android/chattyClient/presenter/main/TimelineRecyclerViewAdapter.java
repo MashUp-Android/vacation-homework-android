@@ -11,15 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.view.diaryDetail.DiaryDetailActivity;
 
 import java.util.List;
 
 public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRecyclerViewAdapter.ViewHolder> {
   private Context context;
-  private List<String> data;
+  private List<TimelineEntry> data;
 
-  public TimelineRecyclerViewAdapter(Context applicationContext, List<String> data) {
+  public TimelineRecyclerViewAdapter(Context applicationContext, List<TimelineEntry> data) {
     this.context = applicationContext;
     this.data = data;
   }
@@ -40,8 +41,8 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    String str = this.data.get(position);
-    System.out.println("131313 " + str);
+    TimelineEntry entry = this.data.get(position);
+    System.out.println("onBindViewholder " + entry);
   }
 
   @Override

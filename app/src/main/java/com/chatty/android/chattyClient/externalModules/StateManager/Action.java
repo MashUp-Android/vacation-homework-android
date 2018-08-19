@@ -1,9 +1,9 @@
-package com.chatty.android.chattyClient.module.StateManager;
+package com.chatty.android.chattyClient.externalModules.StateManager;
 
 import java.util.HashMap;
 
 public class Action {
-  private HashMap<String, String> payload;
+  private HashMap<String, Object> payload;
   private String type;
 
   public Action(String type) {
@@ -11,16 +11,16 @@ public class Action {
     this.type = type;
   }
 
-  public Action(String type, HashMap<String, String> payload) {
+  public Action(String type, HashMap<String, Object> payload) {
     this.payload = payload;
     this.type = type;
   }
 
-  public HashMap<String, String> getPayload() {
+  public HashMap<String, Object> getPayload() {
     return payload;
   }
 
-  public void setPayload(HashMap<String, String> payload) {
+  public void setPayload(HashMap<String, Object> payload) {
     this.payload = payload;
   }
 

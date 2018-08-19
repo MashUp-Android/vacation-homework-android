@@ -1,6 +1,8 @@
 package com.chatty.android.chattyClient.presenter.calendar;
 
-import com.chatty.android.chattyClient.module.StateManager.StateManager;
+import com.chatty.android.chattyClient.externalModules.StateManager.StateManager;
+import com.chatty.android.chattyClient.model.State;
+import com.chatty.android.chattyClient.module.StateManagerWrapper;
 import com.chatty.android.chattyClient.view.calendar.CalendarActivity;
 
 import java.util.HashMap;
@@ -13,7 +15,7 @@ public class CalendarPresenter {
   }
 
   public void construct() {
-    StateManager.subscribe(CalendarPresenter::stateListener);
+    StateManagerWrapper.subscribe(this::stateListener);
     view.render();
     presenterDidMount();
   }
@@ -26,8 +28,8 @@ public class CalendarPresenter {
     }
   }
 
-  private static Object stateListener(HashMap state) {
-    StateManager.printMap(state);
+  private Object stateListener(State state) {
+//    StateManager.printMap(state);
     return null;
   }
 }

@@ -1,23 +1,27 @@
 package com.chatty.android.chattyClient.state.reducers;
 
 import com.chatty.android.chattyClient.constants.ActionType;
-import com.chatty.android.chattyClient.module.StateManager.Action;
+import com.chatty.android.chattyClient.externalModules.StateManager.Action;
+import com.chatty.android.chattyClient.model.State;
+import com.chatty.android.chattyClient.model.TimelineEntry;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Reducers {
   private static final String REDUCERS = "REDUCERS";
 
-  public static HashMap<String, Object> reduce(HashMap<String, Object> state, Action action) {
+  public static Object reduce(Object state, Action action) {
     System.out.println(REDUCERS + " " + state + action.getType());
 
-    HashMap<String, Object> newState = (HashMap) state.clone();
+    State newState = ((State) state).clone();
 
     switch (action.getType()) {
       case ActionType.REQUEST_GET_DIARIES_SUCCESS:
-        System.out.println("131313");
-        newState.put("diaries", action.getPayload());
+        @SuppressWarnings("unchecked")
+        ArrayList<TimelineEntry> list = (ArrayList<TimelineEntry>) action.getPayload().get("timeline");
+        newState.setTimeline(list);
         return newState;
+
       default:
         return newState;
     }
