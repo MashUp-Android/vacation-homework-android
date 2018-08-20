@@ -22,7 +22,7 @@ public class MainPresenter {
 
   public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
-    ArrayList<TimelineEntry> timeline = StateManagerWrapper.getInitialState().getTimeline();
+    ArrayList<TimelineEntry> timeline = StateManagerWrapper.getState().getTimeline();
 
     this.view.render(
       this::handleClickWriteButton,
@@ -48,7 +48,6 @@ public class MainPresenter {
     StateManagerWrapper.log(this.getClass().getSimpleName(), state);
 
     ArrayList<TimelineEntry> timeline = state.getTimeline();
-    System.out.println("12123123" + timeline);
 
     this.view.render(
       this::handleClickWriteButton,

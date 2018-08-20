@@ -26,7 +26,7 @@ public class StateManagerWrapper {
     System.out.println(STATE_MANAGER_WRAPPER + " " + className + " " + state);
   }
 
-  public static State getInitialState() {
+  public static State getState() {
     return StateManagerWrapper.stateManager.getState();
   }
 }

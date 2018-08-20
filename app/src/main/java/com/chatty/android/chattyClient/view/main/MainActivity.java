@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener handleClickWriteButton,
     ArrayList<TimelineEntry> timeline
   ) {
-    System.out.println("render 2nd");
     renderWriteButton(handleClickWriteButton);
     renderTimeLineView(timeline);
     renderMainHeader();
