@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
   public static final String SETTING = "Setting";
   private MainPresenter presenter;
 
-  private boolean isInitialized = false;
-
   @BindView(R.id.btn_start_chatting)
   public FloatingActionButton writeButton;
 
@@ -45,30 +43,21 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.isInitialized = construct();
+    this.construct();
   }
 
-  private boolean construct() {
+  private void construct() {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
     this.presenter = new MainPresenter(this);
     this.presenter.construct();
-
-    return true;
   }
 
-  public void render(
-    View.OnClickListener handleClickWriteButton,
-    ArrayList<TimelineEntry> timeline
+  public void initRender(
+    View.OnClickListener handleClickWriteButton
+    , ArrayList<TimelineEntry> timeline
   ) {
-    renderWriteButton(handleClickWriteButton);
-    renderTimeLineView(timeline);
-    renderMainHeader();
-  }
-
-  private void renderMainHeader() {
-    if (!this.isInitialized) {
       this.calenderButton.setOnClickListener(view -> {
         Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
         String message = CALENDAR;
@@ -82,22 +71,33 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(HEADER_TITLE, message);
         startActivity(intent);
       });
-    }
+
+      writeButton.setOnClickListener(handleClickWriteButton);
+
+      this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+      this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, timeline);
+      this.recyclerView.setAdapter(this.recyclerViewAdapter);
+  }
+
+  public void render(
+    ArrayList<TimelineEntry> timeline
+  ) {
+    renderWriteButton();
+    renderTimeLineView(timeline);
+    renderMainHeader();
+  }
+
+  private void renderMainHeader() {
+
   }
 
   private void renderTimeLineView(
     ArrayList<TimelineEntry> timeline
   ) {
-    if (!this.isInitialized && timeline != null) {
-      this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-      this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, timeline);
-      this.recyclerView.setAdapter(this.recyclerViewAdapter);
-    }
-
     this.recyclerViewAdapter.update(timeline);
   }
 
-  private void renderWriteButton(View.OnClickListener handleClickWriteButton) {
-    writeButton.setOnClickListener(handleClickWriteButton);
+  private void renderWriteButton() {
+
   }
 }

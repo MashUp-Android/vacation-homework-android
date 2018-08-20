@@ -24,7 +24,7 @@ public class MainPresenter {
     StateManagerWrapper.subscribe(this::stateListener);
     ArrayList<TimelineEntry> timeline = StateManagerWrapper.getState().getTimeline();
 
-    this.view.render(
+    this.view.initRender(
       this::handleClickWriteButton,
       timeline
     );
@@ -49,10 +49,10 @@ public class MainPresenter {
 
     ArrayList<TimelineEntry> timeline = state.getTimeline();
 
-    this.view.render(
-      this::handleClickWriteButton,
-      timeline
-    );
+//    this.view.render(
+//      this::handleClickWriteButton,
+//      timeline
+//    );
 
     return null;
   }
