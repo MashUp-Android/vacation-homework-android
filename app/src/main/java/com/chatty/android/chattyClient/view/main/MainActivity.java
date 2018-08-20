@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 import com.chatty.android.chattyClient.presenter.main.TimelineRecyclerViewAdapter;
@@ -17,6 +18,7 @@ import com.chatty.android.chattyClient.view.calendar.CalendarActivity;
 import com.chatty.android.chattyClient.view.setting.SettingActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,22 +84,21 @@ public class MainActivity extends AppCompatActivity {
   public void render(
     ArrayList<TimelineEntry> timeline
   ) {
-    renderWriteButton();
-    renderTimeLineView(timeline);
-    renderMainHeader();
+    Renderer.render(
+      this,
+      Arrays.asList(timeline),
+      this::renderTimeLineView);
   }
 
   private void renderMainHeader() {
-
   }
 
   private void renderTimeLineView(
-    ArrayList<TimelineEntry> timeline
+    Object timeline
   ) {
-    this.recyclerViewAdapter.update(timeline);
+    this.recyclerViewAdapter.update((ArrayList<TimelineEntry>) timeline);
   }
 
   private void renderWriteButton() {
-
   }
 }

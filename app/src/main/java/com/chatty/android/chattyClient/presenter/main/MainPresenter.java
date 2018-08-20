@@ -49,10 +49,9 @@ public class MainPresenter {
 
     ArrayList<TimelineEntry> timeline = state.getTimeline();
 
-//    this.view.render(
-//      this::handleClickWriteButton,
-//      timeline
-//    );
+    this.view.render(
+      timeline
+    );
 
     return null;
   }

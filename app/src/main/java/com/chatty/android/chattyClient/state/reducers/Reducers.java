@@ -10,20 +10,21 @@ import java.util.ArrayList;
 public class Reducers {
   private static final String REDUCERS = "REDUCERS";
 
-  public static Object reduce(Object state, Action action) {
-    System.out.println(REDUCERS + " " + state + action.getType());
+  public static Object reduce(Object _state, Action action) {
+    System.out.println(REDUCERS + " " + _state + action.getType());
 
-    State newState = ((State) state).clone();
+//    State newState = ((State) state).clone();
+    State state = (State) _state;
 
     switch (action.getType()) {
       case ActionType.REQUEST_GET_DIARIES_SUCCESS:
         @SuppressWarnings("unchecked")
         ArrayList<TimelineEntry> list = (ArrayList<TimelineEntry>) action.getPayload().get("timeline");
-        newState.setTimeline(list);
-        return newState;
+        state.setTimeline(list);
+        return state;
 
       default:
-        return newState;
+        return state;
     }
   }
 }
