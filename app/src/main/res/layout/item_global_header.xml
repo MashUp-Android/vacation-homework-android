@@ -32,9 +32,9 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.5"/>
   <ImageButton
+    android:background="@color/white5"
     android:id="@+id/button_timeline_right"
     android:layout_alignParentRight="true"
-    android:background="@color/white5"
     android:layout_height="@dimen/item_global_header_button_timeline_right2_layout_height"
     android:layout_marginEnd="@dimen/SIZE_20"
     android:layout_width="@dimen/item_global_header_button_timeline_right2_layout_width"

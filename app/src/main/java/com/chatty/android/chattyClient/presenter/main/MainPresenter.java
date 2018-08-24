@@ -3,31 +3,31 @@ package com.chatty.android.chattyClient.presenter.main;
 import android.content.Intent;
 import android.view.View;
 
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
-import com.chatty.android.chattyClient.module.Logger;
 import com.chatty.android.chattyClient.module.StateManagerWrapper;
 import com.chatty.android.chattyClient.state.action.DiaryAction;
 import com.chatty.android.chattyClient.view.main.MainActivity;
+import com.chatty.android.chattyClient.view.main.MainActivityProps;
 import com.chatty.android.chattyClient.view.write.WriteActivity;
 
-import java.util.ArrayList;
-
-public class MainPresenter {
+public class MainPresenter implements ExtendedPresenter<State> {
   private MainActivity view;
 
-  public MainPresenter(MainActivity view) {
+  private MainPresenter(MainActivity view) {
     this.view = view;
   }
 
   public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
-    ArrayList<TimelineEntry> timeline = StateManagerWrapper.getState().getTimeline();
 
-    this.view.initRender(
-      this::handleClickWriteButton,
-      timeline
-    );
+    MainActivityProps props = new MainActivityProps();
+    props.timeline = StateManagerWrapper.getState().getTimeline();
+    props.handleClickWriteButton = this::handleClickWriteButton;
+
+    this.view.initialRender(props);
     presenterDidMount();
   }
 
@@ -39,7 +39,7 @@ public class MainPresenter {
     }
   }
 
-  public void handleClickWriteButton(View v) {
+  private void handleClickWriteButton(View v) {
     Intent intent = new Intent(view, WriteActivity.class);
     view.startActivity(intent);
   }
@@ -47,12 +47,19 @@ public class MainPresenter {
   public Object stateListener(State state) {
     StateManagerWrapper.log(this.getClass().getSimpleName(), state);
 
-    ArrayList<TimelineEntry> timeline = state.getTimeline();
+    MainActivityProps props = new MainActivityProps();
+    props.timeline = state.getTimeline();
 
-    this.view.render(
-      timeline
+    this.view.update(
+      props
     );
 
     return null;
+  }
+
+  public static MainPresenter of(MainActivity activity) {
+    MainPresenter presenter = new MainPresenter(activity);
+    presenter.construct();
+    return presenter;
   }
 }

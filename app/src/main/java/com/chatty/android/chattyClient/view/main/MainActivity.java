@@ -8,12 +8,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 import com.chatty.android.chattyClient.presenter.main.TimelineRecyclerViewAdapter;
+import com.chatty.android.chattyClient.view.app.ProfileAvatarImage;
 import com.chatty.android.chattyClient.view.calendar.CalendarActivity;
 import com.chatty.android.chattyClient.view.setting.SettingActivity;
 
@@ -23,7 +26,7 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ExtendedView<MainActivityProps> {
   public static final String HEADER_TITLE = "HEADER_TITLE";
   public static final String CALENDAR = "Calendar";
   public static final String SETTING = "Setting";
@@ -42,51 +45,44 @@ public class MainActivity extends AppCompatActivity {
   public RecyclerView recyclerView;
   private TimelineRecyclerViewAdapter recyclerViewAdapter;
 
+  @BindView(R.id.profile_avatar_img)
+  public ImageView profilerAvatarImage;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.construct();
+    this.presenter = MainPresenter.of(this);
   }
 
-  private void construct() {
-    setContentView(R.layout.activity_main);
+  public void initialRender(MainActivityProps props) {
+    this.setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
-    this.presenter = new MainPresenter(this);
-    this.presenter.construct();
+    ProfileAvatarImage.CUSTOMVIEW__initRender(this.profilerAvatarImage);
+
+    this.calenderButton.setOnClickListener((view) -> {
+      Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+      intent.putExtra(HEADER_TITLE, CALENDAR);
+      startActivity(intent);
+    });
+
+    this.settingButton.setOnClickListener((view) -> {
+      Intent intent = new Intent(this, SettingActivity.class);
+      intent.putExtra(HEADER_TITLE, SETTING);
+      startActivity(intent);
+    });
+
+    writeButton.setOnClickListener(props.handleClickWriteButton);
+
+    this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, props.timeline);
+    this.recyclerView.setAdapter(this.recyclerViewAdapter);
   }
 
-  public void initRender(
-    View.OnClickListener handleClickWriteButton
-    , ArrayList<TimelineEntry> timeline
-  ) {
-      this.calenderButton.setOnClickListener(view -> {
-        Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
-        String message = CALENDAR;
-        intent.putExtra(HEADER_TITLE, message);
-        startActivity(intent);
-      });
-
-      this.settingButton.setOnClickListener(view -> {
-        Intent intent = new Intent(this, SettingActivity.class);
-        String message = SETTING;
-        intent.putExtra(HEADER_TITLE, message);
-        startActivity(intent);
-      });
-
-      writeButton.setOnClickListener(handleClickWriteButton);
-
-      this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-      this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, timeline);
-      this.recyclerView.setAdapter(this.recyclerViewAdapter);
-  }
-
-  public void render(
-    ArrayList<TimelineEntry> timeline
-  ) {
+  public void update(MainActivityProps props) {
     Renderer.render(
       this,
-      Arrays.asList(timeline),
+      Arrays.asList(props.timeline),
       this::renderTimeLineView);
   }
 

@@ -8,17 +8,14 @@
   android:paddingStart="@dimen/SIZE_20"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
-
-  <ImageView
-    android:fontFamily="sans-serif-medium"
+  <include
     android:id="@+id/image_diary_partner"
-    android:layout_height="@dimen/SIZE_40"
-    android:layout_marginTop="@dimen/SIZE_8"
-    android:layout_width="@dimen/SIZE_40"
-    android:src="@drawable/sample_profile"
-    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_height="@dimen/SIZE_56"
+    android:layout_width="@dimen/match_constraint"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintTop_toTopOf="parent"
+    layout="@layout/item_profile_avatar"/>
   <TextView
     android:fontFamily="sans-serif"
     android:id="@+id/textView_diary_partner_name"

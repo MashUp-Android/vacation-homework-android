@@ -29,8 +29,8 @@ public class DiaryDetailActivity extends AppCompatActivity {
   @BindView(R.id.button_timeline_left)
   public ImageButton backButton;
 
-  @BindView(R.id.image_diary_partner)
-  public ImageView partnerImageView;
+  @BindView(R.id.profile_avatar_img)
+  public ImageView profileAvatarImg;
 
   @BindView(R.id.textView_diary_partner_name)
   public TextView name;
@@ -48,7 +48,6 @@ public class DiaryDetailActivity extends AppCompatActivity {
   RecyclerView recyclerView;
   private RecyclerView.Adapter diaryAdapter;
 
-
   private List<Diary> diaries;
 
   @Override
@@ -63,7 +62,6 @@ public class DiaryDetailActivity extends AppCompatActivity {
   }
 
   private void construct() {
-
     circleImageView();
     viewBackButton();
 
@@ -72,9 +70,7 @@ public class DiaryDetailActivity extends AppCompatActivity {
   }
 
   private void viewBackButton() {
-      backButton.setOnClickListener(view -> {
-        finish();
-    });
+    backButton.setOnClickListener((view) -> finish());
   }
 
   private void loadDependencies() {
@@ -94,10 +90,8 @@ public class DiaryDetailActivity extends AppCompatActivity {
   }
 
   private void circleImageView() {
-    partnerImageView.setBackground(new ShapeDrawable(new OvalShape()));
-    if(Build.VERSION.SDK_INT >= 21) {
-      partnerImageView.setClipToOutline(true);
-    }
+    this.profileAvatarImg.setBackground(new ShapeDrawable(new OvalShape()));
+    this.profileAvatarImg.setClipToOutline(true);
   }
 
   private void initHeader() {
@@ -106,7 +100,6 @@ public class DiaryDetailActivity extends AppCompatActivity {
     name.setText(currentDiary.getUsername());
     date.setText(currentDiary.getDate());
 //    weather.setText(currentDiary.getWeather());
-
   }
 
   private void setDummyData() {

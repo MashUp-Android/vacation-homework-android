@@ -3,10 +3,10 @@
   android:layout_height="match_parent"
   android:layout_width="match_parent"
   android:orientation="vertical"
+  tools:context=".view.main.MainActivity"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  tools:context=".view.main.MainActivity">
+  xmlns:tools="http://schemas.android.com/tools">
   <include
     android:id="@+id/item_main_header"
     android:layout_height="@dimen/SIZE_56"
@@ -31,15 +31,15 @@
     app:layout_constraintTop_toBottomOf="@id/item_main_header"/>
   <include
     android:id="@+id/item_my_partner"
-    layout="@layout/item_my_partner"
-    android:layout_width="@dimen/match_constraint"
     android:layout_height="@dimen/SIZE_140"
     android:layout_marginEnd="@dimen/SIZE_20"
     android:layout_marginStart="@dimen/SIZE_20"
     android:layout_marginTop="@dimen/SIZE_12"
+    android:layout_width="@dimen/match_constraint"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/main_textView_mypartner"/>
+    app:layout_constraintTop_toBottomOf="@id/main_textView_mypartner"
+    layout="@layout/item_my_partner"/>
   <TextView
     android:id="@+id/main_textView_Timeline"
     android:fontFamily="sans-serif-medium"
