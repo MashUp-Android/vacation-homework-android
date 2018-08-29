@@ -6,17 +6,15 @@
   android:layout_width="match_parent"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
-
   <ImageView
     android:id="@+id/imageView_timeline"
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/SIZE_20"
     android:layout_width="@dimen/SIZE_120"
-    android:src="@drawable/layout_circle2"
+    android:src="@drawable/timeline_thumbnail_dummy"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
-
   <TextView
     android:id="@+id/textView_timeline_date"
     android:layout_height="wrap_content"
@@ -29,7 +27,6 @@
     android:textStyle="normal"
     app:layout_constraintStart_toEndOf="@id/imageView_timeline"
     app:layout_constraintTop_toTopOf="parent"/>
-
   <TextView
     android:id="@+id/textView_contents"
     android:layout_height="wrap_content"
@@ -50,5 +47,4 @@
     android:text="Lorem ipsum dolor sit amet,
 consectetur adipiscing elit, sed
 do eiusmod tempor incididunt "/>
-
 </android.support.constraint.ConstraintLayout>
