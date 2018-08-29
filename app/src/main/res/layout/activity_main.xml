@@ -66,11 +66,12 @@
     app:layout_constraintTop_toBottomOf="@id/main_textView_Timeline"/>
   <android.support.design.widget.FloatingActionButton
     android:id="@+id/btn_start_chatting"
-    android:layout_height="wrap_content"
+    android:layout_height="64dp"
     android:layout_gravity="end|bottom"
     android:layout_margin="@dimen/activity_main_floating_action_button_write_layout_margin"
     android:layout_marginBottom="8dp"
-    android:layout_width="wrap_content"
+    android:layout_width="64dp"
+    android:src="@drawable/write_button"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     tools:layout_editor_absoluteX="305dp"/>

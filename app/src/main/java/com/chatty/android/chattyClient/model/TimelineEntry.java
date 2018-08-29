@@ -3,15 +3,9 @@ package com.chatty.android.chattyClient.model;
 import java.util.Date;
 
 public class TimelineEntry {
-  private String imgUrl;
-  private Date date;
-  private String content;
-
-  public TimelineEntry(String imgUrl, Date date, String content) {
-    this.imgUrl = imgUrl;
-    this.date = date;
-    this.content = content;
-  }
+  public String imgUrl;
+  public Date date;
+  public String content;
 
   public String getImgUrl() {
     return imgUrl;

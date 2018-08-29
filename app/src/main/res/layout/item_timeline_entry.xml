@@ -7,14 +7,16 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
   <ImageView
+    android:adjustViewBounds="true"
     android:id="@+id/imageView_timeline"
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/SIZE_20"
     android:layout_width="@dimen/SIZE_120"
+    android:scaleType="centerInside"
     android:src="@drawable/timeline_thumbnail_dummy"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintTop_toTopOf="parent" />
   <TextView
     android:id="@+id/textView_timeline_date"
     android:layout_height="wrap_content"

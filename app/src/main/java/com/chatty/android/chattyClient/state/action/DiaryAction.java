@@ -11,14 +11,16 @@ import com.chatty.android.chattyClient.model.response.ChatResponse;
 import com.chatty.android.chattyClient.externalModules.StateManager.Action;
 import com.chatty.android.chattyClient.externalModules.StateManager.StateManager;
 import com.chatty.android.chattyClient.model.response.DiaryResponse;
+import com.chatty.android.chattyClient.model.response.TimelineResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -28,34 +30,35 @@ public class DiaryAction {
     return (dispatch) -> {
       dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES));
 
-      ChattyApi.getApi().postInitChat()
-        .enqueue(new Callback<ChatResponse>() {
+      ChattyApi.getApi().getTimeline()
+        .enqueue(new Callback<TimelineResponse>() {
           @Override
-          public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-            ArrayList<TimelineEntry> dummyEntries = new ArrayList<>();
-            TimelineEntry dummyEntry1 = new TimelineEntry(
-              "https://cdn1.medicalnewstoday.com/content/images/headlines/271/271157/bananas.jpg",
-              new Date(),
-              "dummy1"
-            );
+          public void onResponse(Call<TimelineResponse> call, Response<TimelineResponse> response) {
+            if (response.code() != 200) {
+              dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_ERROR));
+              return;
+            }
 
-            TimelineEntry dummyEntry2 = new TimelineEntry(
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/220px-Pineapple_and_cross_section.jpg",
-              new Date(),
-              "dummy2"
-            );
-
-            dummyEntries.addAll(Arrays.asList(dummyEntry1, dummyEntry2));
-
+            List<TimelineEntry> entries = response.body()
+              .diaries
+              .stream()
+              .map((diary) -> {
+                TimelineEntry entry = new TimelineEntry();
+                entry.setDate(diary.created_at);
+                entry.setContent(diary.answer.label);
+                entry.setImgUrl(diary.answer.image);
+                return entry;
+              })
+              .collect(Collectors.toList());
 
             HashMap result = new HashMap<>();
-            result.put("timeline", dummyEntries);
+            result.put("timeline", entries);
             dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_SUCCESS, result));
           }
 
           @Override
-          public void onFailure(Call<ChatResponse> call, Throwable t) {
-            System.out.println("123123" + t.getCause());
+          public void onFailure(Call<TimelineResponse> call, Throwable t) {
+            System.out.println(t.getMessage() + " " + t.getCause());
             dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_ERROR));
           }
         });

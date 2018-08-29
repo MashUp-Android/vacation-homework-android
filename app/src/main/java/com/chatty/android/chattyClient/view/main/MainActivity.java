@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
       startActivity(intent);
     });
 
-    writeButton.setOnClickListener(props.handleClickWriteButton);
+    this.writeButton.setOnClickListener(props.handleClickWriteButton);
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, props.timeline);
@@ -83,18 +83,12 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
     Renderer.render(
       this,
       Arrays.asList(props.timeline),
-      this::renderTimeLineView);
+      this::updateTimeLineView);
   }
 
-  private void renderMainHeader() {
-  }
-
-  private void renderTimeLineView(
+  private void updateTimeLineView(
     Object timeline
   ) {
     this.recyclerViewAdapter.update((ArrayList<TimelineEntry>) timeline);
-  }
-
-  private void renderWriteButton() {
   }
 }
