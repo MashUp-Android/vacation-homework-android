@@ -7,13 +7,9 @@ import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.model.response.PartnerProfileDetailResponse;
 import com.chatty.android.chattyClient.model.Diary;
-import com.chatty.android.chattyClient.model.State;
-import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.model.response.DiaryResponse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Reducers {
   private static final String REDUCERS = "REDUCERS";
@@ -21,7 +17,6 @@ public class Reducers {
   public static Object reduce(Object _state, Action action) {
     System.out.println(REDUCERS + " " + _state + action.getType());
 
-//    State newState = ((State) state).clone();
     State state = (State) _state;
 
     switch (action.getType()) {

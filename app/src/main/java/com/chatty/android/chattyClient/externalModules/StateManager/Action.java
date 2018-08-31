@@ -1,26 +1,29 @@
 package com.chatty.android.chattyClient.externalModules.StateManager;
 
-import java.util.HashMap;
-
 public class Action {
-  private HashMap<String, Object> payload;
+  private Payload payload;
   private String type;
 
-  public Action(String type) {
-    this.payload = null;
-    this.type = type;
+  private Action() {
   }
 
-  public Action(String type, HashMap<String, Object> payload) {
-    this.payload = payload;
-    this.type = type;
+  public static Action of(String type) {
+    Action action = new Action();
+    action.type = type;
+    action.payload = Payload.create();
+    return action;
   }
 
-  public HashMap<String, Object> getPayload() {
+  public Action payloadAdd(String key, Object object) {
+    this.payload.add(key, object);
+    return this;
+  }
+
+  public Payload getPayload() {
     return payload;
   }
 
-  public void setPayload(HashMap<String, Object> payload) {
+  public void setPayload(Payload payload) {
     this.payload = payload;
   }
 

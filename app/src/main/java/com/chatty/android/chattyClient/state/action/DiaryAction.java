@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.chatty.android.chattyClient.api.ChattyApi;
 import com.chatty.android.chattyClient.constants.ActionType;
+import com.chatty.android.chattyClient.externalModules.StateManager.Payload;
 import com.chatty.android.chattyClient.model.Diary;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
@@ -28,7 +29,7 @@ public class DiaryAction {
 
   public static StateManager.DispatcherMiddleware requestGetDiaries() {
     return (dispatch) -> {
-      dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES));
+      dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES));
 
       ChattyApi.getApi().getTimeline()
         .enqueue(new Callback<TimelineResponse>() {
@@ -46,19 +47,14 @@ public class DiaryAction {
               })
               .collect(Collectors.toList());
 
-            HashMap result = new HashMap<>();
-            result.put("timeline", entries);
-            dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_SUCCESS, result));
+            dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_SUCCESS)
+              .payloadAdd("timeline", entries));
           }
 
           @Override
           public void onFailure(Call<TimelineResponse> call, Throwable t) {
-            HashMap<String, Object> payload = new HashMap<>();
-            payload.put("error", t.getCause() + " " + t.getMessage());
-            dispatch.run(new Action(
-              ActionType.REQUEST_GET_DIARIES_ERROR,
-              payload
-            ));
+            dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_ERROR)
+              .payloadAdd("error", t));
           }
         });
     };
@@ -66,7 +62,7 @@ public class DiaryAction {
 
   public static StateManager.DispatcherMiddleware requestGetDiaryDetail() {
     return (dispatch) -> {
-      dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_DETAIL));
+      dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_DETAIL));
 
       ChattyApi.getApi().postDiaryChat(1)
         .enqueue(new Callback<DiaryResponse>() {
@@ -79,17 +75,15 @@ public class DiaryAction {
               "It was really basic but still i had fun today cuz it&apos;s been a while since i learned sth new and fun.;sd");
             DiaryResponse dummy2 = new DiaryResponse("Hellow java?2", "Ths is my answer2");
             DiaryResponse dummy3 = new DiaryResponse("Hellow java?33", "Ths is my answer3");
-
             dummyEntries.addAll(Arrays.asList(dummy1, dummy2, dummy3));
 
-            HashMap result = new HashMap<>();
-            result.put("diary", dummyEntries);
-            dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_DETAIL_SUCCESS, result));
+            dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_DETAIL_SUCCESS)
+              .payloadAdd("diary", dummyEntries));
           }
 
           @Override
           public void onFailure(Call<DiaryResponse> call, Throwable t) {
-            dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_DETAIL_ERROR));
+            dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_DETAIL_ERROR));
           }
         });
     };
