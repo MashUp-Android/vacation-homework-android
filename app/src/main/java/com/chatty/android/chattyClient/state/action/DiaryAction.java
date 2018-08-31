@@ -34,19 +34,14 @@ public class DiaryAction {
         .enqueue(new Callback<TimelineResponse>() {
           @Override
           public void onResponse(Call<TimelineResponse> call, Response<TimelineResponse> response) {
-            if (response.code() != 200) {
-              dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_ERROR));
-              return;
-            }
-
             List<TimelineEntry> entries = response.body()
               .diaries
               .stream()
               .map((diary) -> {
                 TimelineEntry entry = new TimelineEntry();
                 entry.setDate(diary.created_at);
-                entry.setContent(diary.answer.label);
-                entry.setImgUrl(diary.answer.image);
+                entry.setContent(diary.answer.get(0).label);
+                entry.setImgUrl(diary.answer.get(0).image);
                 return entry;
               })
               .collect(Collectors.toList());
@@ -58,8 +53,12 @@ public class DiaryAction {
 
           @Override
           public void onFailure(Call<TimelineResponse> call, Throwable t) {
-            System.out.println(t.getMessage() + " " + t.getCause());
-            dispatch.run(new Action(ActionType.REQUEST_GET_DIARIES_ERROR));
+            HashMap<String, Object> payload = new HashMap<>();
+            payload.put("error", t.getCause() + " " + t.getMessage());
+            dispatch.run(new Action(
+              ActionType.REQUEST_GET_DIARIES_ERROR,
+              payload
+            ));
           }
         });
     };

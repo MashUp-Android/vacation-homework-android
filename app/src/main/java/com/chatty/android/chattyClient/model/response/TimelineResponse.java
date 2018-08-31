@@ -2,16 +2,17 @@ package com.chatty.android.chattyClient.model.response;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TimelineResponse {
   public Partner partner;
-  public ArrayList<Diary> diaries;
+  public List<Diary> diaries;
 
   public Partner getPartner() {
     return partner;
   }
 
-  public ArrayList<Diary> getDiaries() {
+  public List<Diary> getDiaries() {
     return diaries;
   }
 
@@ -25,7 +26,7 @@ public class TimelineResponse {
   public class Diary {
     public Integer id;
     public Date created_at;
-    public Answer answer;
+    public List<Answer> answer;
   }
 
   public class Answer {
