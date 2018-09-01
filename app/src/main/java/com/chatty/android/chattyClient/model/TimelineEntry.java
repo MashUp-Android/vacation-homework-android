@@ -3,6 +3,15 @@ package com.chatty.android.chattyClient.model;
 import java.util.Date;
 
 public class TimelineEntry {
+  public int getDiaryId() {
+    return diaryId;
+  }
+
+  public void setDiaryId(int diaryId) {
+    this.diaryId = diaryId;
+  }
+
+  public int diaryId;
   public String imgUrl;
   public Date date;
   public String content;

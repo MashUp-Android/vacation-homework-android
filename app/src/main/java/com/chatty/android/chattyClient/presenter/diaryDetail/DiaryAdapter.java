@@ -19,7 +19,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.DiaryHolder>
   private Context context;
   private List<Diary> data;
 
-  public DiaryAdapter(Context applicationContext, List<Diary> diaries){
+  public DiaryAdapter(Context applicationContext, List<Diary> diaries) {
     this.context = applicationContext;
     this.data = diaries;
   }

@@ -1,5 +1,6 @@
 package com.chatty.android.chattyClient.view.diaryDetail;
 
+import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.Diary;
 import com.chatty.android.chattyClient.model.TimelineEntry;
@@ -25,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DiaryDetailActivity extends AppCompatActivity {
+public class DiaryDetailActivity extends AppCompatActivity implements ExtendedView<DiaryDetailActivityProps> {
   private DiaryDetailPresenter presenter;
   private static final String DIARY_TITLE = "Diary";
 
@@ -51,58 +53,41 @@ public class DiaryDetailActivity extends AppCompatActivity {
   public RecyclerView recyclerView;
   private DiaryAdapter diaryAdapter;
 
-  private ArrayList<Diary> diaries;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.construct();
-
-    initView();
+    this.presenter = new DiaryDetailPresenter(this);
   }
 
-  private void construct() {
+  @Override
+  public void initialRender(DiaryDetailActivityProps props) {
     setContentView(R.layout.item_diary_detail);
     ButterKnife.bind(this);
-
-    presenter = new DiaryDetailPresenter(this);
-    this.presenter.construct();
-  }
-
-  public void initRender(ArrayList<Diary> diaries) {
 
     TextView textView = findViewById(R.id.textView_timeline_title);
     textView.setText(DIARY_TITLE);
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    this.diaryAdapter = new DiaryAdapter(this, diaries);
+    this.diaryAdapter = new DiaryAdapter(this, props.diaries);
     this.recyclerView.setAdapter(diaryAdapter);
-  }
-  public void initView() {
-    diaries = new ArrayList<>();
 
-    circleImageView();
     viewBackButton();
-    TextView textView = findViewById(R.id.textView_timeline_title);
     textView.setText(DIARY_TITLE);
-  }
 
-  private void circleImageView() {
     this.profileAvatarImg.setBackground(new ShapeDrawable(new OvalShape()));
     this.profileAvatarImg.setClipToOutline(true);
   }
 
-  public void render(
-    ArrayList<Diary> diary
-  ) {
-    Renderer.render(
-      this,
-      Arrays.asList(diary),
-      this::renderDiaryView);
+  private void updateDiaryView(Object diary) {
+    this.diaryAdapter.update((List<Diary>) diary);
   }
 
-  private void renderDiaryView(Object diary) {
-    this.diaryAdapter.update((List<Diary>) diary);
+  @Override
+  public void update(DiaryDetailActivityProps p) {
+    Renderer.render(
+      this,
+      Arrays.asList(p.diaries),
+      this::updateDiaryView);
   }
 
   private void viewBackButton() {
@@ -110,5 +95,4 @@ public class DiaryDetailActivity extends AppCompatActivity {
       finish();
     });
   }
-
 }

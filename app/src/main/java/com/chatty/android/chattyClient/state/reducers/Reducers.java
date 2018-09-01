@@ -8,8 +8,11 @@ import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.model.response.PartnerProfileDetailResponse;
 import com.chatty.android.chattyClient.model.Diary;
 import com.chatty.android.chattyClient.model.response.DiaryResponse;
+import com.chatty.android.chattyClient.model.response.TimelineResponse;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Reducers {
   private static final String REDUCERS = "REDUCERS";
@@ -21,9 +24,20 @@ public class Reducers {
 
     switch (action.getType()) {
       case ActionType.REQUEST_GET_DIARIES_SUCCESS:
-        @SuppressWarnings("unchecked")
-        ArrayList<TimelineEntry> timelineList = (ArrayList<TimelineEntry>) action.getPayload().get("timeline");
-        state.setTimeline(timelineList);
+        TimelineResponse timeline = (TimelineResponse) action.getPayload().get("timeline");
+        List<TimelineEntry> entries = timeline
+          .diaries
+          .stream()
+          .map((diary) -> {
+            TimelineEntry entry = new TimelineEntry();
+            entry.setDiaryId(diary.diary_id);
+            entry.setDate(diary.created_at);
+            entry.setContent(diary.last_answer.get(0).label);
+            entry.setImgUrl(diary.last_answer.get(0).image);
+            return entry;
+          })
+          .collect(Collectors.toList());
+        state.setTimeline(entries);
         return state;
       case ActionType.REQUEST_GET_PARTNER_PROFILE_DETAIL_SUCCESS:
         PartnerProfileDetailResponse partnerProfileDetailResponse = (PartnerProfileDetailResponse) action.getPayload().get("partnerProfileDetail");
@@ -31,18 +45,9 @@ public class Reducers {
         state.setPartnerProfileDetail(partnerProfileDetailEntry);
         return state;
       case ActionType.REQUEST_GET_DIARIES_DETAIL_SUCCESS:
-        ArrayList<DiaryResponse> diaryResponse = (ArrayList<DiaryResponse>) action.getPayload().get("diary");
-        System.out.println("123123123 " + diaryResponse.size());
-
-        for (DiaryResponse r : diaryResponse) {
-          System.out.println("131313 " + r.getAnswer());
-        }
-
+        DiaryResponse diaryResponse = (DiaryResponse) action.getPayload().get("diary");
         ArrayList<Diary> diaryList = makeDiary(diaryResponse);
-        for (Diary d : diaryList) {
-          System.out.println("23232323" + d.getAnswer());
-        }
-        state.setDiary(diaryList);
+        state.setDiaries(diaryList);
         return state;
       default:
         return state;
@@ -63,15 +68,14 @@ public class Reducers {
   }
 
 
-  private static ArrayList<Diary> makeDiary(ArrayList<DiaryResponse> diaryResponse) {
-    ArrayList<Diary> resultDiary = new ArrayList<>();
-    for (DiaryResponse currentDiary : diaryResponse) {
-      Diary diary = new Diary(
-        currentDiary.getMessage(),
-        currentDiary.getAnswer()
-      );
-      resultDiary.add(diary);
+  private static ArrayList<Diary> makeDiary(DiaryResponse diaryResponse) {
+    ArrayList<Diary> diaries = new ArrayList<>();
+    for (int i = 0; i < diaryResponse.questions.size(); i++) {
+      diaries.add(
+        new Diary(
+          diaryResponse.questions.get(i).message,
+          diaryResponse.answers.get(i).label));
     }
-    return resultDiary;
+    return diaries;
   }
 }

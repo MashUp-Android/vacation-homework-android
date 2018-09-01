@@ -3,16 +3,17 @@ package com.chatty.android.chattyClient.model;
 import com.chatty.android.chattyClient.model.response.DiaryResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class State {
   PartnerProfileDetailEntry partnerProfileDetail;
-  ArrayList<TimelineEntry> timeline;
-  ArrayList<Diary> diary;
+  List<TimelineEntry> timeline;
+  ArrayList<Diary> diaries;
 
   public State() {
     this.partnerProfileDetail = new PartnerProfileDetailEntry();
     this.timeline = new ArrayList<>();
-    this.diary = new ArrayList<>();
+    this.diaries = new ArrayList<>();
   }
 
   public PartnerProfileDetailEntry getPartnerProfileDetail() {
@@ -23,21 +24,25 @@ public class State {
     this.partnerProfileDetail = partnerProfileDetail;
   }
 
-  public ArrayList<TimelineEntry> getTimeline() {
+  public List<TimelineEntry> getTimeline() {
     return timeline;
   }
 
-  public ArrayList<Diary> getDiary() {
-    return diary;
+  public ArrayList<Diary> getDiaries() {
+    return diaries;
   }
 
-  public void setTimeline(ArrayList<TimelineEntry> timeline) { this.timeline = timeline;}
-  public void setDiary(ArrayList<Diary> diary) { this.diary = diary;}
+  public void setTimeline(List<TimelineEntry> timeline) {
+    this.timeline = timeline;
+  }
+  public void setDiaries(ArrayList<Diary> diaries) {
+    this.diaries = diaries;
+  }
 
   public State clone() {
     State instance = new State();
     instance.timeline = this.timeline;
-    instance.diary = this.diary;
+    instance.diaries = this.diaries;
     return instance;
   }
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.chatty.android.chattyClient.R;
@@ -20,19 +21,27 @@ import java.util.List;
 import java.util.Locale;
 
 public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRecyclerViewAdapter.ViewHolder> {
-  private Context context;
-  private List<TimelineEntry> data;
   private final static DateFormat df = new SimpleDateFormat("MM/DD/yyyy", Locale.getDefault());
 
-  public TimelineRecyclerViewAdapter(Context applicationContext, List<TimelineEntry> data) {
-    this.context = applicationContext;
-    this.data = data;
+  private List<TimelineEntry> timelineEntries;
+  private RecyclerViewClickListener recyclerViewClickListener;
+  private View view;
+
+  public TimelineRecyclerViewAdapter(
+    List<TimelineEntry> timelineEntries,
+    RecyclerViewClickListener recyclerViewClickListener) {
+    this.timelineEntries = timelineEntries;
+    this.recyclerViewClickListener = recyclerViewClickListener;
   }
 
-  public void update(List<TimelineEntry> data) {
-    this.data.clear();
-    this.data.addAll(data);
+  public void update(List<TimelineEntry> timelineEntries) {
+    this.timelineEntries.clear();
+    this.timelineEntries.addAll(timelineEntries);
     this.notifyDataSetChanged();
+  }
+
+  public interface RecyclerViewClickListener {
+    void onClick(View view, TimelineEntry entry);
   }
 
   @NonNull
@@ -41,39 +50,47 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     @NonNull ViewGroup parent,
     int viewType
   ) {
-    View view = LayoutInflater.from(parent.getContext())
+    this.view = LayoutInflater.from(parent.getContext())
       .inflate(R.layout.item_timeline_entry, parent, false);
 
-    view.setOnClickListener((__) -> {
-      Intent intent = new Intent(this.context, DiaryDetailActivity.class);
-      context.startActivity(intent);
-    });
-
-    return new TimelineRecyclerViewAdapter.ViewHolder(view);
+    return new TimelineRecyclerViewAdapter.ViewHolder(this.view, this.recyclerViewClickListener);
   }
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    TimelineEntry entry = this.data.get(position);
+    TimelineEntry entry = this.timelineEntries.get(position);
     String date = TimelineRecyclerViewAdapter.df.format(entry.getDate());
 
     holder.contents.setText(entry.getContent());
     holder.date.setText(date);
+    holder.entry = entry;
   }
 
   @Override
   public int getItemCount() {
-    return data.size();
+    return this.timelineEntries.size();
   }
 
-  public class ViewHolder extends RecyclerView.ViewHolder {
+  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    TimelineEntry entry;
     TextView contents;
     TextView date;
+    RecyclerViewClickListener recyclerViewClickListener;
 
-    public ViewHolder(@NonNull View itemView) {
-      super(itemView);
-      this.contents = itemView.findViewById(R.id.textView_contents);
-      this.date = itemView.findViewById(R.id.textView_timeline_date);
+    public ViewHolder(
+      @NonNull View view,
+      RecyclerViewClickListener recyclerViewClickListener
+    ) {
+      super(view);
+      this.contents = view.findViewById(R.id.textView_contents);
+      this.date = view.findViewById(R.id.textView_timeline_date);
+      this.recyclerViewClickListener = recyclerViewClickListener;
+      view.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+      this.recyclerViewClickListener.onClick(view, entry);
     }
   }
 }

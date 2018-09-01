@@ -75,7 +75,9 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
     this.writeButton.setOnClickListener(props.handleClickWriteButton);
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(this, props.timeline);
+    this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(
+      props.timeline,
+      props.handleClickTimelineEntry);
     this.recyclerView.setAdapter(this.recyclerViewAdapter);
   }
 

@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.view.View;
 
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
-import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.module.StateManagerWrapper;
 import com.chatty.android.chattyClient.state.action.DiaryAction;
+import com.chatty.android.chattyClient.view.diaryDetail.DiaryDetailActivity;
 import com.chatty.android.chattyClient.view.main.MainActivity;
 import com.chatty.android.chattyClient.view.main.MainActivityProps;
 import com.chatty.android.chattyClient.view.write.WriteActivity;
@@ -26,6 +26,7 @@ public class MainPresenter implements ExtendedPresenter<State> {
     MainActivityProps props = new MainActivityProps();
     props.timeline = StateManagerWrapper.getState().getTimeline();
     props.handleClickWriteButton = this::handleClickWriteButton;
+    props.handleClickTimelineEntry = this::handleClickTimelineEntry;
 
     this.view.initialRender(props);
     presenterDidMount();
@@ -39,8 +40,14 @@ public class MainPresenter implements ExtendedPresenter<State> {
     }
   }
 
+  private void handleClickTimelineEntry(View view, TimelineEntry entry) {
+    Intent intent = new Intent(this.view, DiaryDetailActivity.class);
+    intent.putExtra("diaryId", entry.getDiaryId());
+    this.view.startActivity(intent);
+  }
+
   private void handleClickWriteButton(View v) {
-    Intent intent = new Intent(view, WriteActivity.class);
+    Intent intent = new Intent(this.view, WriteActivity.class);
     view.startActivity(intent);
   }
 

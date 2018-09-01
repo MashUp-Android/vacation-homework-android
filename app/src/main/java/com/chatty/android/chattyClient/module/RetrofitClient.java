@@ -39,6 +39,8 @@ public class RetrofitClient {
           .header("HASH", SOON_TO_BE_REMOVED_HASH_FOR_DEV)
           .build();
 
+        System.out.println("[Retrofit] url: " + request.url() + " " + request.body());
+
         Response response = chain.proceed(request);
         if (response.code() != 200) {
           throw new IOException(response.toString());

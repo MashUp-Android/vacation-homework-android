@@ -30,8 +30,8 @@ public interface ChattyApiDefinition {
     @Path("partner_id") int partner_id
   );
 
-  @GET("/diary/{diary_id}")
-  Call<DiaryResponse> postDiaryChat(
+  @GET("/diary/detail/{diary_id}")
+  Call<DiaryResponse> getDiaryDetail(
     @Path("diary_id") int diary_id
   );
 }
