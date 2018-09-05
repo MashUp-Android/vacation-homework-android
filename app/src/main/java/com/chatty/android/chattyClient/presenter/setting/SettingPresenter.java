@@ -10,17 +10,8 @@ public class SettingPresenter implements ExtendedPresenter<State> {
 
   public SettingPresenter(SettingActivity view) {
     this.view = view;
-  }
-
-  public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
     view.render();
-    this.presenterDidMount();
-  }
-
-  @Override
-  public void presenterDidMount() {
-
   }
 
   public Object stateListener(State state) {

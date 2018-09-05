@@ -48,7 +48,6 @@ public class SettingActivity extends AppCompatActivity {
     this.setContentView(R.layout.activity_setting);
     ButterKnife.bind(this);
     presenter = new SettingPresenter(this);
-    presenter.construct();
   }
 
   public void render() {

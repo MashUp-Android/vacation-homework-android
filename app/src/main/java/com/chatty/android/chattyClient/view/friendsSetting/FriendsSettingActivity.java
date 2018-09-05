@@ -65,7 +65,6 @@ public class FriendsSettingActivity extends AppCompatActivity {
     this.setContentView(R.layout.activity_friends_setting);
     ButterKnife.bind(this);
     presenter = new FriendsSettingPresenter(this);
-    presenter.construct();
   }
 
   public void render() {

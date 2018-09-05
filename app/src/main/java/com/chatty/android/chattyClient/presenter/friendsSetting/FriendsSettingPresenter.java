@@ -14,15 +14,8 @@ public class FriendsSettingPresenter implements ExtendedPresenter<State> {
 
   public FriendsSettingPresenter(FriendsSettingActivity view) {
     this.view = view;
-  }
-
-  public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
     view.render();
-    this.presenterDidMount();
-  }
-
-  public void presenterDidMount() {
     try {
       StateManagerWrapper.dispatch(PartnerAction.requestGetPartnerProfileDetail());
     } catch (Exception e) {

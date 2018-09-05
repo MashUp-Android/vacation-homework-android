@@ -14,12 +14,6 @@ public class FriendsListPresenter implements ExtendedPresenter<State> {
   public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
     view.render();
-    this.presenterDidMount();
-  }
-
-  @Override
-  public void presenterDidMount() {
-
   }
 
   @Override

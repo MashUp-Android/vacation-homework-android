@@ -17,15 +17,6 @@ public class CalendarPresenter {
   public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
     view.render();
-    presenterDidMount();
-  }
-
-  private void presenterDidMount() {
-    try {
-//      TODO: 월 별 일기 쓴 데이터 가져오기
-    } catch (Exception e) {
-
-    }
   }
 
   private Object stateListener(State state) {

@@ -27,10 +27,7 @@ public class DiaryDetailPresenter {
       .getDiaries();
 
     this.view.initialRender(props);
-    this.presenterDidMount();
-  }
 
-  private void presenterDidMount() {
     Intent intent = this.view.getIntent();
     int diaryId = intent.getIntExtra("diaryId", 0);
 

@@ -22,9 +22,6 @@ public class MainPresenter implements ExtendedPresenter<State> {
   private MainActivity view;
   private MainPresenter(MainActivity view) {
     this.view = view;
-  }
-
-  public void construct() {
     StateManagerWrapper.subscribe(this::stateListener);
 
     MainActivityProps props = new MainActivityProps();
@@ -33,10 +30,6 @@ public class MainPresenter implements ExtendedPresenter<State> {
     props.handleClickTimelineEntry = this::handleClickTimelineEntry;
 
     this.view.initialRender(props);
-    presenterDidMount();
-  }
-
-  public void presenterDidMount() {
     try {
       StateManagerWrapper.dispatch(DiaryAction.requestGetDiaries());
     } catch (Exception e) {
@@ -77,7 +70,6 @@ public class MainPresenter implements ExtendedPresenter<State> {
 
   public static MainPresenter of(MainActivity activity) {
     MainPresenter presenter = new MainPresenter(activity);
-    presenter.construct();
     return presenter;
   }
 }

@@ -39,10 +39,6 @@ public class AddFriendPresenter implements ExtendedPresenter<State> {
     addFriendActivity.initialRender(props);
   }
 
-  @Override
-  public void presenterDidMount() {
-  }
-
   public Object stateListener(State state) {
     return null;
   }
