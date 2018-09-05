@@ -40,26 +40,18 @@ public class FriendsListRecyclerViewAdapter extends RecyclerView.Adapter<Friends
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     FriendItemEntry friendItemEntry = this.friendItemEntries.get(position);
 
-//    holder.textViewName.setText(friendItemEntry.getName());
-//    holder.textViewBio.setText(friendItemEntry.getBio());
-//    holder.textViewDate.setText(friendItemEntry.getCreated_at());
-//
-//    Glide.with(context)
-//      .load(friendItemEntry.getProfile_image())
-//      .into(holder.imageViewProfile);
-
-    holder.textViewName.setText("심슨");
-    holder.textViewBio.setText("Do'h");
-    holder.textViewDate.setText("2018-08-10");
+    holder.textViewName.setText(friendItemEntry.getName());
+    holder.textViewBio.setText(friendItemEntry.getBio());
+    holder.textViewDate.setText(friendItemEntry.getCreated_at());
 
     Glide.with(context)
-      .load("https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/03/simpsons-the-great-phatsby-1-920x584.jpg")
+      .load(friendItemEntry.getProfile_image())
       .into(holder.imageViewProfile);
   }
 
   @Override
   public int getItemCount() {
-    return 3;
+    return this.friendItemEntries.size();
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
