@@ -28,7 +28,6 @@
     app:layout_constraintStart_toEndOf="@+id/imageView_read_img"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="Yuyuyu"/>
-
   <TextView
     android:background="@drawable/write_question_ninpatch_3x"
     android:elevation="@dimen/SIZE_2"

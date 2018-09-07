@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.view.diaryDetail.DiaryDetailActivity;
@@ -66,6 +68,14 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     holder.contents.setText(entry.getContent());
     holder.date.setText(date);
     holder.entry = entry;
+
+    String thumbnailUrl = entry.imgUrl != null
+      ? entry.imgUrl
+      : "https://msr7.net/images/flower-google-9.jpg";
+
+    Glide.with(view)
+      .load(thumbnailUrl)
+      .into(holder.thumbnail);
   }
 
   @Override
@@ -77,6 +87,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
     TimelineEntry entry;
     TextView contents;
     TextView date;
+    ImageView thumbnail;
     RecyclerViewClickListener recyclerViewClickListener;
 
     public ViewHolder(
@@ -87,6 +98,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
       this.contents = view.findViewById(R.id.textView_contents);
       this.date = view.findViewById(R.id.textView_timeline_date);
       this.recyclerViewClickListener = recyclerViewClickListener;
+      this.thumbnail = view.findViewById(R.id.imageView_timeline);
       view.setOnClickListener(this);
     }
 
