@@ -27,7 +27,6 @@ public class DiaryAction {
 
           @Override
           public void onFailure(Call<TimelineResponse> call, Throwable t) {
-            System.out.println("111222" + t.getMessage());
             dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_ERROR)
               .payloadAdd("error", t));
           }

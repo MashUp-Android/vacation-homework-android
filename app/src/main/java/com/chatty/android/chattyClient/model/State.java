@@ -11,6 +11,7 @@ public class State {
   List<TimelineEntry> timeline;
   ArrayList<Diary> diaries;
   List<FriendItemEntry> friends;
+  public Partner partner;
 
   public State() {
     this.partnerProfileDetail = new PartnerProfileDetailEntry();

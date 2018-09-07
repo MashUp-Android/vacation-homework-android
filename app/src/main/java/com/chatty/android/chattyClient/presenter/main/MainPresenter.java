@@ -57,6 +57,7 @@ public class MainPresenter extends ExtendedPresenter<MainActivityProps, MainActi
 
     MainActivityProps props = new MainActivityProps();
     props.timeline = state.getTimeline();
+    props.partner = state.partner;
 
     return props;
   }

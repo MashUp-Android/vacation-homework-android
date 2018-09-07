@@ -64,7 +64,6 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/main_textView_Timeline"/>
-
   <android.support.design.widget.FloatingActionButton
     android:backgroundTint="@color/white5"
     android:id="@+id/btn_start_chatting"

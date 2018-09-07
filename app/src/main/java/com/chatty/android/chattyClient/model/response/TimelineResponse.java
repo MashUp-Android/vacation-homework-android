@@ -17,10 +17,11 @@ public class TimelineResponse {
   }
 
   public class Partner {
-    public Integer partner_id;
-    public String name;
     public Integer days_together;
     public Integer diary_count;
+    public String name;
+    public Integer partner_id;
+    public String profile_image;
   }
 
   public class Diary {
