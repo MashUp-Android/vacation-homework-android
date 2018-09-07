@@ -6,7 +6,7 @@
   android:layout_width="280dp"
   android:layout_height="176dp"
   android:background="@drawable/layout_circle3"
-  tools:context=".view.write.emotion.EmotionActivity">
+  tools:context=".view.emotion.EmotionActivity">
 
   <TextView
     android:id="@+id/textView2"

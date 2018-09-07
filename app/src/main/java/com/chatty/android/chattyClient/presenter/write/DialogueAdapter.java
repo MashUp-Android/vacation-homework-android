@@ -71,10 +71,10 @@ public class DialogueAdapter extends RecyclerView.Adapter {
       switch (holder.getItemViewType()) {
         case 0:
           ((EntryBaseViewHolder) holder).textView_contents.setText("isRead" + position);
-          ((EntryBaseViewHolder) holder).textView_isRead.setText(chatBalloon.getSpeech());
+          ((EntryBaseViewHolder) holder).textView_isRead.setText(chatBalloon.speech);
           break;
         case 2:
-          ((RequestBaseViewHolder) holder).textView.setText(chatBalloon.getSpeech());
+          ((RequestBaseViewHolder) holder).textView.setText(chatBalloon.speech);
           break;
       }
     }

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -16,6 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
   private static Retrofit retrofit = null;
   private final static String SOON_TO_BE_REMOVED_HASH_FOR_DEV = "iGAvuF6Uu40xYL8XcjHu0pduQgU5EyDwxzSYblfF";
+  private static int[] SUCCESS_CODES = { 200, 201 };
+
 
   public static Retrofit getClient(String baseUrl) {
     if (retrofit == null) {
@@ -39,10 +43,12 @@ public class RetrofitClient {
           .header("HASH", SOON_TO_BE_REMOVED_HASH_FOR_DEV)
           .build();
 
-        System.out.println("[Retrofit] url: " + request.url() + " " + request.body() + " " + request.headers());
+        System.out.println("[Retrofit] method: " + request.method() + " url: " + request.url() + " " + request.body() + " " + request.headers());
 
         Response response = chain.proceed(request);
-        if (response.code() != 200) {
+//        System.out.println("[Retrofit] response: " + response.body().string());
+
+        if (response.code() != 200 && response.code() != 201) {
           throw new IOException(response.toString());
         }
 

@@ -40,7 +40,7 @@
       android:launchMode="singleTask" />
     <activity android:name=".view.write.WriteActivity" />
     <activity
-      android:name=".view.write.emotion.EmotionActivity"
+      android:name=".view.emotion.EmotionActivity"
       android:theme="@android:style/Theme.Dialog">
     </activity>
     <activity android:name=".view.splash.SplashActivity">

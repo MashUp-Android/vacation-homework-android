@@ -1,13 +1,11 @@
 package com.chatty.android.chattyClient.model.response;
 
 public class ChatResponse {
-  public String temp;
+  public String diary_id;
+  public Question question;
 
-  public String getTemp() {
-    return temp;
-  }
-
-  public void setTemp(String temp) {
-    this.temp = temp;
+  public class Question {
+    public String question_id;
+    public String message;
   }
 }

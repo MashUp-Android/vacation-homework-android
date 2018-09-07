@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class State {
+  public List<ChatBalloon> chatBalloons;
   public boolean hasFriend;
   PartnerProfileDetailEntry partnerProfileDetail;
   List<TimelineEntry> timeline;
@@ -14,10 +15,11 @@ public class State {
   public Partner partner;
 
   public State() {
-    this.partnerProfileDetail = new PartnerProfileDetailEntry();
-    this.timeline = new ArrayList<>();
+    this.chatBalloons = new ArrayList<>();
     this.diaries = new ArrayList<>();
     this.friends = new ArrayList<>();
+    this.partnerProfileDetail = new PartnerProfileDetailEntry();
+    this.timeline = new ArrayList<>();
   }
 
   public PartnerProfileDetailEntry getPartnerProfileDetail() {

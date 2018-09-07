@@ -27,8 +27,7 @@ public class PartnerAction {
             Call<PartnerProfileDetailResponse> call,
             Response<PartnerProfileDetailResponse> response
           ) {
-        PartnerProfileDetailResponse partnerProfile = response.body();
-
+            PartnerProfileDetailResponse partnerProfile = response.body();
             dispatch.run(Action.of(ActionType.REQUEST_GET_PARTNER_PROFILE_DETAIL_SUCCESS)
               .payloadAdd("partnerProfileDetail", partnerProfile));
           }

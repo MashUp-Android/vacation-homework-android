@@ -2,11 +2,13 @@ package com.chatty.android.chattyClient.state.reducers;
 
 import com.chatty.android.chattyClient.constants.ActionType;
 import com.chatty.android.chattyClient.externalModules.StateManager.Action;
+import com.chatty.android.chattyClient.model.ChatBalloon;
 import com.chatty.android.chattyClient.model.FriendItemEntry;
 import com.chatty.android.chattyClient.model.Partner;
 import com.chatty.android.chattyClient.model.PartnerProfileDetailEntry;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
+import com.chatty.android.chattyClient.model.response.ChatResponse;
 import com.chatty.android.chattyClient.model.response.FriendItemResponse;
 import com.chatty.android.chattyClient.model.response.PartnerProfileDetailResponse;
 import com.chatty.android.chattyClient.model.Diary;
@@ -22,6 +24,9 @@ public class Reducers {
 
   public static Object reduce(Object _state, Action action) {
     System.out.println(REDUCERS + " " + _state + action.getType());
+    if (action.getPayload().get("error") != null) {
+      System.out.println(REDUCERS + " error: " + action.getPayload().get("error"));
+    }
 
     State state = (State) _state;
 
@@ -35,8 +40,8 @@ public class Reducers {
             TimelineEntry entry = new TimelineEntry();
             entry.setDiaryId(diary.diary_id);
             entry.setDate(diary.created_at);
-            entry.setContent(diary.answers.get(0).label);
-            entry.setImgUrl(diary.answers.get(0).image);
+//            entry.setContent(diary.answers.get(diary.answers.size() - 1).label);
+//            entry.setImgUrl(diary.answers.get(diary.answers.size() - 1).image);
             return entry;
           })
           .collect(Collectors.toList());
@@ -49,11 +54,7 @@ public class Reducers {
         partner.name = timeline.partner.name;
         state.partner = partner;
         return state;
-      case ActionType.REQUEST_GET_PARTNER_PROFILE_DETAIL_SUCCESS:
-        PartnerProfileDetailResponse partnerProfileDetailResponse = (PartnerProfileDetailResponse) action.getPayload().get("partnerProfileDetail");
-        PartnerProfileDetailEntry partnerProfileDetailEntry = makePartnerProfile(partnerProfileDetailResponse);
-        state.setPartnerProfileDetail(partnerProfileDetailEntry);
-        return state;
+
       case ActionType.REQUEST_GET_DIARIES_DETAIL_SUCCESS:
         DiaryResponse diaryResponse = (DiaryResponse) action.getPayload().get("diary");
         ArrayList<Diary> diaryList = makeDiary(diaryResponse);
@@ -75,6 +76,17 @@ public class Reducers {
           })
           .collect(Collectors.toList());
         state.setFriends(friendItemEntries);
+        return state;
+      case ActionType.REQUEST_GET_PARTNER_PROFILE_DETAIL_SUCCESS:
+        PartnerProfileDetailResponse partnerProfileDetailResponse = (PartnerProfileDetailResponse) action.getPayload().get("partnerProfileDetail");
+        PartnerProfileDetailEntry partnerProfileDetailEntry = makePartnerProfile(partnerProfileDetailResponse);
+        state.setPartnerProfileDetail(partnerProfileDetailEntry);
+        return state;
+      case ActionType.REQUEST_START_CHAT_SUCCESS:
+        ChatResponse chatResponse = (ChatResponse) action.getPayload().get("chat");
+        ChatBalloon chatBalloon = new ChatBalloon();
+        chatBalloon.speech = chatResponse.question.message;
+        state.chatBalloons.add(chatBalloon);
         return state;
       default:
         return state;
