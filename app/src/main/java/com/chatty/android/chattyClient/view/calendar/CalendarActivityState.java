@@ -1,10 +1,9 @@
-package com.chatty.android.chattyClient.view.friendsList;
+package com.chatty.android.chattyClient.view.calendar;
 
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.model.FriendItemEntry;
 
 import java.util.ArrayList;
 
-public class FriendsListProps extends Props {
-  public ArrayList<FriendItemEntry> friendsList;
+public class CalendarActivityState {
 }

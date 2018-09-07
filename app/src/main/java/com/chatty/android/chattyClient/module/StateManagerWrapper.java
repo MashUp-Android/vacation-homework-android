@@ -1,8 +1,10 @@
 package com.chatty.android.chattyClient.module;
 
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.StateManager.StateManager;
 import com.chatty.android.chattyClient.model.State;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class StateManagerWrapper {
@@ -18,8 +20,12 @@ public class StateManagerWrapper {
     StateManagerWrapper.stateManager.dispatch(r);
   }
 
-  public static void subscribe(Function<State, Object> subscriber) {
-    StateManagerWrapper.stateManager.subscribe(subscriber);
+  public static void subscribe(Function<State, Object> subscriber, Consumer<Props> updater) {
+    Consumer<State> enhancedSubscriber = (state) -> {
+      Props p = (Props) subscriber.apply(state);
+      updater.accept(p);
+    };
+    StateManagerWrapper.stateManager.subscribe(enhancedSubscriber);
   }
 
   public static void log(String className, State state) {
@@ -29,4 +35,5 @@ public class StateManagerWrapper {
   public static State getState() {
     return StateManagerWrapper.stateManager.getState();
   }
+
 }

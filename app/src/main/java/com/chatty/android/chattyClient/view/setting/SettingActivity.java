@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.chatty.android.chattyClient.App;
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.presenter.setting.SettingPresenter;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
 import com.chatty.android.chattyClient.view.friendsSetting.FriendsSettingActivity;
@@ -16,14 +18,12 @@ import com.chatty.android.chattyClient.view.main.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity implements ExtendedView<SettingActivityProps> {
   private static final String ALERT_SUBMIT = "OK";
   private static final String SORRY_MESSAGE = "준비중 입니다.";
   private static final String SORRY_TITLE = "Chatty";
   private static final String SUPPORT_MESSAGE = "If you have any question, please don't hesitate to contact us.";
   private static final String SUPPORT_TITLE = "Contact Us";
-
-  private SettingPresenter presenter;
 
   @BindView(R.id.textView_button_link_account)
   public TextView textViewButtonLinkAccount;
@@ -45,15 +45,6 @@ public class SettingActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.setContentView(R.layout.activity_setting);
-    ButterKnife.bind(this);
-    presenter = new SettingPresenter(this);
-  }
-
-  public void render() {
-    this.alertBuilder = new AlertDialog.Builder(SettingActivity.this, R.style.AlertDialogStyle);
-    this.renderHeader();
-    this.buttonRender();
   }
 
   private void renderHeader() {
@@ -123,5 +114,20 @@ public class SettingActivity extends AppCompatActivity {
     } else {
       this.startActivity(new Intent(this, AddFriendActivity.class));
     }
+  }
+
+  @Override
+  public void initialRender(SettingActivityProps settingActivityProps) {
+    this.setContentView(R.layout.activity_setting);
+    ButterKnife.bind(this);
+
+    this.alertBuilder = new AlertDialog.Builder(SettingActivity.this, R.style.AlertDialogStyle);
+    this.renderHeader();
+    this.buttonRender();
+  }
+
+  @Override
+  public void update(Props props) {
+
   }
 }

@@ -2,19 +2,18 @@ package com.chatty.android.chattyClient.presenter.setting;
 
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
 import com.chatty.android.chattyClient.model.State;
-import com.chatty.android.chattyClient.module.StateManagerWrapper;
-import com.chatty.android.chattyClient.view.setting.SettingActivity;
+import com.chatty.android.chattyClient.view.setting.SettingActivityProps;
+import com.chatty.android.chattyClient.view.setting.SettingActivityState;
 
-public class SettingPresenter implements ExtendedPresenter<State> {
-  private SettingActivity view;
+public class SettingPresenter
+  extends ExtendedPresenter<SettingActivityProps, SettingActivityState, State> {
 
-  public SettingPresenter(SettingActivity view) {
-    this.view = view;
-    StateManagerWrapper.subscribe(this::stateListener);
-    view.render();
+  @Override
+  public SettingActivityProps initiate() {
+    return null;
   }
 
-  public Object stateListener(State state) {
+  public SettingActivityProps stateListener(State state) {
     return null;
   }
 }

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.model.PartnerProfileDetailEntry;
 import com.chatty.android.chattyClient.presenter.friendsList.FriendsListPresenter;
 import com.chatty.android.chattyClient.presenter.friendsSetting.FriendsSettingPresenter;
@@ -25,7 +27,7 @@ import java.net.URL;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FriendsSettingActivity extends AppCompatActivity {
+public class FriendsSettingActivity extends AppCompatActivity implements ExtendedView<FriendsSettingActivityProps> {
   private static String HEADER_TITLE = "Friends Setting";
   private FriendsSettingPresenter presenter;
 
@@ -59,17 +61,6 @@ public class FriendsSettingActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.construct();
-  }
-
-  private void construct() {
-    this.setContentView(R.layout.activity_friends_setting);
-    ButterKnife.bind(this);
-    presenter = new FriendsSettingPresenter(this);
-  }
-
-  public void render() {
-    this.renderHeader();
   }
 
   private void renderHeader() {
@@ -119,5 +110,16 @@ public class FriendsSettingActivity extends AppCompatActivity {
         .load(imageUrl)
         .into(this.imageViewProfileImage);
     }
+  }
+
+  @Override
+  public void initialRender(FriendsSettingActivityProps friendsSettingActivityProps) {
+    this.setContentView(R.layout.activity_friends_setting);
+    ButterKnife.bind(this);
+  }
+
+  @Override
+  public void update(Props props) {
+    this.renderHeader();
   }
 }

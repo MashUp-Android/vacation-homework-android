@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,19 +13,18 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.model.FriendItemEntry;
-import com.chatty.android.chattyClient.presenter.addFriend.AddFriendPresenter;
 import com.chatty.android.chattyClient.presenter.friendsList.FriendsListPresenter;
 import com.chatty.android.chattyClient.presenter.friendsList.FriendsListRecyclerViewAdapter;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FriendsListActivity extends AppCompatActivity implements ExtendedView<FriendsListProps>{
+public class FriendsListActivity extends AppCompatActivity implements ExtendedView<FriendsListActivityProps> {
   private static String HEADER_TITLE = "Friends List";
   private FriendsListRecyclerViewAdapter friendsListRecyclerViewAdapter;
   FriendsListPresenter presenter;
@@ -61,13 +59,6 @@ public class FriendsListActivity extends AppCompatActivity implements ExtendedVi
   private void construct() {
     setContentView(R.layout.activity_friends_list);
     ButterKnife.bind(this);
-    presenter = new FriendsListPresenter(this);
-    presenter.construct();
-  }
-
-  public void render() {
-    this.renderHeader();
-
   }
 
   private void renderProfileList(List<FriendItemEntry> _friendsList) {
@@ -101,16 +92,17 @@ public class FriendsListActivity extends AppCompatActivity implements ExtendedVi
   }
 
   @Override
-  public void initialRender(FriendsListProps p) {
-
+  public void initialRender(FriendsListActivityProps p) {
+    this.renderHeader();
   }
 
   @Override
-  public void update(FriendsListProps p) {
-    List<FriendItemEntry> friendsList = p.friendsList;
+  public void update(Props _props) {
+    FriendsListActivityProps props = (FriendsListActivityProps) _props;
+    List<FriendItemEntry> friendsList = props.friendsList;
     this.renderProfileList(friendsList);
     if (friendsList.size() > 0 ) {
-      FriendItemEntry friendItemEntry = p.friendsList.get(0);
+      FriendItemEntry friendItemEntry = props.friendsList.get(0);
       this.renderProfileNow(friendItemEntry);
     }
   }

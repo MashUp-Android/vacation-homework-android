@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.Diary;
 import com.chatty.android.chattyClient.model.TimelineEntry;
@@ -59,7 +60,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements ExtendedVi
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.presenter = new DiaryDetailPresenter(this);
+//    StateManagerWrapper.dispatch(DiaryAction.requestGetDiaryDetail(diaryId));
   }
 
   @Override
@@ -83,16 +84,17 @@ public class DiaryDetailActivity extends AppCompatActivity implements ExtendedVi
     this.profileAvatarImg.setClipToOutline(true);
   }
 
-  private void updateDiaryView(Object diary) {
-    this.diaryAdapter.update((List<Diary>) diary);
-  }
-
   @Override
-  public void update(DiaryDetailActivityProps p) {
+  public void update(Props _props) {
+    DiaryDetailActivityProps props = (DiaryDetailActivityProps) _props;
     Renderer.render(
       this,
-      Arrays.asList(p.diaries),
+      Arrays.asList(props.diaries),
       this::updateDiaryView);
+  }
+
+  private void updateDiaryView(Object diary) {
+    this.diaryAdapter.update((List<Diary>) diary);
   }
 
   private void viewBackButton() {

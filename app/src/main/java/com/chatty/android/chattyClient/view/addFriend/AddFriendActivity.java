@@ -22,6 +22,8 @@ import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.App;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
+import com.chatty.android.chattyClient.module.Contract;
 import com.chatty.android.chattyClient.module.ImagePicker;
 import com.chatty.android.chattyClient.model.request.NewPartnerRequest;
 import com.chatty.android.chattyClient.presenter.addFriend.AddFriendPresenter;
@@ -65,7 +67,6 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
     super.onCreate(savedInstanceState);
     this.setContentView(R.layout.activity_add_friend);
     ButterKnife.bind(this);
-    this.presenter = new AddFriendPresenter(this);
   }
 
   @Override
@@ -124,14 +125,22 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
     finish();
   }
 
+  @Override
+  public void update(Props props) {
+
+  }
+
   private void profileImageButtonAction() {
     this.setPermission();
   }
 
-
-  @Override
-  public void update(AddFriendActivityProps p) {
-
+  public void activateSubmitButton(boolean isSubmitReady) {
+    this.isSubmitReady = isSubmitReady;
+    if(this.isSubmitReady) {
+      buttonAddProfile.setBackgroundResource(R.color.main_purple);
+    } else {
+      buttonAddProfile.setBackgroundResource(R.color.gray5);
+    }
   }
 
   @Override

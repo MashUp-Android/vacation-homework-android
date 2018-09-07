@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
+import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.TimelineEntry;
+import com.chatty.android.chattyClient.module.Contract;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 import com.chatty.android.chattyClient.presenter.main.TimelineRecyclerViewAdapter;
 import com.chatty.android.chattyClient.view.app.ProfileAvatarImage;
@@ -57,30 +59,28 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.presenter = MainPresenter.of(this);
-    StartfloatingBtn();
+    Contract.connect(this, MainPresenter.class);
   }
 
-  public void StartfloatingBtn(){
-    if (floatingCheckeNum==0) {
-      writeButton.setVisibility(View.VISIBLE);
+  public void StartfloatingBtn() {
+    if (floatingCheckeNum == 0) {
+      this.writeButton.setVisibility(View.VISIBLE);
     }
-    else{
+    else {
       Log.e("floating Close check", String.valueOf(floatingCheckeNum));
     }
-  }
-  public void floatingClose(){
-    writeButton.setVisibility(View.INVISIBLE);
   }
 
   public void initialRender(MainActivityProps props) {
     this.setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
+    StartfloatingBtn();
+
     ProfileAvatarImage.CUSTOMVIEW__initRender(this.profilerAvatarImage);
 
     this.calenderButton.setOnClickListener((view) -> {
-      Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+      Intent intent = new Intent(this, CalendarActivity.class);
       intent.putExtra(HEADER_TITLE, CALENDAR);
       startActivity(intent);
     });
@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
       startActivity(intent);
     });
 
-    this.writeButton.setOnClickListener(props.handleClickWriteButton);
+    this.writeButton.setOnClickListener((__) -> {
+//      props.handleClickWriteButton(this, this.writeButton);
+    });
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
     this.recyclerViewAdapter = new TimelineRecyclerViewAdapter(
@@ -100,7 +102,10 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
     this.recyclerView.setAdapter(this.recyclerViewAdapter);
   }
 
-  public void update(MainActivityProps props) {
+  @Override
+  public void update(Props _props) {
+    MainActivityProps props = (MainActivityProps) _props;
+    System.out.println("123123 " + props.timeline);
     Renderer.render(
       this,
       Arrays.asList(props.timeline),
@@ -110,7 +115,8 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   private void updateTimeLineView(
     Object timeline
   ) {
-    this.recyclerViewAdapter.update((ArrayList<TimelineEntry>) timeline);
+    ArrayList<TimelineEntry> _timeline = (ArrayList<TimelineEntry>) timeline;
+    System.out.println("232323" + timeline);
+//    this.recyclerViewAdapter.update((ArrayList<TimelineEntry>) timeline);
   }
-
 }

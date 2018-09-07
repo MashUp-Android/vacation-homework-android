@@ -2,18 +2,19 @@ package com.chatty.android.chattyClient.externalModules.StateManager;
 
 import android.util.Log;
 
+import com.chatty.android.chattyClient.model.State;
+
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class StateManager<T> {
-  final private static String STATE_MANAGER = "STATE_MANAGER";
-
   private Reducer reducer = null;
   private T state;
-  private final ArrayList<Function<T, Object>> subscribers = new ArrayList<>();
+  private final ArrayList<Consumer<T>> subscribers = new ArrayList<>();
 
   public void initialize(Reducer reducer, T state) {
-    Log.d(STATE_MANAGER, "initialize() " + reducer);
+    Log.d("[StateManager]", "initialize() " + reducer);
     this.reducer = reducer;
     this.state = state;
   }
@@ -28,18 +29,18 @@ public class StateManager<T> {
 
   @SuppressWarnings("unchecked")
   private void _dispatch(Action action) {
-    Log.d(STATE_MANAGER, action.getType());
+    Log.d("[StateManager]", action.getType());
     this.state = (T) reducer.run(state, action);
     this.emit(state);
   }
 
   private void emit(T state) {
     for (int i = 0; i < this.subscribers.size(); i++) {
-      this.subscribers.get(i).apply(state);
+      this.subscribers.get(i).accept(state);
     }
   }
 
-  public void subscribe(Function<T, Object> f) {
+  public void subscribe(Consumer<T> f) {
     this.subscribers.add(f);
   }
 
