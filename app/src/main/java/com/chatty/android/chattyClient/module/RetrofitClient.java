@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 // https://code.tutsplus.com/tutorials/getting-started-with-retrofit-2--cms-27792
 public class RetrofitClient {
   private static Retrofit retrofit = null;
-  private final static String SOON_TO_BE_REMOVED_HASH_FOR_DEV = "b2FQxG4bHTKJpg3ciug0vLjd4vuHTNciOg19919l";
+  private final static String SOON_TO_BE_REMOVED_HASH_FOR_DEV = "iGAvuF6Uu40xYL8XcjHu0pduQgU5EyDwxzSYblfF";
 
   public static Retrofit getClient(String baseUrl) {
     if (retrofit == null) {
@@ -39,7 +39,7 @@ public class RetrofitClient {
           .header("HASH", SOON_TO_BE_REMOVED_HASH_FOR_DEV)
           .build();
 
-        System.out.println("[Retrofit] url: " + request.url() + " " + request.body());
+        System.out.println("[Retrofit] url: " + request.url() + " " + request.body() + " " + request.headers());
 
         Response response = chain.proceed(request);
         if (response.code() != 200) {

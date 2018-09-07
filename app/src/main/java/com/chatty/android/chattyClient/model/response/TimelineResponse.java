@@ -26,7 +26,7 @@ public class TimelineResponse {
   public class Diary {
     public Integer diary_id;
     public Date created_at;
-    public List<Answer> last_answer;
+    public List<Answer> answers;
   }
 
   public class Answer {

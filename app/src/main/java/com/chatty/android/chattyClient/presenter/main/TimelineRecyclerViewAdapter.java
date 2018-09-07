@@ -4,6 +4,7 @@ package com.chatty.android.chattyClient.presenter.main;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,8 @@ public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRe
 
   public TimelineRecyclerViewAdapter(
     List<TimelineEntry> timelineEntries,
-    RecyclerViewClickListener recyclerViewClickListener) {
+    RecyclerViewClickListener recyclerViewClickListener
+  ) {
     this.timelineEntries = timelineEntries;
     this.recyclerViewClickListener = recyclerViewClickListener;
   }

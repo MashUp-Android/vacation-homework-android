@@ -1,5 +1,7 @@
 package com.chatty.android.chattyClient.module;
 
+import android.support.v7.app.AppCompatActivity;
+
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.model.State;
@@ -23,10 +25,11 @@ public class Contract {
     ) {
       try {
         ExtendedPresenter<Props, LocalState, State> presenter = clazz.newInstance();
-        StateManagerWrapper.subscribe(presenter::stateListener, view::update);
-
+        presenter.activity = (AppCompatActivity) view;
         Props props = presenter.initiate();
         view.initialRender(props);
+
+        StateManagerWrapper.subscribe(presenter::stateListener, view::update);
       } catch (InstantiationException | IllegalAccessException e) {
         e.printStackTrace();
       }

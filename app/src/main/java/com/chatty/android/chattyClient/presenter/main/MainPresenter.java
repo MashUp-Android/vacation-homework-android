@@ -18,12 +18,6 @@ import com.chatty.android.chattyClient.view.main.MainActivityState;
 import com.chatty.android.chattyClient.view.write.WriteActivity;
 
 public class MainPresenter extends ExtendedPresenter<MainActivityProps, MainActivityState, State> {
-  private void handleClickTimelineEntry(AppCompatActivity activity, TimelineEntry entry) {
-    Intent intent = new Intent(activity, DiaryDetailActivity.class);
-    intent.putExtra("diaryId", entry.getDiaryId());
-    activity.startActivity(intent);
-  }
-
   private void handleClickWriteButton(AppCompatActivity activity, FloatingActionButton button) {
     if (MainActivity.floatingCheckeNum == 0) {
       button.setVisibility(View.INVISIBLE);
@@ -47,8 +41,14 @@ public class MainPresenter extends ExtendedPresenter<MainActivityProps, MainActi
     MainActivityProps props = new MainActivityProps();
     props.timeline = StateManagerWrapper.getState().getTimeline();
 //    props.handleClickWriteButton = this::handleClickWriteButton;
-//    props.handleClickTimelineEntry = this::handleClickTimelineEntry;
+    props.handleClickTimelineEntry = this::handleClickTimelineEntry;
     return props;
+  }
+
+  private void handleClickTimelineEntry(View view, TimelineEntry timelineEntry) {
+    Intent intent = new Intent(this.activity, DiaryDetailActivity.class);
+    intent.putExtra("diaryId", timelineEntry.getDiaryId());
+    this.activity.startActivity(intent);
   }
 
   public MainActivityProps stateListener(State state) {

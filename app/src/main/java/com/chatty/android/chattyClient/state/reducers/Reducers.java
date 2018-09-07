@@ -31,11 +31,12 @@ public class Reducers {
           .diaries
           .stream()
           .map((diary) -> {
+            System.out.println("111 " + diary);
             TimelineEntry entry = new TimelineEntry();
             entry.setDiaryId(diary.diary_id);
             entry.setDate(diary.created_at);
-            entry.setContent(diary.last_answer.get(0).label);
-            entry.setImgUrl(diary.last_answer.get(0).image);
+            entry.setContent(diary.answers.get(0).label);
+            entry.setImgUrl(diary.answers.get(0).image);
             return entry;
           })
           .collect(Collectors.toList());

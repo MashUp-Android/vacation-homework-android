@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   public static final String CALENDAR = "Calendar";
   public static final String SETTING = "Setting";
   public static Integer floatingCheckeNum = 0;
-  private MainPresenter presenter;
 
   @BindView(R.id.btn_start_chatting)
   public FloatingActionButton writeButton;
@@ -92,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
     });
 
     this.writeButton.setOnClickListener((__) -> {
-//      props.handleClickWriteButton(this, this.writeButton);
+      Intent intent = new Intent(getApplicationContext(), WriteActivity.class);
+      this.startActivity(intent);
     });
 
     this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   @Override
   public void update(Props _props) {
     MainActivityProps props = (MainActivityProps) _props;
-    System.out.println("123123 " + props.timeline);
     Renderer.render(
       this,
       Arrays.asList(props.timeline),
@@ -115,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   private void updateTimeLineView(
     Object timeline
   ) {
-    ArrayList<TimelineEntry> _timeline = (ArrayList<TimelineEntry>) timeline;
-    System.out.println("232323" + timeline);
-//    this.recyclerViewAdapter.update((ArrayList<TimelineEntry>) timeline);
+    this.recyclerViewAdapter.update((ArrayList<TimelineEntry>) timeline);
   }
 }
