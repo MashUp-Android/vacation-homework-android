@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.chatty.android.chattyClient.App;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
+import com.chatty.android.chattyClient.module.Contract;
 import com.chatty.android.chattyClient.presenter.setting.SettingPresenter;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
 import com.chatty.android.chattyClient.view.friendsSetting.FriendsSettingActivity;
@@ -40,11 +42,15 @@ public class SettingActivity extends AppCompatActivity implements ExtendedView<S
   @BindView(R.id.textView_button_support)
   public TextView textViewButtonSupport;
 
+  @BindView(R.id.button_timeline_left)
+  public ImageButton buttonTimelineLeft;
+
   AlertDialog.Builder alertBuilder;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Contract.connect(this, SettingPresenter.class);
   }
 
   private void renderHeader() {
@@ -52,14 +58,6 @@ public class SettingActivity extends AppCompatActivity implements ExtendedView<S
     String message = intent.getStringExtra(MainActivity.HEADER_TITLE);
     TextView textView = findViewById(R.id.textView_timeline_title);
     textView.setText(message);
-  }
-
-  private void buttonRender() {
-    this.renderLinkAccountButton();
-    this.renderFriendsSettingButton();
-    this.renderAddQuestionButton();
-    this.renderNotificationButton();
-    this.renderSupportButton();
   }
 
   private void renderLinkAccountButton() {
@@ -89,6 +87,12 @@ public class SettingActivity extends AppCompatActivity implements ExtendedView<S
   private void renderSupportButton() {
     this.textViewButtonSupport.setOnClickListener((__) -> {
       this.renderSupportAlert();
+    });
+  }
+
+  private void renderBackButton() {
+    this.buttonTimelineLeft.setOnClickListener((__) -> {
+      this.finish();
     });
   }
 
@@ -123,7 +127,12 @@ public class SettingActivity extends AppCompatActivity implements ExtendedView<S
 
     this.alertBuilder = new AlertDialog.Builder(SettingActivity.this, R.style.AlertDialogStyle);
     this.renderHeader();
-    this.buttonRender();
+    this.renderLinkAccountButton();
+    this.renderFriendsSettingButton();
+    this.renderAddQuestionButton();
+    this.renderNotificationButton();
+    this.renderSupportButton();
+    this.renderBackButton();
   }
 
   @Override
