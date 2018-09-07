@@ -42,7 +42,6 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
   private Uri imageUri;
   private boolean hasName = false;
   private boolean isSubmitReady = false;
-  AddFriendPresenter presenter;
 
   @BindView(R.id.button_timeline_left)
   public ImageButton imageButtonBack;
@@ -65,12 +64,14 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.setContentView(R.layout.activity_add_friend);
-    ButterKnife.bind(this);
+    Contract.connect(this, AddFriendPresenter.class);
   }
 
   @Override
   public void initialRender(AddFriendActivityProps p) {
+    this.setContentView(R.layout.activity_add_friend);
+    ButterKnife.bind(this);
+
     TextView textView = findViewById(R.id.textView_timeline_title);
     textView.setText(HEADER_TITLE);
 
@@ -111,7 +112,6 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
 
       @Override
       public void afterTextChanged(Editable editable) {
-
       }
     });
   }
@@ -127,7 +127,6 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
 
   @Override
   public void update(Props props) {
-
   }
 
   private void profileImageButtonAction() {
@@ -153,7 +152,8 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
 
       @Override
       public void onPermissionDenied(List<String> deniedPermissions) {
-        Toast.makeText(getApplicationContext(), "권한이 없습니다.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "권한이 없습니다.", Toast.LENGTH_SHORT)
+          .show();
       }
     };
 
@@ -167,10 +167,9 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
   @Override
   public void initImagePicker() {
     TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(getApplicationContext())
-      .setOnImageSelectedListener(uri ->
-        updateProfile(uri)
-      ).create();
-  tedBottomPicker.show(getSupportFragmentManager());
+      .setOnImageSelectedListener(uri -> updateProfile(uri))
+      .create();
+    tedBottomPicker.show(getSupportFragmentManager());
   }
 
   public void updateProfile(Uri uri) {
