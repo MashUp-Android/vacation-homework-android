@@ -1,5 +1,6 @@
 package com.chatty.android.chattyClient.externalModules.AndroidExtended;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chatty.android.chattyClient.model.State;

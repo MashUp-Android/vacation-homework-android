@@ -1,5 +1,7 @@
 package com.chatty.android.chattyClient.presenter.friendsSetting;
 
+import android.os.Bundle;
+
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
 import com.chatty.android.chattyClient.model.PartnerProfileDetailEntry;
 import com.chatty.android.chattyClient.model.State;

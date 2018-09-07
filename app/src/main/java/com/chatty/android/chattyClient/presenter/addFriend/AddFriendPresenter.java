@@ -2,6 +2,7 @@ package com.chatty.android.chattyClient.presenter.addFriend;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;

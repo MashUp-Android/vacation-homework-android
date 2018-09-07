@@ -18,8 +18,10 @@ import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.Diary;
 import com.chatty.android.chattyClient.model.TimelineEntry;
+import com.chatty.android.chattyClient.module.Contract;
 import com.chatty.android.chattyClient.presenter.diaryDetail.DiaryAdapter;
 import com.chatty.android.chattyClient.presenter.diaryDetail.DiaryDetailPresenter;
+import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +62,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements ExtendedVi
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-//    StateManagerWrapper.dispatch(DiaryAction.requestGetDiaryDetail(diaryId));
+    Contract.connect(this, DiaryDetailPresenter.class, savedInstanceState);
   }
 
   @Override

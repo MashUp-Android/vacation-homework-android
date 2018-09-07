@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Contract.connect(this, MainPresenter.class);
+    Contract.connect(this, MainPresenter.class, savedInstanceState);
   }
 
   public void StartfloatingBtn() {
