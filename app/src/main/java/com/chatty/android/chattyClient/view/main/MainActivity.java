@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.api.ChattyApi;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
     }
   }
 
+  @Override
   public void initialRender(MainActivityProps props) {
     this.setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
@@ -135,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
     this.dayCount.setText(partner.days_together.toString());
     this.dialogCount.setText(partner.diary_count.toString());
     this.partnerName.setText(partner.name);
+    Glide.with(this)
+      .load(ChattyApi.BASE_URL.substring(0, ChattyApi.BASE_URL.length() - 1) + partner.imageUrl)
+      .into(this.profilerAvatarImage);
 
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
     this.currentDate.setText(formatter.format(new Date()));

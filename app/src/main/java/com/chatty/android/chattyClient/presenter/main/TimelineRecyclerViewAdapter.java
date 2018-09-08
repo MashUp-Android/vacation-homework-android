@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class TimelineRecyclerViewAdapter extends RecyclerView.Adapter<TimelineRecyclerViewAdapter.ViewHolder> {
-  private final static DateFormat df = new SimpleDateFormat("MM/DD/yyyy", Locale.getDefault());
+  private final static DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
 
   private List<TimelineEntry> timelineEntries;
   private RecyclerViewClickListener recyclerViewClickListener;

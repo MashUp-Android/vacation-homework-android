@@ -8,10 +8,10 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
   <ImageView
     android:adjustViewBounds="true"
-    android:foreground="@drawable/layout_thumbnail"
     android:id="@+id/imageView_timeline"
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/SIZE_20"
+    android:layout_marginBottom="15dp"
     android:layout_width="@dimen/SIZE_120"
     android:scaleType="centerInside"
     android:src="@drawable/timeline_thumbnail_dummy"
