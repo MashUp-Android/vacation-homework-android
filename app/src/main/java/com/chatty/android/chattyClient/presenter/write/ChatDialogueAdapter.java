@@ -12,15 +12,21 @@ import android.widget.TextView;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.model.ChatBalloon;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DialogueAdapter extends RecyclerView.Adapter {
-  private Context context;
-  private List<ChatBalloon> data;
+public class ChatDialogueAdapter extends RecyclerView.Adapter {
+  private List<ChatBalloon> chatBalloons;
 
-  public DialogueAdapter(Context applicationContext, List<ChatBalloon> chatBalloons) {
-    this.context = applicationContext;
-    this.data = chatBalloons;
+  public ChatDialogueAdapter(List<ChatBalloon> chatBalloons) {
+    this.chatBalloons = chatBalloons;
+  }
+
+  public void update(ArrayList<ChatBalloon> chatBalloons) {
+    System.out.println("333 " + chatBalloons.size());
+    this.chatBalloons.clear();
+    this.chatBalloons.addAll(chatBalloons);
+    this.notifyDataSetChanged();
   }
 
   public class EntryBaseViewHolder extends RecyclerView.ViewHolder {
@@ -33,6 +39,7 @@ public class DialogueAdapter extends RecyclerView.Adapter {
       this.textView_isRead = itemView.findViewById(R.id.textView_isRead);
     }
   }
+
   public class RequestBaseViewHolder extends RecyclerView.ViewHolder{
     TextView textView;
 
@@ -65,13 +72,14 @@ public class DialogueAdapter extends RecyclerView.Adapter {
 
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-    ChatBalloon chatBalloon = this.data.get(position);
+    ChatBalloon chatBalloon = this.chatBalloons.get(position);
+    System.out.println("!!!" + chatBalloon);
 
     if (chatBalloon != null) {
       switch (holder.getItemViewType()) {
         case 0:
-          ((EntryBaseViewHolder) holder).textView_contents.setText("isRead" + position);
-          ((EntryBaseViewHolder) holder).textView_isRead.setText(chatBalloon.speech);
+          ((EntryBaseViewHolder) holder).textView_contents.setText(chatBalloon.speech);
+          ((EntryBaseViewHolder) holder).textView_isRead.setText(chatBalloon.username);
           break;
         case 2:
           ((RequestBaseViewHolder) holder).textView.setText(chatBalloon.speech);
@@ -83,7 +91,7 @@ public class DialogueAdapter extends RecyclerView.Adapter {
 
   @Override
   public int getItemCount() {
-    return data.size();
+    return this.chatBalloons.size();
   }
 
 }

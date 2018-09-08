@@ -18,10 +18,6 @@ public class Payload {
     return this;
   }
 
-  public HashMap toMap() {
-    return (HashMap) this.map.clone();
-  }
-
   public Object get(String key) {
     return this.map.get(key);
   }

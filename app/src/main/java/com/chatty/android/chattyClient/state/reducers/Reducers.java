@@ -8,6 +8,7 @@ import com.chatty.android.chattyClient.model.Partner;
 import com.chatty.android.chattyClient.model.PartnerProfileDetailEntry;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
+import com.chatty.android.chattyClient.model.response.AppendChatResponse;
 import com.chatty.android.chattyClient.model.response.ChatResponse;
 import com.chatty.android.chattyClient.model.response.FriendItemResponse;
 import com.chatty.android.chattyClient.model.response.PartnerProfileDetailResponse;
@@ -31,6 +32,30 @@ public class Reducers {
     State state = (State) _state;
 
     switch (action.getType()) {
+      case ActionType.REQUEST_APPEND_CHAT:
+        String text = (String) action.getPayload().get("chat");
+        ChatBalloon chatBalloon = new ChatBalloon();
+        chatBalloon.speech = text;
+        state.chatBalloons.add(chatBalloon);
+
+        ArrayList<ChatBalloon> newChatBalloons = new ArrayList<>();
+        newChatBalloons.addAll(state.chatBalloons);
+
+        state.chatBalloons = newChatBalloons;
+        return state;
+
+      case ActionType.REQUEST_APPEND_CHAT_SUCCESS:
+        AppendChatResponse appendChatResponse = (AppendChatResponse) action.getPayload().get("chat");
+        ChatBalloon chatBalloon2 = new ChatBalloon();
+        chatBalloon2.speech = appendChatResponse.message;
+        state.chatBalloons.add(chatBalloon2);
+
+        ArrayList<ChatBalloon> newChatBalloons2 = new ArrayList<>();
+        newChatBalloons2.addAll(state.chatBalloons);
+
+        state.chatBalloons = newChatBalloons2;
+        return state;
+
       case ActionType.REQUEST_GET_DIARIES_SUCCESS:
         TimelineResponse timeline = (TimelineResponse) action.getPayload().get("timeline");
         List<TimelineEntry> timelineEntries = timeline
@@ -93,9 +118,10 @@ public class Reducers {
 
       case ActionType.REQUEST_START_CHAT_SUCCESS:
         ChatResponse chatResponse = (ChatResponse) action.getPayload().get("chat");
-        ChatBalloon chatBalloon = new ChatBalloon();
-        chatBalloon.speech = chatResponse.question.message;
-        state.chatBalloons.add(chatBalloon);
+        ChatBalloon chatBalloon3 = new ChatBalloon();
+        chatBalloon3.speech = chatResponse.question.message;
+        state.chatBalloons.add(chatBalloon3);
+        state.writeDiaryId = chatResponse.diary_id;
         return state;
 
       default:

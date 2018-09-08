@@ -14,15 +14,13 @@ import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedV
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.ChatBalloon;
-import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.module.Contract;
-import com.chatty.android.chattyClient.presenter.write.DialogueAdapter;
+import com.chatty.android.chattyClient.presenter.write.ChatDialogueAdapter;
 import com.chatty.android.chattyClient.presenter.write.WritePresenter;
 import com.chatty.android.chattyClient.view.emotion.EmotionActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +36,8 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
 
   @BindView(R.id.recyclerView_dialogue)
   public RecyclerView recyclerView;
-  public RecyclerView.Adapter dialogueAdapter;
+
+  public ChatDialogueAdapter chatDialogueAdapter;
 
   @BindView(R.id.editText_writeInput)
   public EditText writeInputEditText;
@@ -46,7 +45,8 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
   @BindView(R.id.button_writeSubmit)
   public ImageButton writeSubmitButton;
 
-  public List<ChatBalloon> chatBalloons;
+  @BindView(R.id.textView_timeline_title)
+  public TextView timelineTitle;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +59,12 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
   }
 
   public void appendChatBalloon(ChatBalloon chatBalloon) {
-    this.chatBalloons.add(chatBalloon);
-    this.dialogueAdapter.notifyItemInserted(this.chatBalloons.size() - 1);
-
-    recyclerView.scrollToPosition(this.chatBalloons.size() -1);
+//    this.dialogueAdapter.notifyItemInserted(this.chatBalloons.size() - 1);
+//    this.recyclerView.scrollToPosition(this.chatBalloons.size() -1);
   }
 
   private void renderBackButton() {
-    backButton.setOnClickListener(view -> {
+    this.backButton.setOnClickListener(view -> {
       finish();
     });
     this.doneButton.setOnClickListener((view) -> {
@@ -82,16 +80,16 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
 
     this.renderBackButton();
 
-    TextView textView = findViewById(R.id.textView_timeline_title);
-    textView.setText(WRITE_TITLE);
-
+    this.timelineTitle.setText(WRITE_TITLE);
     this.doneButton.setImageResource(R.drawable.ic_icon_done);
-
-    this.chatBalloons = new ArrayList<>();
-
     this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    this.dialogueAdapter = new DialogueAdapter(getApplicationContext(), chatBalloons);
-    this.recyclerView.setAdapter(dialogueAdapter);
+    this.chatDialogueAdapter = new ChatDialogueAdapter(writeActivityProps.chatBalloons);
+    this.recyclerView.setAdapter(chatDialogueAdapter);
+    this.writeSubmitButton.setOnClickListener((__) -> {
+      writeActivityProps.handleClickWriteSubmitButton.accept(
+        writeInputEditText.getText().toString()
+      );
+    });
   }
 
   @Override
@@ -105,8 +103,9 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
   }
 
   private void updateChatBalloons(Object o) {
-    ArrayList<ChatBalloon> chatballoons = (ArrayList<ChatBalloon>) o;
-    System.out.println("121212" + chatBalloons);
+    ArrayList<ChatBalloon> chatBalloons = (ArrayList<ChatBalloon>) o;
+    this.chatDialogueAdapter.update(chatBalloons);
+    this.recyclerView.scrollToPosition(chatBalloons.size() -1);
   }
 }
 

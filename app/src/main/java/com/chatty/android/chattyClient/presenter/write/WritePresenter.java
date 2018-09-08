@@ -31,90 +31,31 @@ public class WritePresenter extends ExtendedPresenter<WriteActivityProps, WriteA
 
   @Override
   public WriteActivityProps initiate() {
-//    this.state.put(IS_INITIALIZED, FALSE);
     try {
       StateManagerWrapper.dispatch(ChatAction.requestStartChat());
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return null;
+    WriteActivityProps writeActivityProps = new WriteActivityProps();
+    writeActivityProps.handleClickWriteSubmitButton = this::handleClickWriteSubmit;
+    return writeActivityProps;
   }
 
   @Override
   public WriteActivityProps stateListener(State state) {
-    System.out.println("123123123" + state.chatBalloons.size());
     WriteActivityProps props = new WriteActivityProps();
     props.chatBalloons = state.chatBalloons;
+    props.writeDiaryId = state.writeDiaryId;
     return props;
   }
 
-  private void dispatchInitChat() {
-//    chattyApiDefinition.postStartChat()
-//      .enqueue(new Callback<ChatResponse>() {
-//        @Override
-//        public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-//          Calendar calendar = Calendar.getInstance();
-//          ChatBalloon chatBalloon = new ChatBalloon();
-//          chatBalloon.setSpeech("Initial question from server (not yet available)");
-//          chatBalloon.setCalendar(calendar);
-//          view.appendChatBalloon(chatBalloon);
-//        }
-//
-//        @Override
-//        public void onFailure(Call<ChatResponse> call, Throwable t) {
-//          System.out.println("dispatch speech error");
-//        }
-//      });
-//
-//    this.state.put(IS_INITIALIZED, TRUE);
+  public void handleClickWriteSubmit(String text) {
+    try {
+      String writeDiaryId = StateManagerWrapper.getState().writeDiaryId;
+      StateManagerWrapper.dispatch(ChatAction.requestAppendChat(writeDiaryId, text));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
-
-  public void dispatchSpeech(String contents) {
-    String _contents = "contents " + contents;
-    System.out.println("_contents " + _contents);
-
-//    chattyApiDefinition.postChat(new ChatRequest(_contents))
-//      .enqueue(new Callback<ChatResponse>() {
-//        @Override
-//        public void onResponse(Call<ChatResponse> call, Response<ChatResponse> response) {
-//          // todo: make sure the response has the right value,
-//          Calendar calendar = Calendar.getInstance();
-//          ChatBalloon chatBalloon = new ChatBalloon();
-//          chatBalloon.setSpeech("Question from server (not yet available)");
-//          chatBalloon.setCalendar(calendar);
-//          view.appendChatBalloon(chatBalloon);
-//        }
-//
-//        @Override
-//        public void onFailure(Call<ChatResponse> call, Throwable t) {
-//          System.out.println("dispatch speech error");
-//        }
-//      });
-  }
-
-  public View.OnClickListener handleClickWriteSubmit() {
-    return null;
-//    WriteActivity view = (WriteActivity) this.view;
-//    WritePresenter that = this;
-//
-//    return new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        if (that.state.get(IS_INITIALIZED) == FALSE) return;
-//
-//        String speech = view.writeInputEditText.getText()
-//          .toString();
-//
-//        Calendar calendar = Calendar.getInstance();
-//        ChatBalloon chatBalloon = new ChatBalloon();
-//        chatBalloon.setSpeech(speech);
-//        chatBalloon.setCalendar(calendar);
-//        view.appendChatBalloon(chatBalloon);
-//
-//        dispatchSpeech(speech);
-//      }
-//    };
-  }
-
 
 }

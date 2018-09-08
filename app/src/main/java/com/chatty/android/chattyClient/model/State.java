@@ -7,6 +7,7 @@ import java.util.List;
 
 public class State {
   public List<ChatBalloon> chatBalloons;
+  public String writeDiaryId;
   public boolean hasFriend;
   PartnerProfileDetailEntry partnerProfileDetail;
   List<TimelineEntry> timeline;
@@ -20,6 +21,7 @@ public class State {
     this.friends = new ArrayList<>();
     this.partnerProfileDetail = new PartnerProfileDetailEntry();
     this.timeline = new ArrayList<>();
+    this.writeDiaryId = "0";
   }
 
   public PartnerProfileDetailEntry getPartnerProfileDetail() {
@@ -48,13 +50,5 @@ public class State {
   }
 
   public void setFriends(List<FriendItemEntry> friends) { this.friends = friends; }
-
-  public State clone() {
-    State instance = new State();
-    instance.timeline = this.timeline;
-    instance.diaries = this.diaries;
-    instance.friends = this.friends;
-    return instance;
-  }
 
 }
