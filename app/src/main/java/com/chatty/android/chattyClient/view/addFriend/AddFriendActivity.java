@@ -1,8 +1,6 @@
 package com.chatty.android.chattyClient.view.addFriend;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -23,11 +21,9 @@ import com.chatty.android.chattyClient.App;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
-import com.chatty.android.chattyClient.module.Contract;
 import com.chatty.android.chattyClient.module.ImagePicker;
-import com.chatty.android.chattyClient.model.request.NewPartnerRequest;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.addFriend.AddFriendPresenter;
-import com.chatty.android.chattyClient.view.friendsSetting.FriendsSettingActivity;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -116,6 +112,11 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
     });
   }
 
+  @Override
+  public void update(AddFriendActivityProps addFriendActivityProps) {
+
+  }
+
   private void sendProfileAction() {
     Log.e("ddddddd", "dddddfdfdfd");
     SharedPreferences userPreference = getSharedPreferences(App.USER_DATA, MODE_PRIVATE);
@@ -123,10 +124,6 @@ public class AddFriendActivity extends AppCompatActivity implements ExtendedView
     editor.putBoolean(App.HAS_FRIEND, true);
     editor.commit();
     finish();
-  }
-
-  @Override
-  public void update(Props props) {
   }
 
   private void profileImageButtonAction() {

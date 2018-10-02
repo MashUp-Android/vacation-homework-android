@@ -1,9 +1,7 @@
 package com.chatty.android.chattyClient.view.diaryDetail;
 
-import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,13 +15,10 @@ import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedV
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.Diary;
-import com.chatty.android.chattyClient.model.TimelineEntry;
-import com.chatty.android.chattyClient.module.Contract;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.diaryDetail.DiaryAdapter;
 import com.chatty.android.chattyClient.presenter.diaryDetail.DiaryDetailPresenter;
-import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -87,11 +82,10 @@ public class DiaryDetailActivity extends AppCompatActivity implements ExtendedVi
   }
 
   @Override
-  public void update(Props _props) {
-    DiaryDetailActivityProps props = (DiaryDetailActivityProps) _props;
+  public void update(DiaryDetailActivityProps diaryDetailActivityProps) {
     Renderer.render(
       this,
-      Arrays.asList(props.diaries),
+      Arrays.asList(diaryDetailActivityProps.diaries),
       this::updateDiaryView);
   }
 

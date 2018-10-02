@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.chatty.android.chattyClient.api.ChattyApi;
 import com.chatty.android.chattyClient.constants.ActionType;
-import com.chatty.android.chattyClient.externalModules.StateManager.Action;
-import com.chatty.android.chattyClient.externalModules.StateManager.StateManager;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.Action;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJava;
 import com.chatty.android.chattyClient.model.request.NewPartnerRequest;
 import com.chatty.android.chattyClient.model.response.ChatResponse;
 import com.chatty.android.chattyClient.model.response.FriendItemResponse;
@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PartnerAction {
-  public static StateManager.DispatcherMiddleware requestGetPartnerProfileDetail() {
+  public static ReduxJava.DispatcherMiddleware requestGetPartnerProfileDetail() {
     return (dispatch) -> {
       dispatch.run(Action.of(ActionType.REQUEST_GET_PARTNER_PROFILE_DETAIL));
       ChattyApi.getApi().getPartnerProfileDetail(1)
@@ -71,7 +71,7 @@ public class PartnerAction {
     return partnerProfileDetailResponse;
   }
 
-  public static StateManager.DispatcherMiddleware requestGetFriendsList() {
+  public static ReduxJava.DispatcherMiddleware requestGetFriendsList() {
     return (dispatch) -> {
       dispatch.run(Action.of(ActionType.REQUEST_GET_FRIENDS_LIST));
       ChattyApi.getApi().getFriendsList()

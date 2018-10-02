@@ -16,17 +16,12 @@ import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedV
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.PartnerProfileDetailEntry;
-import com.chatty.android.chattyClient.module.Contract;
-import com.chatty.android.chattyClient.presenter.friendsList.FriendsListPresenter;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.friendsSetting.FriendsSettingPresenter;
-import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
 import com.chatty.android.chattyClient.view.friendsList.FriendsListActivity;
 
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,11 +120,10 @@ public class FriendsSettingActivity extends AppCompatActivity implements Extende
   }
 
   @Override
-  public void update(Props _props) {
-    FriendsSettingActivityProps props = (FriendsSettingActivityProps) _props;
+  public void update(FriendsSettingActivityProps friendsSettingActivityProps) {
     Renderer.render(
       this,
-      Arrays.asList(props.friendDetail),
+      Arrays.asList(friendsSettingActivityProps.friendDetail),
       this::renderPartnerProfile
     );
   }

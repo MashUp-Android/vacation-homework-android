@@ -1,11 +1,6 @@
 package com.chatty.android.chattyClient.externalModules.AndroidExtended;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import com.chatty.android.chattyClient.model.State;
-
-import java.util.function.Function;
 
 public abstract class ExtendedPresenter<Props, LocalState, State> {
   public AppCompatActivity activity;

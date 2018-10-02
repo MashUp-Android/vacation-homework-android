@@ -8,12 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.R;
@@ -23,7 +20,7 @@ import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.Partner;
 import com.chatty.android.chattyClient.model.TimelineEntry;
-import com.chatty.android.chattyClient.module.Contract;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.main.MainPresenter;
 import com.chatty.android.chattyClient.presenter.main.TimelineRecyclerViewAdapter;
 import com.chatty.android.chattyClient.view.app.ProfileAvatarImage;
@@ -32,8 +29,6 @@ import com.chatty.android.chattyClient.view.setting.SettingActivity;
 import com.chatty.android.chattyClient.view.write.WriteActivity;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -83,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
 
   public void StartfloatingBtn() {
     if (floatingCheckeNum == 0) {
+      System.out.println("222" + this.writeButton);
       this.writeButton.setVisibility(View.VISIBLE);
     }
     else {
@@ -122,8 +118,7 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
   }
 
   @Override
-  public void update(Props _props) {
-    MainActivityProps props = (MainActivityProps) _props;
+  public void update(MainActivityProps props) {
     Renderer.render(
       this,
       Arrays.asList(props.timeline, props.partner),

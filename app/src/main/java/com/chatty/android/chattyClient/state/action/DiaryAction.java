@@ -2,8 +2,8 @@ package com.chatty.android.chattyClient.state.action;
 
 import com.chatty.android.chattyClient.api.ChattyApi;
 import com.chatty.android.chattyClient.constants.ActionType;
-import com.chatty.android.chattyClient.externalModules.StateManager.Action;
-import com.chatty.android.chattyClient.externalModules.StateManager.StateManager;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.Action;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJava;
 import com.chatty.android.chattyClient.model.response.DiaryResponse;
 import com.chatty.android.chattyClient.model.response.TimelineResponse;
 
@@ -13,7 +13,7 @@ import retrofit2.Response;
 
 public class DiaryAction {
 
-  public static StateManager.DispatcherMiddleware requestGetDiaries() {
+  public static ReduxJava.DispatcherMiddleware requestGetDiaries() {
     return (dispatch) -> {
       dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES));
 
@@ -28,13 +28,13 @@ public class DiaryAction {
           @Override
           public void onFailure(Call<TimelineResponse> call, Throwable t) {
             dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_ERROR)
-              .payloadAdd("error", t));
+              .payloadAdd("error", t.getMessage()));
           }
         });
     };
   }
 
-  public static StateManager.DispatcherMiddleware requestGetDiaryDetail(int diaryId) {
+  public static ReduxJava.DispatcherMiddleware requestGetDiaryDetail(int diaryId) {
     return (dispatch) -> {
       dispatch.run(Action.of(ActionType.REQUEST_GET_DIARIES_DETAIL));
 

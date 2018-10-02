@@ -1,23 +1,18 @@
 package com.chatty.android.chattyClient.presenter.addFriend;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.request.NewPartnerRequest;
-import com.chatty.android.chattyClient.module.StateManagerWrapper;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJavaAndroidConnector;
+import com.chatty.android.chattyClient.state.Store;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivityProps;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivityState;
 import com.chatty.android.chattyClient.view.friendsSetting.FriendsSettingActivity;
-import okhttp3.MultipartBody;
 
 public class AddFriendPresenter extends ExtendedPresenter<AddFriendActivityProps, AddFriendActivityState, State> {
   @Override
@@ -51,7 +46,7 @@ public class AddFriendPresenter extends ExtendedPresenter<AddFriendActivityProps
       String currentName = activity.editTextProfileName.getText().toString();
       String currentBio = activity.editTextProfileBio.getText().toString();
       NewPartnerRequest currentNewPartner = new NewPartnerRequest(currentName, currentBio);
-      boolean hasFreind = StateManagerWrapper.getState().hasFriend;
+      boolean hasFreind = Store.getState().friend.hasFriend;
       activity.startActivity(new Intent(activity, FriendsSettingActivity.class));
     };
   }

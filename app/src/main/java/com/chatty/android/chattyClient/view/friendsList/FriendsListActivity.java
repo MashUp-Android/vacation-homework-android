@@ -15,7 +15,7 @@ import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.model.FriendItemEntry;
-import com.chatty.android.chattyClient.module.Contract;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.friendsList.FriendsListPresenter;
 import com.chatty.android.chattyClient.presenter.friendsList.FriendsListRecyclerViewAdapter;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
@@ -64,6 +64,16 @@ public class FriendsListActivity extends AppCompatActivity implements ExtendedVi
     this.renderHeader();
   }
 
+  @Override
+  public void update(FriendsListActivityProps friendsListActivityProps) {
+    List<FriendItemEntry> friendsList = friendsListActivityProps.friendsList;
+    this.renderProfileList(friendsList);
+    if (friendsList.size() > 0 ) {
+      FriendItemEntry friendItemEntry = friendsListActivityProps.friendsList.get(0);
+      this.renderProfileNow(friendItemEntry);
+    }
+  }
+
   private void renderProfileList(List<FriendItemEntry> _friendsList) {
     List<FriendItemEntry> friendsList = _friendsList;
     recyclerViewProfileList.setLayoutManager(new LinearLayoutManager(this));
@@ -92,17 +102,6 @@ public class FriendsListActivity extends AppCompatActivity implements ExtendedVi
     this.imageButtonBack.setOnClickListener((__) -> {
       finish();
     });
-  }
-
-  @Override
-  public void update(Props _props) {
-    FriendsListActivityProps props = (FriendsListActivityProps) _props;
-    List<FriendItemEntry> friendsList = props.friendsList;
-    this.renderProfileList(friendsList);
-    if (friendsList.size() > 0 ) {
-      FriendItemEntry friendItemEntry = props.friendsList.get(0);
-      this.renderProfileNow(friendItemEntry);
-    }
   }
 
   private void renderProfileNow(FriendItemEntry _friendItem) {

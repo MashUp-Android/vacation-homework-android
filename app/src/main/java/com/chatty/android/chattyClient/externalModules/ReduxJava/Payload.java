@@ -1,9 +1,9 @@
-package com.chatty.android.chattyClient.externalModules.StateManager;
+package com.chatty.android.chattyClient.externalModules.ReduxJava;
 
 import java.util.HashMap;
 
 public class Payload {
-  private HashMap<String, Object> map;
+  public HashMap<String, Object> map;
 
   private Payload() {
     this.map = new HashMap<>();

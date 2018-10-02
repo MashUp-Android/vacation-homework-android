@@ -1,16 +1,14 @@
 package com.chatty.android.chattyClient.view.calendar;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
-import com.chatty.android.chattyClient.module.Contract;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.calendar.CalendarPresenter;
 import com.chatty.android.chattyClient.view.main.MainActivity;
 
@@ -47,7 +45,7 @@ public class CalendarActivity extends AppCompatActivity implements ExtendedView<
   }
 
   @Override
-  public void update(Props props) {
+  public void update(CalendarActivityProps calendarActivityProps) {
 
   }
 }

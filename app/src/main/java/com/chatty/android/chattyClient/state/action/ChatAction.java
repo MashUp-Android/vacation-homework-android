@@ -2,8 +2,8 @@ package com.chatty.android.chattyClient.state.action;
 
 import com.chatty.android.chattyClient.api.ChattyApi;
 import com.chatty.android.chattyClient.constants.ActionType;
-import com.chatty.android.chattyClient.externalModules.StateManager.Action;
-import com.chatty.android.chattyClient.externalModules.StateManager.StateManager;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.Action;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJava;
 import com.chatty.android.chattyClient.model.request.ChatRequest;
 import com.chatty.android.chattyClient.model.response.AppendChatResponse;
 import com.chatty.android.chattyClient.model.response.ChatResponse;
@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChatAction {
-  public static StateManager.DispatcherMiddleware requestStartChat() {
+  public static ReduxJava.DispatcherMiddleware requestStartChat() {
     return (dispatch) -> {
       dispatch.run(Action.of(ActionType.REQUEST_START_CHAT));
       ChattyApi.getApi().postStartChat()
@@ -33,7 +33,7 @@ public class ChatAction {
     };
   }
 
-  public static StateManager.DispatcherMiddleware requestAppendChat(String diaryId, String text) {
+  public static ReduxJava.DispatcherMiddleware requestAppendChat(String diaryId, String text) {
     return (dispatch) -> {
       ChatRequest request = new ChatRequest();
       request.label = text;

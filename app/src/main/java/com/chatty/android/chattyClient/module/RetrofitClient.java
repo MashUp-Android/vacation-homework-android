@@ -46,8 +46,6 @@ public class RetrofitClient {
         System.out.println("[Retrofit] method: " + request.method() + " url: " + request.url() + " " + request.body() + " " + request.headers());
 
         Response response = chain.proceed(request);
-//        System.out.println("[Retrofit] response: " + response.body().string());
-
         if (response.code() != 200 && response.code() != 201) {
           throw new IOException(response.toString());
         }

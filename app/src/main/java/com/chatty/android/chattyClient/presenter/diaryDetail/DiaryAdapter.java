@@ -11,15 +11,16 @@ import android.widget.TextView;
 
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.model.Diary;
+import com.chatty.android.chattyClient.model.State;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.DiaryHolder> {
   private Context context;
-  private List<Diary> data;
+  private ArrayList<Diary> data;
 
-  public DiaryAdapter(Context applicationContext, List<Diary> diaries) {
+  public DiaryAdapter(Context applicationContext, ArrayList<Diary> diaries) {
     this.context = applicationContext;
     this.data = diaries;
   }

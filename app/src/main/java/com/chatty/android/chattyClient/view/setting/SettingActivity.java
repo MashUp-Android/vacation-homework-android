@@ -11,7 +11,7 @@ import com.chatty.android.chattyClient.App;
 import com.chatty.android.chattyClient.R;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedView;
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
-import com.chatty.android.chattyClient.module.Contract;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.setting.SettingPresenter;
 import com.chatty.android.chattyClient.view.addFriend.AddFriendActivity;
 import com.chatty.android.chattyClient.view.friendsSetting.FriendsSettingActivity;
@@ -136,7 +136,7 @@ public class SettingActivity extends AppCompatActivity implements ExtendedView<S
   }
 
   @Override
-  public void update(Props props) {
+  public void update(SettingActivityProps settingActivityProps) {
 
   }
 }

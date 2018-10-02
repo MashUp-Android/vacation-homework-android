@@ -16,7 +16,7 @@ import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedV
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.Props;
 import com.chatty.android.chattyClient.externalModules.Renderer.Renderer;
 import com.chatty.android.chattyClient.model.ChatBalloon;
-import com.chatty.android.chattyClient.module.Contract;
+import com.chatty.android.chattyClient.presenter.Contract;
 import com.chatty.android.chattyClient.presenter.write.ChatDialogueAdapter;
 import com.chatty.android.chattyClient.presenter.write.WritePresenter;
 import com.chatty.android.chattyClient.view.emotion.EmotionActivity;
@@ -71,6 +71,15 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
     this.renderWriteSubmitButton(writeActivityProps);
   }
 
+  @Override
+  public void update(WriteActivityProps writeActivityProps) {
+    Renderer.render(
+      this,
+      Arrays.asList(writeActivityProps.chatBalloons),
+      this::updateChatBalloons
+    );
+  }
+
   private void renderDoneButton() {
     this.doneButton.setImageResource(R.drawable.ic_icon_done);
     this.doneButton.setOnClickListener((view) -> {
@@ -93,16 +102,6 @@ public class WriteActivity extends AppCompatActivity implements ExtendedView<Wri
     this.writeSubmitButton.setOnClickListener((__) -> {
       writeActivityProps.handleClickWriteSubmitButton.accept(this.writeInputEditText);
     });
-  }
-
-  @Override
-  public void update(Props _props) {
-    WriteActivityProps props = (WriteActivityProps) _props;
-    Renderer.render(
-      this,
-      Arrays.asList(props.chatBalloons),
-      this::updateChatBalloons
-    );
   }
 
   private void updateChatBalloons(Object o) {

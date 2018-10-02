@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 
 import com.chatty.android.chattyClient.api.ChattyApi;
 import com.chatty.android.chattyClient.model.State;
-import com.chatty.android.chattyClient.module.StateManagerWrapper;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJavaAndroidConnector;
+import com.chatty.android.chattyClient.state.Store;
 import com.chatty.android.chattyClient.state.reducers.Reducers;
 
 public class App extends Application {
@@ -19,15 +20,16 @@ public class App extends Application {
     super.onCreate();
 
     ChattyApi.initialize();
-    this.initializeStateManager();
+    this.initializeReduxJava();
   }
 
-  private void initializeStateManager() {
+  private void initializeReduxJava() {
     SharedPreferences userPreference = getSharedPreferences(App.USER_DATA, MODE_PRIVATE);
     boolean hasFriend = userPreference.getBoolean(App.HAS_FRIEND, false);
     State state = new State();
-    state.hasFriend = hasFriend;
+    state.friend.hasFriend = hasFriend;
 
-    StateManagerWrapper.initialize(Reducers::reduce, state);
+    Store.configureStore(state);
+//    ReduxJavaAndroidConnector.initialize(Reducers::reduce, state);
   }
 }

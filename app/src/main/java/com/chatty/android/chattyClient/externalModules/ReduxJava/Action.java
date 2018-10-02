@@ -1,4 +1,4 @@
-package com.chatty.android.chattyClient.externalModules.StateManager;
+package com.chatty.android.chattyClient.externalModules.ReduxJava;
 
 public class Action {
   private Payload payload;
@@ -33,5 +33,12 @@ public class Action {
 
   public void setType(String type) {
     this.type = type;
+  }
+
+  public void print() {
+    System.out.println(Action.class.getSimpleName() + " print()");
+    for (String key :this.payload.map.keySet()) {
+      System.out.println(key + ": " + this.payload.map.get(key));
+    }
   }
 }

@@ -1,10 +1,9 @@
 package com.chatty.android.chattyClient.presenter.diaryDetail;
 
-import android.os.Bundle;
-
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
 import com.chatty.android.chattyClient.model.State;
-import com.chatty.android.chattyClient.module.StateManagerWrapper;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJavaAndroidConnector;
+import com.chatty.android.chattyClient.state.Store;
 import com.chatty.android.chattyClient.state.action.DiaryAction;
 import com.chatty.android.chattyClient.view.diaryDetail.DiaryDetailActivity;
 import com.chatty.android.chattyClient.view.diaryDetail.DiaryDetailActivityProps;
@@ -19,7 +18,7 @@ public class DiaryDetailPresenter
     int diaryId = this.activity.getIntent().getIntExtra("diaryId", 0);
     
     try {
-      StateManagerWrapper.dispatch(
+      Store.dispatch(
         DiaryAction.requestGetDiaryDetail(diaryId)
       );
     } catch (Exception e) {
@@ -27,16 +26,15 @@ public class DiaryDetailPresenter
     }
 
     DiaryDetailActivityProps props = new DiaryDetailActivityProps();
-    props.diaries = StateManagerWrapper.getState()
-      .getDiaries();
+    props.diaries = Store.getState().diary.diaries;
     return props;
   }
 
   public DiaryDetailActivityProps stateListener(State state) {
-    StateManagerWrapper.log(this.getClass().getSimpleName(), state);
+    ReduxJavaAndroidConnector.log(this.getClass().getSimpleName(), state);
 
     DiaryDetailActivityProps props = new DiaryDetailActivityProps();
-    props.diaries = state.getDiaries();
+    props.diaries = state.diary.diaries;
     return props;
   }
 }
