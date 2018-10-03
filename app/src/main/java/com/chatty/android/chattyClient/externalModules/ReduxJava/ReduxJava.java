@@ -28,7 +28,7 @@ public class ReduxJava<State> {
 
   @SuppressWarnings("unchecked")
   private void _dispatch(Action action) {
-    Log.d("[ReduxJava]", action.getType());
+    System.out.println("[ReduxJava] " + action.getType());
     this.state = (State) reducer.run(state, action);
     this.emit(state);
   }
@@ -54,8 +54,4 @@ public class ReduxJava<State> {
   public interface Dispatcher {
     void run(Action action);
   }
-
-//  public interface Reducer<State> {
-//    State run(State state, Action action);
-//  }
 }

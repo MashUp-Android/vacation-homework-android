@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJava;
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.model.TimelineEntry;
 import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJavaAndroidConnector;
@@ -39,8 +40,6 @@ public class MainPresenter extends ExtendedPresenter<MainActivityProps, MainActi
       e.printStackTrace();
     }
 
-    System.out.println("111123 " + Store.getState());
-
     MainActivityProps props = new MainActivityProps();
     props.timeline = Store.getState().diary.timeline;
 //    props.handleClickWriteButton = this::handleClickWriteButton;
@@ -55,9 +54,7 @@ public class MainPresenter extends ExtendedPresenter<MainActivityProps, MainActi
   }
 
   public MainActivityProps stateListener(State state) {
-    ReduxJavaAndroidConnector.log(this.getClass().getSimpleName(), state);
-
-    System.out.println("232323" + state.friend.partner);
+    Store.printState(this.getClass().getSimpleName(), state);
 
     MainActivityProps props = new MainActivityProps();
     props.timeline = state.diary.timeline;

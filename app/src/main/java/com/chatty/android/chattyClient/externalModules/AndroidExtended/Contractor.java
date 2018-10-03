@@ -1,10 +1,9 @@
 package com.chatty.android.chattyClient.externalModules.AndroidExtended;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJavaAndroidConnector;
-import com.chatty.android.chattyClient.model.State;
-import com.chatty.android.chattyClient.state.Store;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ public class Contractor {
     Class<?> clazz,
     ReduxJavaAndroidConnector reduxJavaAndroidConnector
   ) {
-    System.out.println("[Contract] connect " + view + " " + clazz);
+    Log.i(Contractor.class.getSimpleName(), " connect() " + view + " " + clazz);
 
     Entry entry = new Contractor().new Entry();
     entry.connect(view, clazz, reduxJavaAndroidConnector);

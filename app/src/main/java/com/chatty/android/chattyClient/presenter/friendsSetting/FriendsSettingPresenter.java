@@ -25,7 +25,7 @@ public class FriendsSettingPresenter
   }
 
   public FriendsSettingActivityProps stateListener(State state) {
-    ReduxJavaAndroidConnector.log(this.getClass().getSimpleName(), state);
+    Store.printState(this.getClass().getSimpleName(), state);
 
     FriendsSettingActivityProps props = new FriendsSettingActivityProps();
     props.friendDetail = state.diary.partnerProfileDetail;

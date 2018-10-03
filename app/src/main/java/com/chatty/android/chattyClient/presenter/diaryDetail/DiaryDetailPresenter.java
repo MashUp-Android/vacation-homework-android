@@ -31,7 +31,7 @@ public class DiaryDetailPresenter
   }
 
   public DiaryDetailActivityProps stateListener(State state) {
-    ReduxJavaAndroidConnector.log(this.getClass().getSimpleName(), state);
+    Store.printState(this.getClass().getSimpleName(), state);
 
     DiaryDetailActivityProps props = new DiaryDetailActivityProps();
     props.diaries = state.diary.diaries;

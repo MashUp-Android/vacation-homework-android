@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements ExtendedView<Main
 
   public void StartfloatingBtn() {
     if (floatingCheckeNum == 0) {
-      System.out.println("222" + this.writeButton);
       this.writeButton.setVisibility(View.VISIBLE);
     }
     else {

@@ -30,6 +30,5 @@ public class App extends Application {
     state.friend.hasFriend = hasFriend;
 
     Store.configureStore(state);
-//    ReduxJavaAndroidConnector.initialize(Reducers::reduce, state);
   }
 }

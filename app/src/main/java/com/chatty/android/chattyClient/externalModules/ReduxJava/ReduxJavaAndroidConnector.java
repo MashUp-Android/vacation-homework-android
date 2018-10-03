@@ -32,8 +32,4 @@ public class ReduxJavaAndroidConnector<State, Props> {
   public State getState() {
     return this.reduxJava.getState();
   }
-
-  public static void log(String className, Object state) {
-    Log.d(ReduxJavaAndroidConnector.class.getName(), className + " " + state);
-  }
 }

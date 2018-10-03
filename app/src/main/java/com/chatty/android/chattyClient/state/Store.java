@@ -8,6 +8,7 @@ import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJavaAndroi
 import com.chatty.android.chattyClient.model.State;
 import com.chatty.android.chattyClient.state.reducers.Reducers;
 
+import java.lang.reflect.Field;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -35,6 +36,21 @@ public class Store {
 
   public static void subscribe(Function<State, Object> subscriber, Consumer<Props> updater) {
     Store.reduxJavaAndroidConnector.subscribe(subscriber, updater);
+  }
+
+  public static void printState(String tag, Object obj) {
+    Log.i(Store.class.getSimpleName(), tag + " printState()");
+
+    Class<? extends Object> clazz = obj.getClass();
+    for (Field f : clazz.getDeclaredFields()) {
+      try {
+        f.setAccessible(true);
+        Object value = f.get(obj);
+        System.out.println(f.getName() + " " + value);
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   public static ReduxJavaAndroidConnector getConnector() {

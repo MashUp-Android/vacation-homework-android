@@ -24,7 +24,7 @@ public class FriendsListPresenter extends ExtendedPresenter<FriendsListActivityP
 
   @Override
   public FriendsListActivityProps stateListener(State state) {
-    ReduxJavaAndroidConnector.log(this.getClass().getSimpleName(), state);
+    Store.printState(this.getClass().getSimpleName(), state);
 
     FriendsListActivityProps props = new FriendsListActivityProps();
     props.friendsList = state.friend.friends;

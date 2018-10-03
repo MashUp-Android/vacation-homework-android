@@ -72,7 +72,6 @@ public class ChatDialogueAdapter extends RecyclerView.Adapter {
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     ChatBalloon chatBalloon = this.chatBalloons.get(position);
-    System.out.println("!!!" + chatBalloon);
 
     if (chatBalloon != null) {
       switch (holder.getItemViewType()) {
