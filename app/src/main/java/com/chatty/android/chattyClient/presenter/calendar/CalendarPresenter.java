@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.chatty.android.chattyClient.externalModules.AndroidExtended.ExtendedPresenter;
 import com.chatty.android.chattyClient.model.State;
+import com.chatty.android.chattyClient.model.TimelineEntry;
+import com.chatty.android.chattyClient.state.Store;
 import com.chatty.android.chattyClient.view.calendar.CalendarActivity;
 import com.chatty.android.chattyClient.view.calendar.CalendarActivityProps;
 import com.chatty.android.chattyClient.view.calendar.CalendarActivityState;
@@ -14,7 +16,11 @@ public class CalendarPresenter
 
   @Override
   public CalendarActivityProps initiate() {
-    return null;
+    State state = Store.getState();
+
+    CalendarActivityProps props = new CalendarActivityProps();
+    props.timelineEntries = state.diary.timeline;
+    return props;
   }
 
   public CalendarActivityProps stateListener(State state) {

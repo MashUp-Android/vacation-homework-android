@@ -25,15 +25,15 @@ public class DiaryReducer implements Reducer<State.Diary> {
           .stream()
           .map((_diary) -> {
             TimelineEntry entry = new TimelineEntry();
-            entry.setDiaryId(_diary.diary_id);
-            entry.setDate(_diary.created_at);
+            entry.diaryId = _diary.diary_id;
+            entry.date = _diary.created_at;
             String content = "";
             for (TimelineResponse.Answer answer : _diary.answers) {
               content = content + answer.label + " ";
             }
-            entry.setContent(content);
+            entry.content = content;
             if (_diary.answers.size() > 0) {
-              entry.setImgUrl(_diary.answers.get(0).image);
+              entry.imgUrl = _diary.answers.get(0).image;
             }
             return entry;
           })

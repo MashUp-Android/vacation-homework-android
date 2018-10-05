@@ -67,9 +67,9 @@ public class TimelineRecyclerViewAdapter
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     setFadeAnimation(holder.itemView, position);
     TimelineEntry entry = this.timelineEntries.get(position);
-    String date = TimelineRecyclerViewAdapter.df.format(entry.getDate());
+    String date = TimelineRecyclerViewAdapter.df.format(entry.date);
 
-    holder.contents.setText(entry.getContent());
+    holder.contents.setText(entry.content);
     holder.date.setText(date);
     holder.entry = entry;
     ArrayList<String> imageUrls = new ArrayList<>();

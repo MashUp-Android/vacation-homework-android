@@ -49,7 +49,7 @@ public class MainPresenter extends ExtendedPresenter<MainActivityProps, MainActi
 
   private void handleClickTimelineEntry(View view, TimelineEntry timelineEntry) {
     Intent intent = new Intent(this.activity, DiaryDetailActivity.class);
-    intent.putExtra("diaryId", timelineEntry.getDiaryId());
+    intent.putExtra("diaryId", timelineEntry.diaryId);
     this.activity.startActivity(intent);
   }
 

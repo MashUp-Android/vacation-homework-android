@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 // https://code.tutsplus.com/tutorials/getting-started-with-retrofit-2--cms-27792
 public class RetrofitClient {
   private static Retrofit retrofit = null;
-  private final static String SOON_TO_BE_REMOVED_HASH_FOR_DEV = "b2FQxG4bHTKJpg3ciug0vLjd4vuHTNciOg19919l";
+  private final static String SOON_TO_BE_REMOVED_HASH_FOR_DEV = "JYZgFMaXklKhRXWPorjkAdsRptLOVuRPgub7H7NF";
   private static int[] SUCCESS_CODES = { 200, 201 };
 
 
