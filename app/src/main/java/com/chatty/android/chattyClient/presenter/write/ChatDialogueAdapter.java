@@ -1,29 +1,39 @@
 package com.chatty.android.chattyClient.presenter.write;
 
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chatty.android.chattyClient.R;
+import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJava;
 import com.chatty.android.chattyClient.model.ChatBalloon;
+import com.chatty.android.chattyClient.view.write.WriteActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatDialogueAdapter extends RecyclerView.Adapter {
   private List<ChatBalloon> chatBalloons;
+  Context context;
 
   public ChatDialogueAdapter(List<ChatBalloon> chatBalloons) {
     this.chatBalloons = chatBalloons;
   }
 
-  public void update(ArrayList<ChatBalloon> chatBalloons) {
+  public void update(ArrayList<ChatBalloon> chatBalloons,Context context) {
     this.chatBalloons.clear();
     this.chatBalloons.addAll(chatBalloons);
+    this.context = context;
     this.notifyDataSetChanged();
   }
 
@@ -38,12 +48,14 @@ public class ChatDialogueAdapter extends RecyclerView.Adapter {
     }
   }
 
-  public class ChatEntrySelfViewHolder extends RecyclerView.ViewHolder {
+  public static class ChatEntrySelfViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
+    ImageView imageView;
 
     ChatEntrySelfViewHolder(View itemView) {
       super(itemView);
-      this.textView= itemView.findViewById(R.id.textView);
+      this.textView = itemView.findViewById(R.id.textView_self);
+      this.imageView = itemView.findViewById(R.id.imageView_send_image);
     }
   }
 
@@ -80,12 +92,19 @@ public class ChatDialogueAdapter extends RecyclerView.Adapter {
           ((ChatEntryPartnerViewHolder) holder).textView_isRead.setText(chatBalloon.username);
           break;
         case 2:
+            Log.e("내 말", String.valueOf(chatBalloon.selectImage+"0"));
+          if (chatBalloon.selectImage != null) {
+            ImageView imageView = ((ChatEntrySelfViewHolder) holder).imageView;
+            imageView.setVisibility(View.VISIBLE);
+            Glide.with(this.context)
+              .load(chatBalloon.selectImage)
+              .into(imageView);
+          }
           ((ChatEntrySelfViewHolder) holder).textView.setText(chatBalloon.speech);
           break;
       }
     }
   }
-
   @Override
   public int getItemCount() {
     return this.chatBalloons.size();

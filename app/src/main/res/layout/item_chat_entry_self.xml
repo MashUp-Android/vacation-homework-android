@@ -10,7 +10,7 @@
     android:background="@drawable/write_answer_ninepatch_3x"
     android:elevation="@dimen/SIZE_4"
     android:fontFamily="sans-serif"
-    android:id="@+id/textView"
+    android:id="@+id/textView_self"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/SIZE_2"
     android:layout_marginStart="@dimen/SIZE_20"
@@ -23,11 +23,24 @@
     android:textColor="@color/black0"
     android:textSize="@dimen/text_size_14sp"
     android:textStyle="normal"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="no plans!!! :(
 I have part time job in the morning that&apos;s it...
 But i think i might hang out with my friends from uni next week."/>
+
+  <ImageView
+    android:id="@+id/imageView_send_image"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/SIZE_20"
+    android:layout_marginStart="@dimen/SIZE_20"
+    android:layout_marginTop="@dimen/SIZE_18"
+    android:background="@color/gray5"
+    android:visibility="gone"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/textView_self" />
+
 </android.support.constraint.ConstraintLayout>

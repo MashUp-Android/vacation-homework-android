@@ -36,7 +36,8 @@ public interface ChattyApiDefinition {
   @POST("diary/chat/{diary_id}/")
   Call<AppendChatResponse> postChat(
     @Path("diary_id") int diary_id,
-    @Body ChatRequest chatRequest
+    @Part("label") String label,
+    @Part MultipartBody.Part profile_image
   );
 
   @GET("/diary/detail/{diary_id}/")

@@ -6,18 +6,21 @@ import com.chatty.android.chattyClient.externalModules.ReduxJava.Reducer;
 import com.chatty.android.chattyClient.externalModules.ReduxJava.ReduxJava;
 import com.chatty.android.chattyClient.model.ChatBalloon;
 import com.chatty.android.chattyClient.model.State;
+import com.chatty.android.chattyClient.model.request.ChatRequest;
 import com.chatty.android.chattyClient.model.response.AppendChatResponse;
 import com.chatty.android.chattyClient.model.response.ChatResponse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChatReducer implements Reducer<State.Chat> {
   public State.Chat run(State.Chat chat, Action action) {
     switch (action.getType()) {
       case ActionType.REQUEST_APPEND_CHAT:
-        String text = (String) action.getPayload().get("chat");
+        ChatRequest chatRequest = (ChatRequest) action.getPayload().get("chat");
         ChatBalloon chatBalloon = new ChatBalloon();
-        chatBalloon.speech = text;
+        chatBalloon.speech =chatRequest.label;
+        chatBalloon.selectImage = chatRequest.image;
         chat.chatBalloons.add(chatBalloon);
 
         ArrayList<ChatBalloon> newChatBalloons = new ArrayList<>();

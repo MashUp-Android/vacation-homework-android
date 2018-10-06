@@ -15,6 +15,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     layout="@layout/item_global_header"/>
+
   <android.support.v7.widget.RecyclerView
     android:id="@+id/recyclerView_dialogue"
     android:layout_height="@dimen/match_constraint"
@@ -71,5 +72,13 @@
       app:layout_constraintEnd_toEndOf="@+id/editText_writeInput"
       app:layout_constraintTop_toTopOf="@+id/editText_writeInput"
       app:srcCompat="@drawable/ic_send"/>
+    <ImageView
+      android:id="@+id/imageView_send_image"
+      android:background="@color/Yellow"
+      android:layout_width="@dimen/SIZE_60"
+      android:layout_marginBottom="@dimen/SIZE_30"
+      android:layout_height="@dimen/SIZE_60"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
   </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
